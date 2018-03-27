@@ -31,10 +31,52 @@
           <div class="sidebar-header">
             <a href="home.html"><img class="logo" name="logo" src="ngyc.png" style="width:200px;height:200px" border="0"></a>
           </div>
+
+          <ul class="list-unstyled components">
+            <p>Georgia Youth ChalleNGe Program</p>
+          </ul>
+
         </nav>
 
-        <br>
-        <legend>Login</legend>
-      </div>
+        <!-- Page Content Holder -->
+        <div id="content" class="col-sm-12">
+
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+              <div class="navbar-header">
+                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                  <i class="glyphicon glyphicon-align-left"></i>
+                  <span>Toggle Sidebar</span>
+                </button>
+                <h1>Login BATMAN</h1>
+              </div>
+
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                  <!-- COMMENTING OUT 'Page's
+                  <li><a href="#">Page</a></li>
+                  <li><a href="#">Page</a></li>
+                  <li><a href="#">Page</a></li>
+                  <li><a href="#">Page</a></li>
+                  -->
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        <div class='form-row'>
+          <div class="form-group col-sm-12">
+            <label for="inputUsername">Username</label>
+            <input type="text" class="form-control" id="inputUsername" value = "<?= $ssn;?>"readonly>
+          </div>
+          <div class="form-group col-sm-12">
+            <label for="inputPassword">Password</label>
+            <input type="text" class="form-control" id="inputPassword" value = "<?= $ssn;?>"readonly>
+          </div>
+        </div>
+      <!-- BEGINNING OF THE END -->
+    </div>
+    </div>
     </body>
 </html>
