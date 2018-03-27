@@ -49,7 +49,7 @@
                   <i class="glyphicon glyphicon-align-left"></i>
                   <span>Toggle Sidebar</span>
                 </button>
-                <h1>Login BATMAN</h1>
+                <h1>Login</h1>
               </div>
 
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -65,14 +65,24 @@
             </div>
           </nav>
 
-        <div class='form-row'>
-          <div class="form-group col-sm-12">
+        <div class='row'>
+          <div class="form-group col-sm-6 col-m-6">
             <label for="inputUsername">Username</label>
-            <input type="text" class="form-control" id="inputUsername" value = "<?= $ssn;?>"readonly>
+            <input type="text" class="form-control" id="inputUsername" placeholder='Username'>
           </div>
-          <div class="form-group col-sm-12">
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6 col-m-6">
             <label for="inputPassword">Password</label>
-            <input type="text" class="form-control" id="inputPassword" value = "<?= $ssn;?>"readonly>
+            <input type="password" class="form-control" id="inputPassword" placeholder='Password'>
+          </div>
+        </div>
+        <div class='row justify-content-between'>
+          <div class='link col-sm-4 col-md-4'>
+            <a href=""><font color='blue'>Forgot Password?</font></a>
+          </div>
+          <div class='col-sm-4 col-md-4'>
+            <button name="login" class="btn btn-success" type="submit" id="login">Login</button>
           </div>
         </div>
       <!-- BEGINNING OF THE END -->
