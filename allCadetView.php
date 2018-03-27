@@ -42,10 +42,11 @@
 									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'current'");
 									foreach($results as $row)
 									{
+										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
 													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Cadet</button></form></td>
-													<td>{$row['ssn']}</td>
+													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
 													<td>{$row['lName']}</td>
@@ -86,9 +87,10 @@ _END;
 									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'graduated'");
 									foreach($results as $row)
 									{
+										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
-													<td>{$row['ssn']}</td>
+													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
 													<td>{$row['lName']}</td>
@@ -129,9 +131,10 @@ _END;
 									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets");
 									foreach($results as $row)
 									{
+										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
-													<td>{$row['ssn']}</td>
+													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
 													<td>{$row['lName']}</td>
