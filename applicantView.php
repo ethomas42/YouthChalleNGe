@@ -3,9 +3,9 @@
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Applcant View");
-    
-    $ssn = $_POST['ssn'];    
-    $connection = new DBController(); 
+
+    $ssn = $_POST['ssn'];
+    $connection = new DBController();
     $record = $connection->runQuery("SELECT * FROM cadets WHERE ssn = '$ssn'")[0];
     $race = preg_split("/;/", $record["race"]);
     $raceCheck = "checked";
@@ -202,12 +202,16 @@
 					}
 					window.onload = calcAge;
 		</script>
-				<!-- edit buttons -->
+				<!-- buttons -->
+				<form action='acceptCadet.php' method = "POST">
+					<input type='hidden' name='ssnAccept' value='$ssn'></input>
+					<button name='acceptCadet' class="btn btn-danger" value="submit" id="acceptCadet">Accept</button>
+				</form>
 				<button class="btn btn-danger" value="submit" id="editCadet" onclick=changeView()>Edit</button>
 				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick=changeEdit()>View</button>
 
 				<p></br></p>
-				
+
 				<!-- Centered Tabs -->
 				<ul class="nav nav-tabs nav-justified">
 				  <li class="nav-item active"><a data-toggle="tab" href="#basicTab">Basic</a></li>
@@ -219,7 +223,7 @@
 					<ul class="dropdown-menu">
 					  <li><a data-toggle="tab" href="#medTab">Medications</a></li>
 					  <li><a data-toggle="tab" href="#allerTab">Allergies</a></li>
-					  <li><a data-toggle="tab" href="#immTab">Immunizations</a></li> 
+					  <li><a data-toggle="tab" href="#immTab">Immunizations</a></li>
 					  <li><a data-toggle="tab" href="#abuseTab">Substance Abuse</a></li>
 					</ul>
 				  </li>
@@ -229,7 +233,7 @@
 				<div class="tab-content">
 
 					<!-- BASIC INFORMATION TAB -->
-					
+
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
 						<form>
 							<div class="form-row">
@@ -372,7 +376,7 @@
 									</select>
 									<br>
 								</div>
-                                                              
+
 								<div class="form-group col-sm-4">
 									<label for="inputAge">Age</label>
 									<input type="text" class="form-control" id="inputAge" value = "<?= $record["age"]?>" placeholder="Age" readonly>
@@ -391,7 +395,7 @@
 									</select>
 								</div>
 								<div class="form-row col-sm-12">
-								<?php 
+								<?php
 									$phoneInfo = $connection->runQuery("SELECT * FROM phonenumbers WHERE ssn = '$ssn'");
 									$numPhones = count($phoneInfo);
 									for($i = 0; $i < $numPhones; $i ++) {
@@ -447,14 +451,14 @@ _END;
 							</table>
                                                         <label class="custom-file"> Upload New Document
                                                              <input name="attachment" type="file" id="file" class="custom-file-input">
-                                                             <input name ="ssn" type ="hidden" value ="<?=$ssn?>"> 
+                                                             <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
                                                               <span class="custom-file-control"></span>
                                                         </label>
 						</form>
 					</div>
-					
+
 					<!-- LOCATION INFORMATION TAB -->
-					
+
 					<div class="tab-pane col-sm-12 container" id="locationTab">
 						<form>
 							<div class="form-row">
@@ -553,9 +557,9 @@ _END;
 							</div>
 						</form>
 					</div>
-					
+
 					<!-- GUARDIAN INFORMATION TAB -->
-					
+
 					<div class="tab-pane col-sm-12 container" id="gTab">
 						<form>
 							<div class="form-row">
@@ -633,9 +637,9 @@ _END;
 							</div>
 						</form>
 					</div>
-						
+
 					<!-- MEDICAL SUB TABS -->
-					
+
 						<!-- MEDICATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="medTab">
 							<h2>Medications</h2>
@@ -683,7 +687,7 @@ _END;
 								</div>
 							</form>
 						</div>
-						
+
 						<!-- ALLERGIES TAB -->
 						<div class="tab-pane container col-sm-12" id="allerTab">
 							<h2>Allergies</h2>
@@ -703,7 +707,7 @@ _END;
 								</div>
 							</form>
 						</div>
-						
+
 						<!-- IMMUNIZATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="immTab">
 							<h2>Immunizations</h2>
@@ -731,7 +735,7 @@ _END;
 								</div>
 							</form>
 						</div>
-						
+
 						<!-- SUBSTANCE ABUSE TAB -->
 						<div class="tab-pane container col-sm-12" id="abuseTab">
 							<h2>Substance Abuse</h2>
@@ -759,9 +763,9 @@ _END;
 								</div>
 							</form>
 						</div>
-					
+
 					<!-- MISCELLANEOUS INFORMATION TAB -->
-					
+
 					<div class="tab-pane col-sm-12 container" id="miscTab">
 						<form>
 							<div class="form-row">
@@ -856,7 +860,7 @@ _END;
 							</div>
 						</form>
 					</div>
-					
+
 					<!-- end of tabs -->
 				</div>
 				<!-- hide and unhide this with js -->
