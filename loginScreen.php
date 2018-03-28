@@ -78,13 +78,42 @@
           </div>
         </div>
         <div class='row justify-content-between'>
-          <div class='link col-sm-4 col-md-4'>
-            <a href=""><font color='blue'>Forgot Password?</font></a>
+          <div class='col-sm-4 col-md-4'>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+              Forgot Password?
+            </button>
           </div>
           <div class='col-sm-4 col-md-4'>
             <button name="login" class="btn btn-success" type="submit" id="login">Login</button>
           </div>
         </div>
+
+        <!--MODAL START-->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Forgot Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Input your email address below to reset your password. You will receive an email with instructions on how to continue.</p>
+                <form>
+                  <div class="form-group col-sm-6">
+  									<input type="text" class="form-control" id="inputEmailReset" placeholder='email@test.com'>
+  								</div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send Email</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <!-- BEGINNING OF THE END -->
     </div>
     </div>
