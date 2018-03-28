@@ -29,7 +29,6 @@
 								<th>GenQual</th>
 								<th>Gender</th>
 								<th>Birthday</th>
-								<th>Age</th>
 								<th>Email</th>
 							</tr>
 						</thead>
@@ -37,9 +36,9 @@
 							<?php
 								include_once "dbcontroller.php";
 								$db = new DBController();
-								if ($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'current'"))
+								if ($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'current'"))
 								{
-									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'current'");
+									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'current'");
 									foreach($results as $row)
 									{
 										$tempSSN = substr($row['ssn'], -4);
@@ -53,7 +52,6 @@
 													<td>{$row['genQual']}</td>
 													<td>{$row['gender']}</td>
 													<td>{$row['birthday']}</td>
-													<td>{$row['age']}</td>
 													<td>{$row['email']}</td>
 												</tr>
 _END;
@@ -67,6 +65,7 @@ _END;
 					<table id="graduated-table" class="table table-striped table-bordered" cellspacing="0">
 						<thead>
 							<tr>
+								<th>View</th>
 								<th>SSN</th>
 								<th>First Name</th>
 								<th>Middle Name</th>
@@ -82,14 +81,15 @@ _END;
 							<?php
 								include_once "dbcontroller.php";
 								$db = new DBController();
-								if($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'graduated'"))
+								if($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'graduated'"))
 								{
-									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'graduated'");
+									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'graduated'");
 									foreach($results as $row)
 									{
 										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
+													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Cadet</button></form></td>
 													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
@@ -97,7 +97,6 @@ _END;
 													<td>{$row['genQual']}</td>
 													<td>{$row['gender']}</td>
 													<td>{$row['birthday']}</td>
-													<td>{$row['age']}</td>
 													<td>{$row['email']}</td>
 												</tr>
 _END;
@@ -111,6 +110,7 @@ _END;
 					<table id="all-table" class="table table-striped table-bordered" cellspacing="0">
 						<thead>
 							<tr>
+								<th>View</th>
 								<th>SSN</th>
 								<th>First Name</th>
 								<th>Middle Name</th>
@@ -118,7 +118,6 @@ _END;
 								<th>GenQual</th>
 								<th>Gender</th>
 								<th>Birthday</th>
-								<th>Age</th>
 								<th>Email</th>
 							</tr>
 						</thead>
@@ -126,14 +125,15 @@ _END;
 							<?php
 								include_once "dbcontroller.php";
 								$db = new DBController();
-								if($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets"))
+								if($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets"))
 								{
-									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets");
+									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets");
 									foreach($results as $row)
 									{
 										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
+													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Cadet</button></form></td>
 													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
@@ -141,7 +141,6 @@ _END;
 													<td>{$row['genQual']}</td>
 													<td>{$row['gender']}</td>
 													<td>{$row['birthday']}</td>
-													<td>{$row['age']}</td>
 													<td>{$row['email']}</td>
 												</tr>
 _END;
