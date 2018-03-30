@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	//test
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Cadet View");
