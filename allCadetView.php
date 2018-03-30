@@ -16,6 +16,12 @@
 					</li>
 				  </ul>
 				  </br>
+				<form action='export-data.php'>
+					<button class='btn btn-danger col-sm-2' id='export-button'>Export All</button>
+				</form>
+				<form action='import-data.php'>
+					<button class="btn btn-danger col-sm-2" id="import-button" >Import Cadets</button>
+				</form>
 				<div class="tab-content">
 				  <div class="tab-pane active container col-sm-12" id="nav-current">
 					<table id="current-table" class="table table-striped table-bordered" cellspacing="0">
