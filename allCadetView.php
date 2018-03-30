@@ -73,7 +73,6 @@ _END;
 								<th>GenQual</th>
 								<th>Gender</th>
 								<th>Birthday</th>
-								<th>Age</th>
 								<th>Email</th>
 							</tr>
 						</thead>

@@ -15,11 +15,12 @@
 
         	function changeView()
 		        {
-		        	//console.log($('id^="inputPhone"'));
 		    		document.getElementById('editCadet').setAttribute('style','display:none');
 		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').removeAttribute('disabled');
 		    		document.getElementById('inputSSN').removeAttribute('readonly');
+					var realSSN = document.getElementById('ssnVal').value;
+					document.getElementById('inputSSN').setAttribute('value', realSSN);
 		    		document.getElementById('inputFirstName').removeAttribute('readonly');
 		    		document.getElementById('inputLastName').removeAttribute('readonly');
 		    		document.getElementById('inputMiddleName').removeAttribute('readonly');
@@ -110,6 +111,8 @@
 		    		document.getElementById('viewCadet').setAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').setAttribute('disabled', 'true');
 		    		document.getElementById('inputSSN').setAttribute('readonly', 'true');
+					var tempSSN = document.getElementById('tempSsnVal').value;
+					document.getElementById('inputSSN').setAttribute('value', '*****'+tempSSN);
 		    		document.getElementById('inputFirstName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputLastName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputMiddleName').setAttribute('readonly', 'true');
@@ -249,7 +252,9 @@
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputSSN">Social Security Number</label>
-									<input type="text" class="form-control" id="inputSSN" value = "<?= $ssn;?>"readonly>
+									<input type="text" class="form-control" id="inputSSN" value = "<?= '*****'.substr($record['ssn'], -4) ?>"readonly>
+									<input type="hidden" id="ssnVal" value="<?= $record['ssn'] ?>">
+									<input type="hidden" id="tempSsnVal" value="<?= substr($record['ssn'], -4) ?>">
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputFirstname">First Name</label>
