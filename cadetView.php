@@ -58,12 +58,12 @@
 		    		document.getElementById('inputMailStreet').removeAttribute('readonly');
 		    		document.getElementById('inputStreet2').removeAttribute('readonly');
 		    		document.getElementById('inputMailCity').removeAttribute('readonly');
-		    		document.getElementById('inputMailState').removeAttribute('readonly');
+		    		document.getElementById('inputMailState').removeAttribute('disabled');
 		    		document.getElementById('inputMailZip').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalStreet').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalStreet2').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalCity').removeAttribute('readonly');
-		    		document.getElementById('inputPhysicalState').removeAttribute('readonly');
+		    		document.getElementById('inputPhysicalState').removeAttribute('disabled');
 		    		document.getElementById('inputPhysicalZip').removeAttribute('readonly');
 					// guardian
 		    		$('[id^=inputGFirstName]').removeAttr('readonly');
@@ -118,7 +118,7 @@
 				}
 
 			function changeEdit()
-			{
+				{
 					// basic info
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');
 		    		document.getElementById('viewCadet').setAttribute('style','display:none');
@@ -157,12 +157,12 @@
 		    		document.getElementById('inputMailStreet').setAttribute('readonly', 'true');
 		    		document.getElementById('inputStreet2').setAttribute('readonly', 'true');
 		    		document.getElementById('inputMailCity').setAttribute('readonly', 'true');
-		    		document.getElementById('inputMailState').setAttribute('readonly', 'true');
+		    		document.getElementById('inputMailState').setAttribute('disabled', 'true');
 		    		document.getElementById('inputMailZip').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalStreet').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalStreet2').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalCity').setAttribute('readonly', 'true');
-		    		document.getElementById('inputPhysicalState').setAttribute('readonly', 'true');
+		    		document.getElementById('inputPhysicalState').setAttribute('disabled', 'true');
 		    		document.getElementById('inputPhysicalZip').setAttribute('readonly', 'true');
 					// guardians
 					$('[id^=inputGFirstName]').attr('readonly', 'true');
@@ -212,8 +212,7 @@
 					document.getElementById('inputSecond').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommender').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommenderPhone').setAttribute('readonly', 'true');
-
-			}
+				}
 
 					function calcAge() {
 						var dob = $('#inputBirthday').val();
@@ -541,20 +540,20 @@ _END;
 									<select class="form-control" id="inputMailState" disabled="disabled">
 										<option selected></option>
 										<!--- PULL STATES FROM DATABASE -->
-                                                                                <?php
-                                                                                    $states = $connection->runQuery("SELECT DISTINCT state FROM states");
-                                                                                    foreach($states as $state)
-                                                                                    {
-                                                                                        if($record['mState'] == $state)
-                                                                                        {
-                                                                                            echo "<option selected>" . $state . "</option>";
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            echo "<option>" . $state . "</option>";
-                                                                                        }
-                                                                                    }
-                                                                                ?>
+										<?php
+											$states = $connection->runQuery("SELECT DISTINCT state FROM states");
+											foreach($states as $state)
+											{
+												if($record['mState'] == $state['state'])
+												{
+													echo "<option selected>" . $state['state'] . "</option>";
+												}
+												else
+												{
+													echo "<option>" . $state['state'] . "</option>";
+												}
+											}
+										?>
 									</select>
 								</div>
 								<div class="form-group col-sm-2">
@@ -579,19 +578,19 @@ _END;
 									<select class="form-control" id="inputPhysicalState" disabled="disabled">
 										<option></option>
 										<!--- PULL STATES FROM DATABASE -->
-                                                                                <?php
-                                                                                    foreach($states as $state)
-                                                                                    {
-                                                                                        if($record['pState'] == $state)
-                                                                                        {
-                                                                                            echo "<option selected>" . $state . "</option>";
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            echo "<option>" . $state . "</option>";
-                                                                                        }
-                                                                                    }
-                                                                                ?>
+										<?php
+											foreach($states as $state)
+											{
+												if($record['pState'] == $state['state'])
+												{
+													echo "<option selected>" . $state['state'] . "</option>";
+												}
+												else
+												{
+													echo "<option>" . $state['state'] . "</option>";
+												}
+											}
+										?>
 									</select>
 								</div>
 								<div class="form-group col-sm-2">
@@ -631,17 +630,17 @@ _END;
 												<select class="form-control" id="inputGRelationship" disabled="disabled">
 													<option></option>
 _END;
-											echo	"<option ". ($guardianInfo[$i]['relationship']=='father') ? 'selected' : "" .">Father</option>";
-											echo	"<option ". ($guardianInfo[$i]['relationship']=='mother') ? 'selected' : "" .">Mother</option>";
-											echo	"<option ". ($guardianInfo[$i]['relationship']=='stepfather') ? 'selected' : "" .">Stepfather</option>";
-											echo 	"<option ". ($guardianInfo[$i]['relationship']=='stepmother') ? 'selected' : "" .">Stepmother</option>";
-											echo    "<option ". ($guardianInfo[$i]['relationship']=='guardian') ? 'selected' : "" .">Guardian</option>";
+											echo	"<option ". (($guardianInfo[$i]['relationship']=='father') ? 'selected' : "") .">Father</option>";
+											echo	"<option ". (($guardianInfo[$i]['relationship']=='mother') ? 'selected' : "") .">Mother</option>";
+											echo	"<option ". (($guardianInfo[$i]['relationship']=='stepfather') ? 'selected' : "") .">Stepfather</option>";
+											echo 	"<option ". (($guardianInfo[$i]['relationship']=='stepmother') ? 'selected' : "") .">Stepmother</option>";
+											echo    "<option ". (($guardianInfo[$i]['relationship']=='guardian') ? 'selected' : "") .">Guardian</option>";
 										echo <<<_END
 												</select>
 											</div>
 										<div class="form-group col-sm-4">
 											<label for="inputGStreet">Street</label>
-											<input type="text" class="form-control" id="inputGStreet{$i}" value = "{$guardianInfo[$i]["street"]}" placeholder="12345 Sample Street" readonly>
+											<input type="text" class="form-control" id="inputGStreet{$i}" value = "{$guardianInfo[$i]["street1"]}" placeholder="12345 Sample Street" readonly>
 										</div>
 										<div class="form-group col-sm-2">
 											<label for="inputGStreet2{$i}">Apt. or Lot #</label>
@@ -659,13 +658,13 @@ _END;
 _END;
 													foreach($states as $state)
 													{
-														if($record['state'] == $state)
+														if($guardianInfo[$i]['state'] == $state['state'])
 														{
-															echo "<option selected>" . $state . "</option>";
+															echo "<option selected>" . $state['state'] . "</option>";
 														}
 														else
 														{
-															echo "<option>" . $state . "</option>";
+															echo "<option>" . $state['state'] . "</option>";
 														}
 													}
 										echo <<<_END
@@ -677,11 +676,11 @@ _END;
 										</div>
 										<div class="form-group col-sm-6">
 											<label for="inputGCell{$i}">Cell Phone</label>
-											<input type="text" class="form-control" id="inputGCell{$i}" value = "{$guardianInfo[$i]["lastName"]}" placeholder="(555)-555-5555" readonly>
+											<input type="text" class="form-control" id="inputGCell{$i}" value = "{$guardianInfo[$i]["cellPhone"]}" placeholder="(555)-555-5555" readonly>
 										</div>
 										<div class="form-group col-sm-6">
 											<label for="inputGHomePhone{$i}">Work Phone</label>
-											<input type="text" class="form-control" id="inputGHomePhone{$i}" value = "{$guardianInfo[$i]["lastName"]}" placeholder="(555)-555-5555" readonly>
+											<input type="text" class="form-control" id="inputGHomePhone{$i}" value = "{$guardianInfo[$i]["workPhone"]}" placeholder="(555)-555-5555" readonly>
 										</div>
 										<div class="form-group col-sm-12">
 											<label for="inputGEmail{$i}">Email</label>
@@ -859,7 +858,7 @@ _END;
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputWithdraw">Month and Year of Withdrawing from School</label>
-									<input type="date" class="form-control" id="inputWithdraw" value = "<?= $record["schoolWithdrawlDate"]?>" placeholder="Month and Year of Withdrawing from School" readonly>
+									<input type="date" class="form-control" id="inputWithdraw" value = "<?= $record["schoolWithdrawDate"]?>" placeholder="Month and Year of Withdrawing from School" readonly>
 								</div>
 								<legend>Are you unemployed or under-employed?</legend>
 								<div class="form-check form-check-inline col-sm-6">
