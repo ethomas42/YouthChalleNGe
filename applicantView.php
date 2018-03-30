@@ -206,12 +206,34 @@
 					window.onload = calcAge;
 		</script>
 				<!-- buttons -->
-				<form action='acceptCadet.php' method = "POST">
-					<input type='hidden' name='ssnAccept' value='$ssn'></input>
-					<button name='acceptCadet' class="btn btn-danger" value="submit" id="acceptCadet">Accept</button>
-				</form>
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#acceptCheck">Accept</button>
 				<button class="btn btn-danger" value="submit" id="editCadet" onclick=changeView()>Edit</button>
 				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick=changeEdit()>View</button>
+
+				<!-- Accept Confirmation Check -->
+				<div class="modal fade" id="acceptCheck" tabindex="-1" role="dialog" aria-labelledby="acceptCheckTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure you want to accept this applicant? Choosing 'Accept' will automatically transition this applicant into a cadet and bring you to the All Cadets page.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary col-sm-1" data-dismiss="modal">Close</button>
+								<form action='acceptCadet.php' method = "POST" class='col-sm-1'>
+									<input type='hidden' name='ssnAccept' value='<?php echo $ssn ?>'></input>
+									<button name='acceptCadet' class="btn btn-danger" value="submit" id="acceptCadet">Accept</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Confirmation Check End -->
+
 
 				<p></br></p>
 

@@ -18,6 +18,7 @@
 						<table id="pending-table" class="table table-striped table-bordered" cellspacing="0">
 							<thead>
 								<tr>
+									<th>View</th>
 									<th>SSN</th>
 									<th>First Name</th>
 									<th>Middle Name</th>
@@ -25,7 +26,6 @@
 									<th>GenQual</th>
 									<th>Gender</th>
 									<th>Birthday</th>
-									<th>Age</th>
 									<th>Email</th>
 								</tr>
 							</thead>
@@ -33,21 +33,22 @@
 								<?php
 									include_once "dbcontroller.php";
 									$db = new DBController();
-									if ($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'pending'"))
+									if ($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'pending'"))
 									{
-										$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'pending'");
+										$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'pending'");
 										foreach($results as $row)
 										{
+											$tempSSN = substr($row['ssn'], -4);
 											echo <<<_END
 													<tr>
-														<td>{$row['ssn']}</td>
+														<td><form method="post" action="applicantView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Applicant</button></form></td>
+														<td>*****{$tempSSN}</td>
 														<td>{$row['fName']}</td>
 														<td>{$row['mName']}</td>
 														<td>{$row['lName']}</td>
 														<td>{$row['genQual']}</td>
 														<td>{$row['gender']}</td>
 														<td>{$row['birthday']}</td>
-														<td>{$row['age']}</td>
 														<td>{$row['email']}</td>
 													</tr>
 _END;
@@ -61,6 +62,7 @@ _END;
 						<table id="rejected-table" class="table table-striped table-bordered" cellspacing="0">
 							<thead>
 								<tr>
+									<th>View</th>
 									<th>SSN</th>
 									<th>First Name</th>
 									<th>Middle Name</th>
@@ -68,7 +70,6 @@ _END;
 									<th>GenQual</th>
 									<th>Gender</th>
 									<th>Birthday</th>
-									<th>Age</th>
 									<th>Email</th>
 								</tr>
 							</thead>
@@ -76,21 +77,22 @@ _END;
 								<?php
 									include_once "dbcontroller.php";
 									$db = new DBController();
-									if ($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'rejected'"))
+									if ($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'rejected'"))
 									{
-										$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, age, email FROM cadets WHERE admissionStatus = 'rejected'");
+										$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus = 'rejected'");
 										foreach($results as $row)
 										{
+											$tempSSN = substr($row['ssn'], -4);
 											echo <<<_END
 													<tr>
-														<td>{$row['ssn']}</td>
+														<td><form method="post" action="applicantView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Applicant</button></form></td>
+														<td>*****{$tempSSN}</td>
 														<td>{$row['fName']}</td>
 														<td>{$row['mName']}</td>
 														<td>{$row['lName']}</td>
 														<td>{$row['genQual']}</td>
 														<td>{$row['gender']}</td>
 														<td>{$row['birthday']}</td>
-														<td>{$row['age']}</td>
 														<td>{$row['email']}</td>
 													</tr>
 _END;

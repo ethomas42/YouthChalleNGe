@@ -225,8 +225,33 @@
 					window.onload = calcAge;
 		</script>
 				<!-- edit buttons -->
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#graduateCheck">Graduate</button>
 				<button class="btn btn-danger" value="submit" id="editCadet" onclick=changeView()>Edit</button>
 				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick=changeEdit()>View</button>
+
+				<!-- Graduate Confirmation Check -->
+				<div class="modal fade" id="graduateCheck" tabindex="-1" role="dialog" aria-labelledby="graduateCheckTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure you want to graduate this cadet? Choosing 'Accept' will automatically transition this cadet into a graduate and bring you to the All Cadets page.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary col-sm-1" data-dismiss="modal">Close</button>
+								<form action='graduateCadet.php' method = "POST" class='col-sm-1'>
+									<input type='hidden' name='ssnGraduate' value='<?php echo $ssn ?>'></input>
+									<button name='graduateCadet' class="btn btn-danger" value="submit" id="graduateCadet">Accept</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Confirmation Check End -->
 
 				<p></br></p>
 				
