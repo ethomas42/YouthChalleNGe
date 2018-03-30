@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-	//test
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Cadet View");
@@ -21,12 +20,15 @@
 
         	function changeView()
 		        {
+					// basic info
 		    		document.getElementById('editCadet').setAttribute('style','display:none');
 		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').removeAttribute('disabled');
+					// ssn shenanigans
 		    		document.getElementById('inputSSN').removeAttribute('readonly');
 					var realSSN = document.getElementById('ssnVal').value;
 					document.getElementById('inputSSN').setAttribute('value', realSSN);
+					
 		    		document.getElementById('inputFirstName').removeAttribute('readonly');
 		    		document.getElementById('inputLastName').removeAttribute('readonly');
 		    		document.getElementById('inputMiddleName').removeAttribute('readonly');
@@ -50,6 +52,7 @@
 		    		document.getElementById('inputGender').removeAttribute('disabled');
 		    		document.getElementById('inputEmail').removeAttribute('readonly');
 		    		document.getElementById('inputAdmission').removeAttribute('readonly');
+					// location
 		    		document.getElementById('inputLocation').removeAttribute('disabled');
 		    		document.getElementById('inputGAResident').removeAttribute('disabled');
 		    		document.getElementById('inputMailStreet').removeAttribute('readonly');
@@ -62,18 +65,20 @@
 		    		document.getElementById('inputPhysicalCity').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalState').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalZip').removeAttribute('readonly');
-		    		document.getElementById('inputGFirstName').removeAttribute('readonly');
-		    		document.getElementById('inputGMiddleName').removeAttribute('readonly');
-		    		document.getElementById('inputGLastName').removeAttribute('readonly');
-		    		document.getElementById('inputRelationship').removeAttribute('disabled');
-		    		document.getElementById('inputGuardianStreet').removeAttribute('readonly');
-		    		document.getElementById('inputGuardianStreet2').removeAttribute('readonly');
-		    		document.getElementById('inputGuardianCity').removeAttribute('readonly');
-		    		document.getElementById('inputGuardianState').removeAttribute('disabled');
-		    		document.getElementById('inputGuardianZip').removeAttribute('readonly');
-		    		document.getElementById('inputGuardianCell').removeAttribute('readonly');
-		    		document.getElementById('inputGuardianHomePhone').removeAttribute('readonly');
-		    		document.getElementById('inputGuardianEmail').removeAttribute('readonly');
+					// guardian
+		    		$('[id^=inputGFirstName]').removeAttr('readonly');
+					$('[id^=inputGMiddleName]').removeAttr('readonly');
+		    		$('[id^=inputGLastName]').removeAttr('readonly');
+		    		$('[id^=inputGRelationship]').removeAttr('disabled');
+		    		$('[id^=inputGStreet]').removeAttr('readonly');
+		    		$('[id^=inputGStreet2]').removeAttr('readonly');
+		    		$('[id^=inputGCity]').removeAttr('readonly');
+		    		$('[id^=inputGState]').removeAttr('disabled');
+		    		$('[id^=inputGZip]').removeAttr('readonly');
+		    		$('[id^=inputGCell]').removeAttr('readonly');
+		    		$('[id^=inputGHomePhone]').removeAttr('readonly');
+		    		$('[id^=inputGEmail]').removeAttr('readonly');
+					// medical
 		    		document.getElementById('inputDrugName').removeAttribute('readonly');
 		    		document.getElementById('inputDrugType').removeAttribute('readonly');
 		    		document.getElementById('inputDrugDosage').removeAttribute('readonly');
@@ -95,6 +100,7 @@
 					document.getElementById('inputAbuseResults').removeAttribute('readonly');
 					document.getElementById('inputAbuseName').removeAttribute('readonly');
 					document.getElementById('inputAbuseNotes').removeAttribute('readonly');
+					// misc
 					document.getElementById('inputHousePeople').removeAttribute('readonly');
 					document.getElementById('inputIncome').removeAttribute('readonly');
 					document.getElementById('inputGED').removeAttribute('readonly');
@@ -113,12 +119,15 @@
 
 			function changeEdit()
 			{
+					// basic info
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');
 		    		document.getElementById('viewCadet').setAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').setAttribute('disabled', 'true');
+					// ssn shenanigans
 		    		document.getElementById('inputSSN').setAttribute('readonly', 'true');
 					var tempSSN = document.getElementById('tempSsnVal').value;
 					document.getElementById('inputSSN').setAttribute('value', '*****'+tempSSN);
+					
 		    		document.getElementById('inputFirstName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputLastName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputMiddleName').setAttribute('readonly', 'true');
@@ -142,6 +151,7 @@
 		    		document.getElementById('inputGender').setAttribute('disabled', 'true');
 		    		document.getElementById('inputEmail').setAttribute('readonly', 'true');
 		    		document.getElementById('inputAdmission').setAttribute('readonly', 'true');
+					// location
 		    		document.getElementById('inputLocation').setAttribute('disabled', 'true');
 		    		document.getElementById('inputGAResident').setAttribute('disabled', 'true');
 		    		document.getElementById('inputMailStreet').setAttribute('readonly', 'true');
@@ -154,18 +164,20 @@
 		    		document.getElementById('inputPhysicalCity').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalState').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalZip').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGFirstName').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGMiddleName').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGLastName').setAttribute('readonly', 'true');
-		    		document.getElementById('inputRelationship').setAttribute('disabled', 'true');
-		    		document.getElementById('inputGuardianStreet').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGuardianStreet2').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGuardianCity').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGuardianState').setAttribute('disabled', 'true');
-		    		document.getElementById('inputGuardianZip').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGuardianCell').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGuardianHomePhone').setAttribute('readonly', 'true');
-		    		document.getElementById('inputGuardianEmail').setAttribute('readonly', 'true');
+					// guardians
+					$('[id^=inputGFirstName]').attr('readonly', 'true');
+		    		$('[id^=inputGMiddleName]').attr('readonly', 'true');
+		    		$('[id^=inputGLastName]').attr('readonly', 'true');
+		    		$('[id^=inputGRelationship]').attr('disabled', 'true');
+		    		$('[id^=inputGStreet]').attr('readonly', 'true');
+		    		$('[id^=inputGStreet2]').attr('readonly', 'true');
+		    		$('[id^=inputGCity]').attr('readonly', 'true');
+		    		$('[id^=inputGState]').attr('disabled', 'true');
+		    		$('[id^=inputGZip]').attr('readonly', 'true');
+		    		$('[id^=inputGCell]').attr('readonly', 'true');
+		    		$('[id^=inputGHomePhone]').attr('readonly', 'true');
+		    		$('[id^=inputGEmail]').attr('readonly', 'true');
+					// medical
 		    		document.getElementById('inputDrugName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputDrugType').setAttribute('readonly', 'true');
 		    		document.getElementById('inputDrugDosage').setAttribute('readonly', 'true');
@@ -186,6 +198,7 @@
 					document.getElementById('inputAbuseResults').setAttribute('readonly', 'true');
 					document.getElementById('inputAbuseName').setAttribute('readonly', 'true');
 					document.getElementById('inputAbuseNotes').setAttribute('readonly', 'true');
+					// misc
 					document.getElementById('inputHousePeople').setAttribute('readonly', 'true');
 					document.getElementById('inputIncome').setAttribute('readonly', 'true');
 					document.getElementById('inputGED').setAttribute('readonly', 'true');
@@ -589,8 +602,8 @@ _END;
 												<input type="text" class="form-control" id="inputGLastName{$i}" value = {$guardianInfo[$i]['lName']} placeholder="Last Name" readonly>
 											</div>
 											<div class="form-group col-sm-3">
-												<label for="inputRelationship">Relationship</label>
-												<select class="form-control" id="inputRelationship" disabled="disabled">
+												<label for="inputGRelationship">Relationship</label>
+												<select class="form-control" id="inputGRelationship" disabled="disabled">
 													<option></option>
 _END;
 											echo	"<option ". ($guardianInfo[$i]['relationship']=='father') ? 'selected' : "" .">Father</option>";
