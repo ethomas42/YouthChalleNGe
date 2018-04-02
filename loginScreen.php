@@ -65,6 +65,7 @@
             </div>
           </nav>
 
+      <form action = "loginSessions.php" method = "POST"> 
         <div class='row'>
           <div class="form-group col-sm-6 col-m-6">
             <label for="inputUsername">Username</label>
@@ -82,6 +83,7 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#forgotModal">
               Forgot Password?
             </button>
+              </form>
           </div>
           <div class='col-sm-4 col-md-4'>
             <button name="login" class="btn btn-success" type="submit" id="login">Login</button>
