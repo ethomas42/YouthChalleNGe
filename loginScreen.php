@@ -69,13 +69,13 @@
         <div class='row'>
           <div class="form-group col-sm-6 col-m-6">
             <label for="inputUsername">Username</label>
-            <input type="text" class="form-control" id="inputUsername" placeholder='Username'>
+            <input type="text" class="form-control" name="inputUsername" id="inputUsername" placeholder='Username'>
           </div>
         </div>
         <div class="row">
           <div class="form-group col-sm-6 col-m-6">
             <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder='Password'>
+            <input type="password" class="form-control"  name = "inputPassword" id="inputPassword" placeholder='Password'>
           </div>
         </div>
         <div class='row justify-content-between'>
