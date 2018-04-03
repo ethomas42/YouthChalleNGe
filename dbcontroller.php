@@ -15,6 +15,16 @@ class DBController {
 		return $conn;
 	}
 	
+	function createRecord($query)
+	{
+		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
+		if($conn->query($query) == TRUE) {
+			echo "New record(s) created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+	}
+
 	function runQuery($query) {
 		$result = mysqli_query($this->conn,$query);
 		while($row=mysqli_fetch_assoc($result)) {
