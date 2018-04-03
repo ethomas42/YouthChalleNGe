@@ -16,6 +16,9 @@ $(document).ready(function()
 	$('#rejected-table').DataTable( {
 		responsive: true
 	});
+	$('#reports-table').DataTable( {
+		responsive: true
+	});
 	
 	$('#sidebarCollapse').on('click', function () 
 	{
