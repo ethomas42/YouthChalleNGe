@@ -487,9 +487,10 @@ a.selected{
 											$results = $db->runQuery("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn");
 											foreach($results as $row)
 											{
+												$path = $row['path']; 
 												echo <<<_END
 														<tr>
-															<td><a href = "#" download> {$row['filename']} </a> </td>
+															<td><a href = "$path" download> {$row['filename']} </a> </td>
 															<td>{$row['uploadDate']}</td>
 														</tr>
 _END;
