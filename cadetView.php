@@ -15,7 +15,13 @@
     $race = preg_split("/;/", $record["race"]);
     $raceCheck = "checked";
 ?>
-
+<style>
+a:hover; 
+a.selected{
+	color:red; 
+	background: #efefef; 
+}
+</style>
 	<script>
 
         	function changeView()
@@ -483,7 +489,7 @@
 											{
 												echo <<<_END
 														<tr>
-															<td>{$row['filename']}</td>
+															<td><a href = "#" download> {$row['filename']} </a> </td>
 															<td>{$row['uploadDate']}</td>
 														</tr>
 _END;
