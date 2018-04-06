@@ -17,13 +17,19 @@ class DBController {
 	
 	function runQuery($query) {
 		$result = mysqli_query($this->conn,$query);
+		if(!$result) die ("query failed".$this->conn->error);
+
 		while($row=mysqli_fetch_assoc($result)) {
 			$resultset[] = $row;
 		}		
 		if(!empty($resultset))
 			return $resultset;
 	}
-	
+	function updateQuery($tableName, $field, $newValue, $key)
+	{
+		 $result = $this->conn->query("UPDATE $field FROM $tableName WHERE ssn ='$key'");
+    	if(!$result) die ("query failed".$this->conn->error);
+	}
 	function numRows($query) {
 		$result  = mysqli_query($this->conn,$query);
 		if ($result)
