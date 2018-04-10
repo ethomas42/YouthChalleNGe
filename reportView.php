@@ -315,11 +315,14 @@
 									<thead>
 										<tr>
 											<th>Attachment Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='attachments.filename'>Filename</td></tr>
-										<tr><td id='attachments.uploadDate'>Upload Date</td></tr>
+										<tr><td id='attachments.filename'>Filename</td>
+										<td><button name="add" onclick="addToReport('Attachment', 'Filenames', 'attachments.filename')">Add</button></td></tr>
+										<tr><td id='attachments.uploadDate'>Upload Date</td>
+										<td><button name="add" onclick="addToReport('Attachment', 'Upload Date', 'attachments.uploadDate')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -328,48 +331,88 @@
 									<thead>
 										<tr>
 											<th>Cadets Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='cadets.fName'>First Name</td></tr>
-										<tr><td id='cadets.mName'>Middle Name</td></tr>
-										<tr><td id='cadets.lName'>Last Name</td></tr>
-										<tr><td id='cadets.gender'>Gender</td></tr>
-										<tr><td id='cadets.ssn'>Social Security Number</td></tr>
-										<tr><td id='cadets.genQual'>Generational Qualifier</td></tr>
-										<tr><td id='cadets.birthday'>Date of Birth</td></tr>
-										<tr><td id='cadets.race'>Race</td></tr>
-										<tr><td id='cadets.isHispanic'>Hispanic</td></tr>
-										<tr><td id='cadets.email'>Email</td></tr>
-										<tr><td id='cadets.mStreet'>Mailing Address</td></tr>
-										<tr><td id='cadets.mStreet2'>Mailing Address Line 2</td></tr>
-										<tr><td id='cadets.mCity'>Mailing City</td></tr>
-										<tr><td id='cadets.mState'>Mailing State</td></tr>
-										<tr><td id='cadets.pStreet'>Physical Address</td></tr>
-										<tr><td id='cadets.pStreet2'>Physical Address Line 2</td></tr>
-										<tr><td id='cadets.pCity'>Physical City</td></tr>
-										<tr><td id='cadets.pState'>Physical State</td></tr>
-										<tr><td id='cadets.pZip'>Physical Zip</td></tr>
-										<tr><td id='cadets.isCitizen'>Citizenship</td></tr>
-										<tr><td id='cadets.ged'>GED</td></tr>
-										<tr><td id='cadets.volunteer'>Volunteer Status</td></tr>
-										<tr><td id='cadets.admissionStatus'>Admission Status</td></tr>
-										<tr><td id='cadets.schoolWithdrawDate'>School Withdrawal Date</td></tr>
-										<tr><td id='cadets.unemplyed'>Unemployed</td></tr>
-										<tr><td id='cadets.underemployed'>Underemployed</td></tr>
-										<tr><td id='cadets.workplace'>Place of Work</td></tr>
-										<tr><td id='cadets.wage'>Wage</td></tr>
-										<tr><td id='cadets.hoursWorking'>Hours per Week</td></tr>
-										<tr><td id='cadets.recBy'>Recommender</td></tr>
-										<tr><td id='cadets.gradeCompleted'>Grade Completed</td></tr>
-										<tr><td id='cadets.hairColor'>Hair Color</td></tr>
-										<tr><td id='cadets.eyeColor'>Eye Color</td></tr>
-										<tr><td id='cadets.height'>Height</td></tr>
-										<tr><td id='cadets.weight'>Weight</td></tr>
-										<tr><td id='cadets.personsInHouse'># of People in Household</td></tr>
-										<tr><td id='cadets.houseIncome'>Household Income</td></tr>
-										<tr><td id='cadets.gaResident'>GA Resident</td></tr>
-										<tr><td id='cadets.preferredComm'>Preferred Method of Communication</td></tr>
+										<tr><td id='cadets.fName'>First Name</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'First Name', 'cadets.fName')">Add</button></td></tr>
+										<tr><td id='cadets.mName'>Middle Name</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Middle Name', 'cadets.mName')">Add</button></td></tr>
+										<tr><td id='cadets.lName'>Last Name</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Last Name', 'cadets.lName')">Add</button></td></tr>
+										<tr><td id='cadets.gender'>Gender</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Gender', 'cadets.gender')">Add</button></td></tr>
+										<tr><td id='cadets.ssn'>Social Security Number</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Social Security Number', 'cadets.ssn')">Add</button></td></tr>
+										<tr><td id='cadets.genQual'>Generational Qualifier</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Generational Qualifier', 'cadets.genQual')">Add</button></td></tr>
+										<tr><td id='cadets.birthday'>Date of Birth</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Date of Birth', 'cadets.birthday')">Add</button></td></tr>
+										<tr><td id='cadets.race'>Race</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Race', 'cadets.race')">Add</button></td></tr>
+										<tr><td id='cadets.isHispanic'>Hispanic</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Hispanic', 'cadets.isHispanic')">Add</button></td></tr>
+										<tr><td id='cadets.email'>Email</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Email', 'cadets.email')">Add</button></td></tr>
+										<tr><td id='cadets.mStreet'>Mailing Address</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Mailing Address', 'cadets.mStreet')">Add</button></td></tr>
+										<tr><td id='cadets.mStreet2'>Mailing Address Line 2</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Mailing Address Line 2', 'cadets.mStreet2')">Add</button></td></tr>
+										<tr><td id='cadets.mCity'>Mailing City</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Mailing City', 'cadets.mCity')">Add</button></td></tr>
+										<tr><td id='cadets.mState'>Mailing State</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Mailing State', 'cadets.mState')">Add</button></td></tr>
+										<tr><td id='cadets.pStreet'>Physical Address</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Physical Address', 'cadets.pStreet')">Add</button></td></tr>
+										<tr><td id='cadets.pStreet2'>Physical Address Line 2</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Physical Address Line 2', 'cadets.pStreet2')">Add</button></td></tr>
+										<tr><td id='cadets.pCity'>Physical City</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Physical City', 'cadets.pCity')">Add</button></td></tr>
+										<tr><td id='cadets.pState'>Physical State</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Physical State', 'cadets.pState')">Add</button></td></tr>
+										<tr><td id='cadets.pZip'>Physical Zip</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Physical Zip', 'cadets.pZip')">Add</button></td></tr>
+										<tr><td id='cadets.isCitizen'>Citizenship</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Citizenship', 'cadets.isCitizen')">Add</button></td></tr>
+										<tr><td id='cadets.ged'>GED</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'GED', 'cadets.ged')">Add</button></td></tr>
+										<tr><td id='cadets.volunteer'>Volunteer Status</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Volunteer Status', 'cadets.volunteer')">Add</button></td></tr>
+										<tr><td id='cadets.admissionStatus'>Admission Status</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Admission Status', 'cadets.admissionStatus')">Add</button></td></tr>
+										<tr><td id='cadets.schoolWithdrawDate'>School Withdrawal Date</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'School Withdrawal Date', 'cadets.schoolWithdrawDate')">Add</button></td></tr>
+										<tr><td id='cadets.unemplyed'>Unemployed</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Unemployed', 'cadets.unemplyed')">Add</button></td></tr>
+										<tr><td id='cadets.underemployed'>Underemployed</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Underemployed', 'cadets.underemployed')">Add</button></td></tr>
+										<tr><td id='cadets.workplace'>Place of Work</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Place of Work', 'cadets.workplace')">Add</button></td></tr>
+										<tr><td id='cadets.wage'>Wage</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Wage', 'cadets.wage')">Add</button></td></tr>
+										<tr><td id='cadets.hoursWorking'>Hours per Week</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Hours per Week', 'cadets.hoursWorking')">Add</button></td></tr>
+										<tr><td id='cadets.recBy'>Recommender</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Recommender', 'cadets.recBy')">Add</button></td></tr>
+										<tr><td id='cadets.gradeCompleted'>Grade Completed</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Grade Completed', 'cadets.gradeCompleted')">Add</button></td></tr>
+										<tr><td id='cadets.hairColor'>Hair Color</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Hair Color', 'cadets.hairColor')">Add</button></td></tr>
+										<tr><td id='cadets.eyeColor'>Eye Color</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Eye Color', 'cadets.eyeColor')">Add</button></td></tr>
+										<tr><td id='cadets.height'>Height</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Height', 'cadets.height')">Add</button></td></tr>
+										<tr><td id='cadets.weight'>Weight</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Weight', 'cadets.weight')">Add</button></td></tr>
+										<tr><td id='cadets.personsInHouse'># of People in Household</td>
+										<td><button name="add" onclick="addToReport('Cadets', '# of People in Household', 'cadets.personsInHouse')">Add</button></td></tr>
+										<tr><td id='cadets.houseIncome'>Household Income</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Household Income', 'cadets.houseIncome')">Add</button></td></tr>
+										<tr><td id='cadets.gaResident'>GA Resident</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'GA Resident', 'cadets.gaResident')">Add</button></td></tr>
+										<tr><td id='cadets.preferredComm'>Preferred Method of Communication</td>
+										<td><button name="add" onclick="addToReport('Cadets', 'Preferred Method of Communication', 'cadets.preferredComm')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -378,49 +421,89 @@
 									<thead>
 										<tr>
 											<th>Applicant Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
 										<!-- Applicants means Cadets table but status=pending -->
-										<tr><td id='applicants.fName'>First Name</td></tr>
-										<tr><td id='applicants.mName'>Middle Name</td></tr>
-										<tr><td id='applicants.lName'>Last Name</td></tr>
-										<tr><td id='applicants.gender'>Gender</td></tr>
-										<tr><td id='applicants.ssn'>Social Security Number</td></tr>
-										<tr><td id='applicants.genQual'>Generational Qualifier</td></tr>
-										<tr><td id='applicants.birthday'>Date of Birth</td></tr>
-										<tr><td id='applicants.race'>Race</td></tr>
-										<tr><td id='applicants.isHispanic'>Hispanic</td></tr>
-										<tr><td id='applicants.email'>Email</td></tr>
-										<tr><td id='applicants.mStreet'>Mailing Address</td></tr>
-										<tr><td id='applicants.mStreet2'>Mailing Address Line 2</td></tr>
-										<tr><td id='applicants.mCity'>Mailing City</td></tr>
-										<tr><td id='applicants.mState'>Mailing State</td></tr>
-										<tr><td id='applicants.pStreet'>Physical Address</td></tr>
-										<tr><td id='applicants.pStreet2'>Physical Address Line 2</td></tr>
-										<tr><td id='applicants.pCity'>Physical City</td></tr>
-										<tr><td id='applicants.pState'>Physical State</td></tr>
-										<tr><td id='applicants.pZip'>Physical Zip</td></tr>
-										<tr><td id='applicants.isCitizen'>Citizenship</td></tr>
-										<tr><td id='applicants.ged'>GED</td></tr>
-										<tr><td id='applicants.volunteer'>Volunteer Status</td></tr>
-										<tr><td id='applicants.admissionStatus'>Admission Status</td></tr>
-										<tr><td id='applicants.schoolWithdrawDate'>School Withdrawal Date</td></tr>
-										<tr><td id='applicants.unemplyed'>Unemployed</td></tr>
-										<tr><td id='applicants.underemployed'>Underemployed</td></tr>
-										<tr><td id='applicants.workplace'>Place of Work</td></tr>
-										<tr><td id='applicants.wage'>Wage</td></tr>
-										<tr><td id='applicants.hoursWorking'>Hours per Week</td></tr>
-										<tr><td id='applicants.recBy'>Recommender</td></tr>
-										<tr><td id='applicants.gradeCompleted'>Grade Completed</td></tr>
-										<tr><td id='applicants.hairColor'>Hair Color</td></tr>
-										<tr><td id='applicants.eyeColor'>Eye Color</td></tr>
-										<tr><td id='applicants.height'>Height</td></tr>
-										<tr><td id='applicants.weight'>Weight</td></tr>
-										<tr><td id='applicants.personsInHouse'># of People in Household</td></tr>
-										<tr><td id='applicants.houseIncome'>Household Income</td></tr>
-										<tr><td id='applicants.gaResident'>GA Resident</td></tr>
-										<tr><td id='applicants.preferredComm'>Preferred Method of Communication</td></tr>
+										<tr><td id='applicants.fName'>First Name</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'First Name', 'applicants.fName')">Add</button></td></tr>
+										<tr><td id='applicants.mName'>Middle Name</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Middle Name', 'applicants.mName')">Add</button></td></tr>
+										<tr><td id='applicants.lName'>Last Name</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Last Name', 'applicants.lName')">Add</button></td></tr>
+										<tr><td id='applicants.gender'>Gender</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Gender', 'applicants.gender')">Add</button></td></tr>
+										<tr><td id='applicants.ssn'>Social Security Number</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Social Security Number', 'applicants.ssn')">Add</button></td></tr>
+										<tr><td id='applicants.genQual'>Generational Qualifier</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Generational Qualifier', 'applicants.genQual')">Add</button></td></tr>
+										<tr><td id='applicants.birthday'>Date of Birth</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Date of Birth', 'applicants.birthday')">Add</button></td></tr>
+										<tr><td id='applicants.race'>Race</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Race', 'applicants.race')">Add</button></td></tr>
+										<tr><td id='applicants.isHispanic'>Hispanic</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Hispanic', 'applicants.isHispanic')">Add</button></td></tr>
+										<tr><td id='applicants.email'>Email</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Email', 'applicants.email')">Add</button></td></tr>
+										<tr><td id='applicants.mStreet'>Mailing Address</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Mailing Address', 'applicants.mStreet')">Add</button></td></tr>
+										<tr><td id='applicants.mStreet2'>Mailing Address Line 2</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Mailing Address Line 2', 'applicants.mStreet2')">Add</button></td></tr>
+										<tr><td id='applicants.mCity'>Mailing City</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Mailing City', 'applicants.mCity')">Add</button></td></tr>
+										<tr><td id='applicants.mState'>Mailing State</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Mailing State', 'applicants.mState')">Add</button></td></tr>
+										<tr><td id='applicants.pStreet'>Physical Address</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Physical Address', 'applicants.pStreet')">Add</button></td></tr>
+										<tr><td id='applicants.pStreet2'>Physical Address Line 2</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Physical Address Line 2', 'applicants.pStreet2')">Add</button></td></tr>
+										<tr><td id='applicants.pCity'>Physical City</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Physical City', 'applicants.pCity')">Add</button></td></tr>
+										<tr><td id='applicants.pState'>Physical State</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Physical State', 'applicants.pState')">Add</button></td></tr>
+										<tr><td id='applicants.pZip'>Physical Zip</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Physical Zip', 'applicants.pZip')">Add</button></td></tr>
+										<tr><td id='applicants.isCitizen'>Citizenship</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Citizenship', 'applicants.isCitizen')">Add</button></td></tr>
+										<tr><td id='applicants.ged'>GED</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'GED', 'applicants.ged')">Add</button></td></tr>
+										<tr><td id='applicants.volunteer'>Volunteer Status</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Volunteer Status', 'applicants.volunteer')">Add</button></td></tr>
+										<tr><td id='applicants.admissionStatus'>Admission Status</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Admission Status', 'applicants.admissionStatus')">Add</button></td></tr>
+										<tr><td id='applicants.schoolWithdrawDate'>School Withdrawal Date</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'School Withdrawal Date', 'applicants.schoolWithdrawDate')">Add</button></td></tr>
+										<tr><td id='applicants.unemplyed'>Unemployed</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Unemployed', 'applicants.unemplyed')">Add</button></td></tr>
+										<tr><td id='applicants.underemployed'>Underemployed</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Underemployed', 'applicants.underemployed')">Add</button></td></tr>
+										<tr><td id='applicants.workplace'>Place of Work</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Place of Work', 'applicants.workplace')">Add</button></td></tr>
+										<tr><td id='applicants.wage'>Wage</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Wage', 'applicants.wage')">Add</button></td></tr>
+										<tr><td id='applicants.hoursWorking'>Hours per Week</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Hours per Week', 'applicants.hoursWorking')">Add</button></td></tr>
+										<tr><td id='applicants.recBy'>Recommender</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Recommender', 'applicants.recBy')">Add</button></td></tr>
+										<tr><td id='applicants.gradeCompleted'>Grade Completed</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Grade Completed', 'applicants.gradeCompleted')">Add</button></td></tr>
+										<tr><td id='applicants.hairColor'>Hair Color</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Hair Color', 'applicants.hairColor')">Add</button></td></tr>
+										<tr><td id='applicants.eyeColor'>Eye Color</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Eye Color', 'applicants.eyeColor')">Add</button></td></tr>
+										<tr><td id='applicants.height'>Height</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Height', 'applicants.height')">Add</button></td></tr>
+										<tr><td id='applicants.weight'>Weight</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Weight', 'applicants.weight')">Add</button></td></tr>
+										<tr><td id='applicants.personsInHouse'># of People in Household</td>
+										<td><button name="add" onclick="addToReport('Applicants', '# of People in Household', 'applicants.personsInHouse')">Add</button></td></tr>
+										<tr><td id='applicants.houseIncome'>Household Income</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Household Income', 'applicants.houseIncome')">Add</button></td></tr>
+										<tr><td id='applicants.gaResident'>GA Resident</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'GA Resident', 'applicants.gaResident')">Add</button></td></tr>
+										<tr><td id='applicants.preferredComm'>Preferred Method of Communication</td>
+										<td><button name="add" onclick="addToReport('Applicants', 'Preferred Method of Communication', 'applicants.preferredComm')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -429,11 +512,14 @@
 									<thead>
 										<tr>
 											<th>Court Assignment Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='applicants.preferredComm'>Allergy Type</td></tr>
-										<tr><td id='applicants.preferredComm'>Allergy Notes</td></tr>
+										<tr><td id='courtassignments.date'>Date</td>
+										<td><button name="add" onclick="addToReport('Court Assignments', 'Date', 'courtassignments.date')">Add</button></td></tr>
+										<tr><td id='courtassignments.notes'>Notes</td>
+										<td><button name="add" onclick="addToReport('Court Assignments', 'Notes', 'courtassignments.notes')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -442,21 +528,34 @@
 									<thead>
 										<tr>
 											<th>Guardians Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='guardians.fName'>First Name</td></tr>
-										<tr><td id='applicants.mName'>Middle Name</td></tr>
-										<tr><td id='guardians.lName'>Last Name</td></tr>
-										<tr><td id='applicants.relationship'>Relationship</td></tr>
-										<tr><td id='guardians.street'>Street Address</td></tr>
-										<tr><td id='applicants.street2'>Street Address Line 2</td></tr>
-										<tr><td id='guardians.city'>City</td></tr>
-										<tr><td id='applicants.state'>State</td></tr>
-										<tr><td id='guardians.zip'>Zip Code</td></tr>
-										<tr><td id='applicants.cellPhone'>Cell Phone</td></tr>
-										<tr><td id='guardians.workPhone'>Work Phone</td></tr>
-										<tr><td id='applicants.email'>Email</td></tr>
+										<tr><td id='guardians.fName'>First Name</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'First Name', 'guardians.fName')">Add</button></td></tr>
+										<tr><td id='guardians.mName'>Middle Name</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Middle Name', 'guardians.mName')">Add</button></td></tr>
+										<tr><td id='guardians.lName'>Last Name</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Last Name', 'guardians.lName')">Add</button></td></tr>
+										<tr><td id='guardians.relationship'>Relationship</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Relationship', 'guardians.relationship')">Add</button></td></tr>
+										<tr><td id='guardians.street'>Street Address</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Street Address', 'guardians.street')">Add</button></td></tr>
+										<tr><td id='guardians.street2'>Street Address Line 2</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Street Address Line 2', 'guardians.street2')">Add</button></td></tr>
+										<tr><td id='guardians.city'>City</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'City', 'guardians.city')">Add</button></td></tr>
+										<tr><td id='guardians.state'>State</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'State', 'guardians.state')">Add</button></td></tr>
+										<tr><td id='guardians.zip'>Zip Code</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Zip Code', 'guardians.zip')">Add</button></td></tr>
+										<tr><td id='guardians.cellPhone'>Cell Phone</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Cell Phone', 'guardians.cellPhone')">Add</button></td></tr>
+										<tr><td id='guardians.workPhone'>Work Phone</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Work Phone', 'guardians.workPhone')">Add</button></td></tr>
+										<tr><td id='guardians.email'>Email</td>
+										<td><button name="add" onclick="addToReport('Guardians', 'Email', 'guardians.email')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -465,13 +564,18 @@
 									<thead>
 										<tr>
 											<th>Immunization Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='immunizations.date'>Date</td></tr>
-										<tr><td id='immunizations.type'>Type</td></tr>
-										<tr><td id='immunizations.validUntil'>Valid Until</td></tr>
-										<tr><td id='immunizations.notes'>Notes</td></tr>
+										<tr><td id='immunizations.date'>Date</td>
+										<td><button name="add" onclick="addToReport('Immunization', 'Date', 'immunizations.date')">Add</button></td></tr>
+										<tr><td id='immunizations.type'>Type</td>
+										<td><button name="add" onclick="addToReport('Immunization', 'Type', 'immunizations.type')">Add</button></td></tr>
+										<tr><td id='immunizations.validUntil'>Valid Until</td>
+										<td><button name="add" onclick="addToReport('Immunization', 'Valid Until', 'immunizations.validUntil')">Add</button></td></tr>
+										<tr><td id='immunizations.notes'>Notes</td>
+										<td><button name="add" onclick="addToReport('Immunization', 'Notes', 'immunizations.notes')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -480,14 +584,20 @@
 									<thead>
 										<tr>
 											<th>Insurance Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='insurance.name'>Name</td></tr>
-										<tr><td id='insurance.address'>Address</td></tr>
-										<tr><td id='insurance.phoneNumber'>Phone Number</td></tr>
-										<tr><td id='insurance.ext'>Extension</td></tr>
-										<tr><td id='insurance.policyNum'>Policy Number</td></tr>
+										<tr><td id='insurance.name'>Name</td>
+										<td><button name="add" onclick="addToReport('Insurance', 'Name', 'insurance.name')">Add</button></td></tr>
+										<tr><td id='insurance.address'>Address</td>
+										<td><button name="add" onclick="addToReport('Insurance', 'Address', 'insurance.address')">Add</button></td></tr>
+										<tr><td id='insurance.phoneNumber'>Phone Number</td>
+										<td><button name="add" onclick="addToReport('Insurance', 'Phone Number', 'insurance.phoneNumber')">Add</button></td></tr>
+										<tr><td id='insurance.ext'>Extension</td>
+										<td><button name="add" onclick="addToReport('Insurance', 'Extension', 'insurance.ext')">Add</button></td></tr>
+										<tr><td id='insurance.policyNum'>Policy Number</td>
+										<td><button name="add" onclick="addToReport('Insurance', 'Policy Number', 'insurance.policyNum')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -496,17 +606,26 @@
 									<thead>
 										<tr>
 											<th>Medications Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='medications.drugName'>Drug Name</td></tr>
-										<tr><td id='medications.type'>Type</td></tr>
-										<tr><td id='medications.dosage'>Dosage</td></tr>
-										<tr><td id='medications.frequency'>Frequency</td></tr>
-										<tr><td id='medications.takenWhen'>Taken When</td></tr>
-										<tr><td id='medications.startDate'>Start Date</td></tr>
-										<tr><td id='medications.endDate'>End Date</td></tr>
-										<tr><td id='medications.notes'>Notes</td></tr>
+										<tr><td id='medications.drugName'>Drug Name</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Drug Name', 'medications.drugName')">Add</button></td></tr>
+										<tr><td id='medications.type'>Type</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Type', 'medications.type')">Add</button></td></tr>
+										<tr><td id='medications.dosage'>Dosage</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Dosage', 'medications.dosage')">Add</button></td></tr>
+										<tr><td id='medications.frequency'>Frequency</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Frequency', 'medications.frequency')">Add</button></td></tr>
+										<tr><td id='medications.takenWhen'>Taken When</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Taken When', 'medications.takenWhen')">Add</button></td></tr>
+										<tr><td id='medications.startDate'>Start Date</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Start Date', 'medications.startDate')">Add</button></td></tr>
+										<tr><td id='medications.endDate'>End Date</td>
+										<td><button name="add" onclick="addToReport('Medications', 'End Date', 'medications.endDate')">Add</button></td></tr>
+										<tr><td id='medications.notes'>Notes</td>
+										<td><button name="add" onclick="addToReport('Medications', 'Notes', 'medications.notes')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -515,12 +634,16 @@
 									<thead>
 										<tr>
 											<th>Phone Numbers Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='phonenumbers.phoneNumber'>Phone Number</td></tr>
-										<tr><td id='phonenumbers.ext'>Extension</td></tr>
-										<tr><td id='phonenumbers.notes'>Notes</td></tr>
+										<tr><td id='phonenumbers.phoneNumber'>Phone Number</td>
+										<td><button name="add" onclick="addToReport('Phone Numbers', 'Phone Number', 'phonenumbers.phoneNumber')">Add</button></td></tr>
+										<tr><td id='phonenumbers.ext'>Extension</td>
+										<td><button name="add" onclick="addToReport('Phone Numbers', 'Extension', 'phonenumbers.ext')">Add</button></td></tr>
+										<tr><td id='phonenumbers.notes'>Notes</td>
+										<td><button name="add" onclick="addToReport('Phone Numbers', 'Notes', 'phonenumbers.notes')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -529,14 +652,20 @@
 									<thead>
 										<tr>
 											<th>Referrals Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='referrals.fName'>First Name</td></tr>
-										<tr><td id='referrals.lName'>Last Name</td></tr>
-										<tr><td id='referrals.address'>Address</td></tr>
-										<tr><td id='referrals.phoneNumber'>Phone Number</td></tr>
-										<tr><td id='referrals.ext'>Phone Extension</td></tr>
+										<tr><td id='referrals.fName'>First Name</td>
+										<td><button name="add" onclick="addToReport('Referrals', 'First Name', 'referrals.fName')">Add</button></td></tr>
+										<tr><td id='referrals.lName'>Last Name</td>
+										<td><button name="add" onclick="addToReport('Referrals', 'Last Name', 'referrals.lName')">Add</button></td></tr>
+										<tr><td id='referrals.address'>Address</td>
+										<td><button name="add" onclick="addToReport('Referrals', 'Address', 'referrals.address')">Add</button></td></tr>
+										<tr><td id='referrals.phoneNumber'>Phone Number</td>
+										<td><button name="add" onclick="addToReport('Referrals', 'Phone Number', 'referrals.phoneNumber')">Add</button></td></tr>
+										<tr><td id='referrals.ext'>Phone Extension</td>
+										<td><button name="add" onclick="addToReport('Referrals', 'Phone Extension', 'referrals.ext')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -545,20 +674,20 @@
 									<thead>
 										<tr>
 											<th>Substance Abuse Columns</th>
+											<th>Add to Report</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr><td id='substanceabuse.testDate'>Test Date</td></tr>
-										<tr><td id='substanceabuse.results'>Results</td></tr>
-										<tr><td id='substanceabuse.drugName'>Drug Name</td></tr>
-										<tr><td id='substanceabuse.notes'>Notes</td></tr>
+										<tr><td id='substanceabuse.testDate'>Test Date</td>
+										<td><button name="add" onclick="addToReport('Substance Abuse', 'Test Date', 'substanceabuse.testDate')">Add</button></td></tr>
+										<tr><td id='substanceabuse.results'>Results</td>
+										<td><button name="add" onclick="addToReport('Substance Abuse', 'Results', 'substanceabuse.results')">Add</button></td></tr>
+										<tr><td id='substanceabuse.drugName'>Drug Name</td>
+										<td><button name="add" onclick="addToReport('Substance Abuse', 'Drug Name', 'substanceabuse.drugName')">Add</button></td></tr>
+										<tr><td id='substanceabuse.notes'>Notes</td>
+										<td><button name="add" onclick="addToReport('Substance Abuse', 'Notes', 'substanceabuse.notes')">Add</button></td></tr>
 									</tbody>
 								</table>
-							<div class="form-group">
-								<button type='button' class='btn btn-success'>Add Field</button>
-							</div>
-							<div class="form-group">
-								<button type='button' class='btn btn-danger'>Remove Field</button>
 							</div>
 							<div class="form-group">
 								<button type='button' class='btn btn-primary' data-toggle="modal" data-target="#genModal">Generate Report</button>
