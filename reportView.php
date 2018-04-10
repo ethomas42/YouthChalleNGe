@@ -7,62 +7,63 @@
             <script>
             $(document).ready(function(){
 				// DataTables
-				$("#allergiesColumns").dataTable( {
+				
+				$("#allergiesColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#attachmentsColumns").dataTable( {
+				$("#attachmentsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#cadetsColumns").dataTable( {
+				$("#cadetsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#applicantsColumns").dataTable( {
+				$("#applicantsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#courtAssignmentsColumns").dataTable( {
+				$("#courtAssignmentsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#guardiansColumns").dataTable( {
+				$("#guardiansColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#immunizationsColumns").dataTable( {
+				$("#immunizationsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#insuranceColumns").dataTable( {
+				$("#insuranceColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#medicationsColumns").dataTable( {
+				$("#medicationsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#phoneNumbersColumns").dataTable( {
+				$("#phoneNumbersColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#referralsColumns").dataTable( {
+				$("#referralsColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
-				$("#substanceAbuseColumns").dataTable( {
+				$("#substanceAbuseColumns").DataTable( {
 					"searching": false,
 					"lengthChange": false,
 					"info": false
@@ -243,9 +244,6 @@
 					}
                 });
 				
-				$("[name='add']").on('click', function() {
-					
-				});
             });
             </script>
 
@@ -306,8 +304,9 @@
 									</thead>
 									<tbody>
 										<tr><td id='allergies.type'>Allergy Type</td>
-										<td><button name="add">Add</button></td></tr>
-										<tr><td id='allergies.notes'>Allergy Notes</td></tr>
+										<td><button name="add" onclick="addToReport('Allergy', 'Allergy Type', 'allergies.type')">Add</button></td></tr>
+										<tr><td id='allergies.notes'>Allergy Notes</td>
+										<td><button name="add" onclick="addToReport('Allergy', 'Allergy Notes', 'allergies.notes')">Add</button></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -599,4 +598,21 @@
             </div>
         </div>
     </body>
+	<script>
+	function addToReport(tableText, colText, id) {
+		var table = document.getElementById("reportToGen");
+		var row = table.insertRow(1);
+		row.id = id;
+		var textCell = row.insertCell(0);
+		var buttonCell = row.insertCell(1);
+		textCell.innerHTML = tableText + " Table: " + colText;
+		buttonCell.innerHTML = "<button name='add' onclick=\"removeFromReport('"+ id +"')\">Remove</button>";
+	}
+	
+	function removeFromReport(rowid) {
+		var table = document.getElementById("reportToGen");
+		var row = document.getElementById(rowid);
+		row.parentNode.removeChild(row);
+	}
+	</script>
 </html>
