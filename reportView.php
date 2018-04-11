@@ -10,12 +10,14 @@
 	// if editing an existing report, grab the fields
 	if(!empty($repName)) {
 		$db = new DBController();
-		if ($db->numRows("SELECT fields FROM reports WHERE name="+ $repName))
+		if ($db->numRows("SELECT fields FROM reports WHERE name='" . $repName . "'"))
 		{
-			$results = $db->runQuery("SELECT fields FROM reports WHERE name="+ $repName);
+			$results = $db->runQuery("SELECT fields FROM reports WHERE name='" . $repName . "'");
 		}
 	}
-
+	if(empty($results[0]['fields'])) {
+		$results[0]['fields'] = "";
+	}
 ?>
 			
             <script>
@@ -24,69 +26,61 @@
 				var repName = "<?= $repName; ?>";
 				if(repName) {
 					// grab field names from database and split them
-					var fields = "<?= $results['fields']; ?>";
-					console.log(fields);
-					// loop through the fields to get the correct data from the table n stuff
+					var fields = "<?= $results[0]['fields']; ?>";
+					fields = fields.split(";").filter(function(el) {return el.length != 0}); // split and filter out empty elements
+					if(fields) {
+						for(var i = 0; i < fields.length; i ++) {
+							$("[id ='" + fields[i] + "'] + td > button").click(); 
+						}
+					}
 				}
 				
 				// DataTables init
 				$("#allergiesColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#attachmentsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#cadetsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#applicantsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#courtAssignmentsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#guardiansColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#immunizationsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#insuranceColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#medicationsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#phoneNumbersColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#referralsColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
 				$("#substanceAbuseColumns").DataTable( {
-					"searching": false,
 					"lengthChange": false,
 					"info": false
 				});
@@ -757,7 +751,7 @@
 		var textCell = row.insertCell(0);
 		var buttonCell = row.insertCell(1);
 		textCell.innerHTML = tableText + " Table: " + colText;
-		buttonCell.innerHTML = "<button name='add' onclick=\"removeFromReport('"+ id +"')\">Remove</button>";
+		buttonCell.innerHTML = "<button class='btn btn-primary' name='add' onclick=\"removeFromReport('"+ id +"')\">Remove</button>";
 	}
 	
 	function removeFromReport(rowid) {
@@ -765,5 +759,7 @@
 		var row = document.getElementById(rowid);
 		row.parentNode.removeChild(row);
 	}
+	
+	
 	</script>
 </html>
