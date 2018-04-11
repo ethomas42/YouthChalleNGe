@@ -5,7 +5,7 @@
 ?>
 
 			<div class="container col-sm-12">
-				<button type="button" class="btn btn-danger">New</button>
+				<form method="post" action="reportView.php"><input type="hidden" name="repName" value=""><button type="submit" class="btn btn-danger">New</button></form>
 				
 				<p><br></p>
 				
@@ -29,7 +29,7 @@
 									$dateA = preg_split('/[-_ ]+/', $row['dateCreated']); //split by dash underscore and space
 									echo <<<_END
 											<tr>
-												<td><form method="post" action="reportView.php?{$row['name']}"><input type="hidden" value="0"><button type="button" class="btn btn-primary">View Report</button></form></td>
+												<td><form method="post" action="reportView.php"><input type="hidden" name="repName" value="{$row['name']}"><button type="submit" class="btn btn-primary">View Report</button></form></td>
 												<td>{$row['name']}</td>
 												<td>{$dateA[1]}/{$dateA[2]}/{$dateA[0]}</td> <!-- American date format -->
 											</tr>
