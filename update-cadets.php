@@ -102,13 +102,40 @@ if(isset($_POST['saveCadet']))
         $connection->runQuery("UPDATE cadets set gaResident = '$gaResident' WHERE ssn = '$key'"); 
         
     }
+    
     if (isset(filter_input(INPUT_POST, ""))) {
         
     }
     echo '<script> alert("Cadet has been Updated!"); </script>';
     header("refresh:2;url=allCadetView.php"); 
     
-    //echo "Button is pushed";
-    
+    //echo "Button is pushed"
+}
+if(isset($_POST['saveUser']))
+{
+    $email = filter_input(INPUT_POST, "email"); 
+    if(isset(filter_input(INPUT_POST, "inputFirstName"))
+       {
+           $fName = filter_input(INPUT_POST, "inputFirstName"); 
+           $connection->runQuery("UPDATE users SET fName = '$fName' WHERE email = '$email'");  
+       }
+       
+      if(isset(filter_input(INPUT_POST, "inputLastName"))
+       {
+           $lName = filter_input(INPUT_POST, "inputLastName"); 
+           $connection->runQuery("UPDATE users SET lName = '$lName' WHERE email = '$email'");  
+       }
+         
+       if(isset(filter_input(INPUT_POST, "inputUsername"))
+       {
+           $username = filter_input(INPUT_POST, "inputLastName"); 
+           $connection->runQuery("UPDATE users SET username = '$username' WHERE email = '$email'");  
+       }
+          
+       if(isset(filter_input(INPUT_POST, "inputPassword"))
+          {
+              $password = filter_input(INPUT_POST, "inputPassword"); 
+              $connection->runQuery("UPDATE users SET password = '$password' WHERE email = '$email'"); 
+          }
 }
 ?>
