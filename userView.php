@@ -4,7 +4,7 @@
     require_once 'dbcontroller.php';
 	basicPage("User View");
 
-    $ssn = $_POST['email'];
+    $email = $_POST['email'];
     $connection = new DBController();
     $record = $connection->runQuery("SELECT * FROM users WHERE email = '$email'")[0];
 ?>
@@ -22,6 +22,7 @@
 		    		document.getElementById('inputEmail').removeAttribute('readonly');
 					document.getElementById('inputRole').removeAttribute('disabled');
 					document.getElementById('inputUsername').removeAttribute('readonly');
+					document.getElementById('inputPassword').removeAttribute('readonly');
 
 				}
 
@@ -35,6 +36,7 @@
 		    		document.getElementById('inputEmail').setAttribute('readonly', 'true');
 					document.getElementById('inputRole').setAttribute('disabled', 'true');
 					document.getElementById('inputUsername').setAttribute('readonly', 'true');
+					document.getElementById('inputPassword').setAttribute('readonly', 'true');
 				}
 		</script>
 				<!-- buttons -->
@@ -45,19 +47,23 @@
 					<div class="form-row">
 						<div class="form-group col-sm-6">
 							<label for="inputFirstname">First Name</label>
-							<input type="text" class="form-control" id="inputFirstName" value = "<?= $record["fName"]?>" readonly>
+							<input type="text" class="form-control" name="inputFirstName" id="inputFirstName" value = "<?= $record["fName"]?>" placeholder="First Name" readonly>
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="inputLastName">Last Name</label>
-							<input type="text" class="form-control" id="inputLastName" value = "<?= $record["lName"]?>"placeholder="Last Name" readonly>
+							<input type="text" class="form-control" name="inputLastName" id="inputLastName" value = "<?= $record["lName"]?>"placeholder="Last Name" readonly>
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="inputUsername">Username</label>
-							<input type="email" class="form-control" id="inputUsername" value = "<?= $record["username"]?>" placeholder="Username" readonly>
+							<input type="text" class="form-control" name="inputUsername" id="inputUsername" value = "<?= $record["username"]?>" placeholder="Username" readonly>
 						</div>
 						<div class="form-group col-sm-6">
+							<label for="inputPassword">Password</label>
+							<input type="password" class="form-control" name="inputPassword" id="inputPassword" value = "<?= $record["password"]?>" placeholder="Password" readonly>
+						</div>
+						<div class="form-group col-sm-12">
 							<label for="inputEmail">Email</label>
-							<input type="email" class="form-control" id="inputEmail" value = "<?= $record["email"]?>" placeholder="Email" readonly>
+							<input type="email" class="form-control" name="inputEmail" id="inputEmail" value = "<?= $record["email"]?>" placeholder="Email" readonly>
 						</div>
 						<div class="form-group col-sm-12">
 							<label for="inputRole">Role</label>
@@ -72,6 +78,7 @@
 							</select>
 						</div>
 					</div>
+				<input type="hidden" name="email" value="<?= $record["email"]?>">
 				<button name="saveUser" class="btn btn-success" type="submit" id="saveUser">Save</button>
 				</form>
 						
