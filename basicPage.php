@@ -65,7 +65,7 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 								</ul>
 								<a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">Administration</a>
 								<ul class="collapse list-unstyled" id="adminSubmenu">
-									<li><a href="#">All Locations</a></li>
+									<li><a href="roles.php">All Locations</a></li>
 									<li><a href="#">Milledgeville</a></li>
 									<li><a href="#">Fort Gordon</a></li>
 									<li><a href="#">Fort Stuart</a></li>

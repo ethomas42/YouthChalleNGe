@@ -52,7 +52,7 @@ basicPage("Users");
                     foreach($results as $row)
                     {
 echo <<<_END
-			<td><form method ="post" action = "newUser.php"> <input type = "hidden" name ="ssn" value ="{$row['email']"> </form></td>'; 
+			<td><form method ="post" action = "newUser.php"> <input type = "hidden" name ="ssn" value ="{$row['email']}"> </form></td>'; 
                         <td>{$row['fName']} {$row['lName']}</td>"; 
                         <td>{$row['email']}</td>;
 _END;
