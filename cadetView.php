@@ -702,46 +702,58 @@ _END;
 							<h2>Medications</h2>
 							<!-- backend- make form for each entry for this cadet -->
 							<form>
-								<div class="form-row">
-									<div class="form-group col-sm-6">
-										<label for="inputDrugName">Drug Name</label>
-										<input type="text" class="form-control" id="inputDrugName" placeholder="Drug Name" readonly>
-									</div>
-									<div class="form-group col-sm-6">
-										<label for="inputDrugType">Type</label>
-										<input type="text" class="form-control" id="inputDrugType" placeholder="Type" readonly>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-sm-4">
-										<label for="inputDrugDosage">Dosage</label>
-										<input type="text" class="form-control" id="inputDrugDosage" placeholder="Dosage" readonly>
-									</div>
-									<div class="form-group col-sm-4">
-										<label for="inputDrugFrequency">Frequency</label>
-										<input type="text" class="form-control" id="inputDrugFrequency" placeholder="Frequency" readonly>
-									</div>
-									<div class="form-group col-sm-4">
-										<label for="inputTakenWhen">Taken When</label>
-										<input type="text" class="form-control" id="inputTakenWhen" placeholder="Taken When" readonly>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-sm-6">
-										<label for="inputStartDate">Start Date</label>
-										<input type="date" class="form-control" id="inputStartDate" readonly>
-									</div>
-									<div class="form-group col-sm-6">
-										<label for="inputEndDate">End Date</label>
-										<input type="date" class="form-control" id="inputEndDate" readonly>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-sm-12">
-										<label for="inputDrugDosage">Notes</label>
-										<textarea class="form-control" id="inputDrugDosage" placeholder="Notes" rows="3" readonly></textarea>
-									</div>
-								</div>
+							<?php 
+								$medInfo = $connection->runQuery("SELECT * FROM medications WHERE ssn = '$ssn'");
+								$numMeds = count($medInfo);
+								if($numMeds > 0) {
+									for($i = 0; $i < $numMeds; $i ++) {
+										$n = $i+1;
+										echo <<<_END
+										<legend>Medication {$n}</legend>
+										<div class="form-row">
+											<div class="form-group col-sm-6">
+												<label for="inputDrugName{$i}">Drug Name</label>
+												<input type="text" class="form-control" id="inputDrugName{$i}" value = {$medInfo[$i]['drugName']} placeholder="Drug Name" readonly>
+											</div>
+											<div class="form-group col-sm-6">
+												<label for="inputDrugType{$i}">Type</label>
+												<input type="text" class="form-control" id="inputDrugType{$i}" value = {$medInfo[$i]['type']} placeholder="Type" readonly>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-sm-4">
+												<label for="inputDrugDosage{$i}">Dosage</label>
+												<input type="text" class="form-control" id="inputDrugDosage{$i}" value = {$medInfo[$i]['dosage']} placeholder="Dosage" readonly>
+											</div>
+											<div class="form-group col-sm-4">
+												<label for="inputDrugFrequency{$i}">Frequency</label>
+												<input type="text" class="form-control" id="inputDrugFrequency{$i}" value = {$medInfo[$i]['frequency']} placeholder="Frequency" readonly>
+											</div>
+											<div class="form-group col-sm-4">
+												<label for="inputTakenWhen{$i}">Taken When</label>
+												<input type="text" class="form-control" id="inputTakenWhen{$i}" value = {$medInfo[$i]['takenWhen']} placeholder="Taken When" readonly>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-sm-6">
+												<label for="inputStartDate{$i}">Start Date</label>
+												<input type="date" class="form-control" id="inputStartDate{$i}" value = {$medInfo[$i]['startDate']} readonly>
+											</div>
+											<div class="form-group col-sm-6">
+												<label for="inputEndDate{$i}">End Date</label>
+												<input type="date" class="form-control" id="inputEndDate{$i}" value = {$medInfo[$i]['endDate']} readonly>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-sm-12">
+												<label for="inputDrugDosage{$i}">Notes</label>
+												<textarea class="form-control" id="inputDrugDosage{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
+											</div>
+										</div>
+_END;
+									}
+								}
+								?>
 							</form>
 						</div>
 						
@@ -750,18 +762,30 @@ _END;
 							<h2>Allergies</h2>
 							<!-- backend- make form for each entry for this cadet -->
 							<form>
-								<div class="form-row">
-									<div class="form-group col-sm-12">
-										<label for="inputAllergyTpye">Allergy Type</label>
-										<input type="text" class="form-control" id="inputSSN" placeholder="Allergy Type" readonly>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-sm-12">
-										<label for="inputAllergyNotes">Notes</label>
-										<textarea class="form-control" id="inputAllergyNotes" placeholder="Notes" rows="3" readonly></textarea>
-									</div>
-								</div>
+							<?php 
+								$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$ssn'");
+								$numAller = count($allerInfo);
+								if($numAller > 0) {
+									for($i = 0; $i < $numAller; $i ++) {
+										$n = $i+1;
+										echo <<<_END
+										<legend>Allergy {$n}</legend>
+										<div class="form-row">
+											<div class="form-group col-sm-12">
+												<label for="inputAllergyType{$i}">Allergy Type</label>
+												<input type="text" class="form-control" id="inputAllergyType{$i}" value = {$allerInfo[$i]['type']} placeholder="Allergy Type" readonly>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-sm-12">
+												<label for="inputAllergyNotes{$i}">Notes</label>
+												<textarea class="form-control" id="inputAllergyNotes{$i}" placeholder="Notes" rows="3" readonly>{$allerInfo[$i]['notes']}</textarea>
+											</div>
+										</div>
+_END;
+									}
+								}
+								?>
 							</form>
 						</div>
 						
@@ -770,26 +794,38 @@ _END;
 							<h2>Immunizations</h2>
 							<!-- backend- make form for each entry for this cadet -->
 							<form>
-								<div class="form-row">
-									<div class="form-group col-sm-4">
-										<label for="inputImmDate">Date</label>
-										<input type="date" class="form-control" id="inputImmDate" readonly>
-									</div>
-									<div class="form-group col-sm-4">
-										<label for="inputImmType">Type</label>
-										<input type="text" class="form-control" id="inputImmType" placeholder="Type" readonly>
-									</div>
-									<div class="form-group col-sm-4">
-										<label for="inputImmValid">Valid Until</label>
-										<input type="text" class="form-control" id="inputImmValid" placeholder="Valid Until" readonly>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group">
-										<label for="inputImmNotes">Notes</label>
-										<textarea class="form-control" id="inputImmNotes" placeholder="Immunization Notes" rows="3" readonly></textarea>
-									</div>
-								</div>
+							<?php 
+								$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$ssn'");
+								$numImm = count($immInfo);
+								if($numImm > 0) {
+									for($i = 0; $i < $numImm; $i ++) {
+										$n = $i+1;
+										echo <<<_END
+										<legend>Immunization {$n}</legend>
+										<div class="form-row">
+											<div class="form-group col-sm-4">
+												<label for="inputImmDate{$i}">Date</label>
+												<input type="date" class="form-control" id="inputImmDate{$i}" value = {$immInfo[$i]['date']} readonly>
+											</div>
+											<div class="form-group col-sm-4">
+												<label for="inputImmType{$i}">Type</label>
+												<input type="text" class="form-control" id="inputImmType{$i}" value = {$immInfo[$i]['type']} placeholder="Type" readonly>
+											</div>
+											<div class="form-group col-sm-4">
+												<label for="inputImmValid{$i}">Valid Until</label>
+												<input type="date" class="form-control" id="inputImmValid{$i}" value = {$immInfo[$i]['validUntil']} placeholder="Valid Until" readonly>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group">
+												<label for="inputImmNotes{$i}">Notes</label>
+												<textarea class="form-control" id="inputImmNotes{$i}" placeholder="Immunization Notes" rows="3" readonly>{$immInfo[$i]['notes']}</textarea>
+											</div>
+										</div>
+_END;
+									}
+								}
+								?>
 							</form>
 						</div>
 						
@@ -798,26 +834,38 @@ _END;
 							<h2>Substance Abuse</h2>
 							<!-- backend- make form for each entry for this cadet -->
 							<form>
-								<div class="form-row">
-									<div class="form-group col-sm-4">
-										<label for="inputAbuseDate">Test Date</label>
-										<input type="date" class="form-control" id="inputAbuseDate" readonly>
-									</div>
-									<div class="form-group col-sm-4">
-										<label for="inputAbuseResults">Results</label>
-										<input type="text" class="form-control" id="inputAbuseResults" placeholder="Results" readonly>
-									</div>
-									<div class="form-group col-sm-4">
-										<label for="inputAbuseName">Drug Name</label>
-										<input type="text" class="form-control" id="inputAbuseName" placeholder="Drug Name" readonly>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group">
-										<label for="inputAbuseNotes">Notes</label>
-										<textarea class="form-control" id="inputAbuseNotes" placeholder="Substance Abuse Notes" rows="3" readonly></textarea>
-									</div>
-								</div>
+							<?php 
+								$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$ssn'");
+								$numSub = count($subInfo);
+								if($numSub > 0) {
+									for($i = 0; $i < $numSub; $i ++) {
+										$n = $i+1;
+										echo <<<_END
+										<legend>Immunization {$n}</legend>
+										<div class="form-row">
+											<div class="form-group col-sm-4">
+												<label for="inputAbuseDate{$i}">Test Date</label>
+												<input type="date" class="form-control" id="inputAbuseDate{$i}" value = {$subInfo[$i]['testDate']} placeholder="Test Date" readonly>
+											</div>
+											<div class="form-group col-sm-4">
+												<label for="inputAbuseResults{$i}">Results</label>
+												<input type="text" class="form-control" id="inputAbuseResults{$i}" value = {$subInfo[$i]['results']} placeholder="Results" readonly>
+											</div>
+											<div class="form-group col-sm-4">
+												<label for="inputAbuseName{$i}">Drug Name</label>
+												<input type="text" class="form-control" id="inputAbuseName{$i}" value = {$subInfo[$i]['drugName']} placeholder="Drug Name" readonly>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group">
+												<label for="inputAbuseNotes{$i}">Notes</label>
+												<textarea class="form-control" id="inputAbuseNotes{$i}" placeholder="Substance Abuse Notes" rows="3" readonly>{$subInfo[$i]['notes']}</textarea>
+											</div>
+										</div>
+_END;
+									}
+								}
+								?>
 							</form>
 						</div>
 					
