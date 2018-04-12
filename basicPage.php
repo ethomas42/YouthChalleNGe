@@ -56,9 +56,9 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 									<li><a href="#">Fort Gordon</a></li>
 									<li><a href="#">Fort Stuart</a></li>
 								</ul>
-								<a href="#counsellingSubmenu" data-toggle="collapse" aria-expanded="false">Counselling</a>
-								<ul class="collapse list-unstyled" id="counsellingSubmenu">
-									<li><a href="#">All Locations</a></li>
+								<a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false">Reports</a>
+								<ul class="collapse list-unstyled" id="reportSubmenu">
+									<li><a href="allReportView.php">All Locations</a></li>
 									<li><a href="#">Milledgeville</a></li>
 									<li><a href="#">Fort Gordon</a></li>
 									<li><a href="#">Fort Stuart</a></li>
