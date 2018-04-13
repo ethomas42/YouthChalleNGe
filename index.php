@@ -227,10 +227,10 @@ span.psw {
     <div class="container">
 		<div align = "center"> 
       <label for="uname"><b>Username</b></label> <br>
-      <input type="text" placeholder="Enter Username" name="uname" required> <br>
+      <input type="text" placeholder="Enter Username" name="username" required> <br>
 
       <label for="psw"><b>Password</b></label> <br>
-      <input type="password" placeholder="Enter Password" name="psw" required><br>
+      <input type="password" placeholder="Enter Password" name="password" required><br>
     </div>
       <button type="submit" class="login">Login</button><br>
     <div align = "center">
