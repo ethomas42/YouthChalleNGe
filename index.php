@@ -12,15 +12,21 @@
 	  
 	  <style> 
 	  body {font-family: Arial, Helvetica, sans-serif;}
-
 /* Full-width input fields */
 input[type=text], input[type=password] {
-    width: 30%;
-   padding: 12px 20px;
-    margin: 8px 0;
-	display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+  height: 40px;
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-left: -120px;
+  display : block;
+
+}
+
+label {
+  margin-left: -120px;
 }
 
 /* Set a style for all buttons */
@@ -31,11 +37,24 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 45%;
-}
+    width: 40%;
+    display : block;
+  }
 
 button:hover {
     opacity: 0.8;
+}
+
+button.login {
+  background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    display : block;
+  margin-left: 280px;
 }
 
 /* Extra styles for the cancel button */
@@ -51,14 +70,9 @@ button:hover {
     margin: 24px 0 12px 0;
     position: relative;
 }
-
 img.avatar {
     width: 40%;
     border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
 }
 
 span.psw {
@@ -80,7 +94,6 @@ span.psw {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
 }
-
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
@@ -89,28 +102,37 @@ span.psw {
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.login {
+  margin:0 auto;
+  width: 200%;
+}
 /* The Close Button (x) */
 .close {
     position: absolute;
     right: 25px;
     top: 0;
-    color: #000;
     font-size: 35px;
     font-weight: bold;
+    color: #999;
 }
-
 .close:hover,
 .close:focus {
-    color: red;
+    color: #BE211A;
     cursor: pointer;
 }
 
+.close:hover{
+  color: #BE211A
+}
+
+.close:focus{
+  color: #BE211A
+}
 /* Add Zoom Animation */
 .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
 }
-
 @-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)} 
     to {-webkit-transform: scale(1)}
@@ -120,7 +142,6 @@ span.psw {
     from {transform: scale(0)} 
     to {transform: scale(1)}
 }
-
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
     span.psw {
@@ -210,12 +231,13 @@ span.psw {
 
       <label for="psw"><b>Password</b></label> <br>
       <input type="password" placeholder="Enter Password" name="psw" required><br>
-        
-      <button type="submit">Login</button><br>
+    </div>
+      <button type="submit" class="login">Login</button><br>
+    <div align = "center">
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
-	  </div>
+    </div>
     </div>
 
     
@@ -247,9 +269,7 @@ span.psw {
             <button name="login" class="btn btn-success" type="submit" id="login">Login</button>
           </div>
         </div>
-
         <!--MODAL START-->
-        <
 		
       <!-- BEGINNING OF THE END -->
     </div>
@@ -258,7 +278,6 @@ span.psw {
 	<script>
 // Get the modal
 var modal = document.getElementById('id01');
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
