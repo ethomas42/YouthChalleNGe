@@ -244,25 +244,25 @@ if(isset($_POST['saveUser']))
 {
     $email = filter_input(INPUT_POST, "email"); 
     
-    if(isset(filter_input(INPUT_POST, "inputFirstName"))
+    if(isset($_POST["inputFirstName"))
        {
            $fName = filter_input(INPUT_POST, "inputFirstName"); 
            $connection->runQuery("UPDATE users SET fName = '$fName' WHERE email = '$email'");  
        }
        
-      if(isset(filter_input(INPUT_POST, "inputLastName"))
+      if(isset($_POST["inputLastName"]))
        {
            $lName = filter_input(INPUT_POST, "inputLastName"); 
            $connection->runQuery("UPDATE users SET lName = '$lName' WHERE email = '$email'");  
        }
          
-       if(isset(filter_input(INPUT_POST, "inputUsername"))
+       if(isset($_POST["inputUsername"]))
        {
            $username = filter_input(INPUT_POST, "inputLastName"); 
            $connection->runQuery("UPDATE users SET username = '$username' WHERE email = '$email'");  
        }
           
-       if(isset(filter_input(INPUT_POST, "inputPassword"))
+       if(isset($_POST["inputPassword"]))
           {
               $password = filter_input(INPUT_POST, "inputPassword"); 
               $connection->runQuery("UPDATE users SET password = '$password' WHERE email = '$email'"); 
