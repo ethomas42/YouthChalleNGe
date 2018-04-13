@@ -20,7 +20,7 @@
             </script>
 
             <div class="container col-sm-12">
-              <form>
+              <form action="saver-user-action.php" method = "POST">
                 <div class="form-row">
                   <div class="form-group col-sm-12">
                     <label for="inputUsername">Username</label>
@@ -28,15 +28,15 @@
                   </div>
                   <div class="form-group col-sm-12">
                     <label for="inputFirstName">First name</label>
-                    <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                    <input type="text" class="form-control"name ="inputFirstName" id="inputFirstName" placeholder="First Name">
                   </div>
                   <div class="form-group col-sm-12">
                     <label for="inputLastName">Last Name</label>
-                    <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                    <input type="text" class="form-control" name = "inputLastName" id="inputLastName" placeholder="Last Name">
                   </div>
     							<div class="form-group col-sm-12">
     								<label for="inputRole">Role</label>
-    								<select class="form-control" id="inputRole">
+    								<select class="form-control" name = "inputRole" id="inputRole">
     									<option selected value="0"></option>
     									<option value="0">General User</option>
     									<option value="0">Recruiter</option>
@@ -65,7 +65,7 @@
     							</div>
                   <div class="form-group col-sm-12">
     								<label for="inputApplicantPermission">Applicants Table Permission Level</label>
-    								<select class="form-control" id="inputAppilcantPermission">
+    								<select class="form-control" id="inputAppilcantPermission" name = "inputApplicantPermission">
                       <option selected>None</option>
                       <option>Read</option>
     									<option>Write</option>
@@ -73,7 +73,7 @@
     							</div>
                   <div class="form-group col-sm-12">
     								<label for="inputUserPermission">Users Table Permission Level</label>
-    								<select class="form-control" id="inputUserPermission">
+    								<select class="form-control" id="inputUserPermission" name ="inputUserPermission">
     									<option selected>None</option>
                       <option>Read</option>
     									<option>Write</option>
@@ -83,7 +83,7 @@
                   <!-- Custom Role Settings End -->
                 <div class='form-row'>
                   <div class="form-group col-sm-12">
-    								<button class="btn btn-success" type="submit" id="saveCadet">Save</button>
+    								<button class="btn btn-success" type="submit" id="saveUser">Save</button>
     							</div>
                 </div>
               </form>
