@@ -244,7 +244,7 @@ if(isset($_POST['saveUser']))
 {
     $email = filter_input(INPUT_POST, "email"); 
     
-    if(isset($_POST["inputFirstName"))
+    if(isset($_POST["inputFirstName"]))
        {
            $fName = filter_input(INPUT_POST, "inputFirstName"); 
            $connection->runQuery("UPDATE users SET fName = '$fName' WHERE email = '$email'");  
