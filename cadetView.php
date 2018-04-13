@@ -3,13 +3,11 @@
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Cadet View");
-    
-    $ssn = $_POST['ssn']; 
-	if(empty($ssn)) {
-		echo "<div class='alert alert-danger'>";
-		echo "<strong>Error!</strong> Unable to fetch SSN of cadet. Please go back to the All Cadet View and try again.";
-		echo "</div>";
-	}
+    $ssn; 
+
+    if(!isset($_POST['ssn']))
+	    echo "SSN is not set"; 
+	$ssn = $_POST['ssn'];
     $connection = new DBController(); 
     $record = $connection->runQuery("SELECT * FROM cadets WHERE ssn = '$ssn'")[0];
     $race = preg_split("/;/", $record["race"]);
@@ -20,15 +18,11 @@
 
         	function changeView()
 		        {
-					// basic info
+		        	//console.log($('id^="inputPhone"'));
 		    		document.getElementById('editCadet').setAttribute('style','display:none');
 		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').removeAttribute('disabled');
-					// ssn shenanigans
 		    		document.getElementById('inputSSN').removeAttribute('readonly');
-					var realSSN = document.getElementById('ssnVal').value;
-					document.getElementById('inputSSN').setAttribute('value', realSSN);
-					
 		    		document.getElementById('inputFirstName').removeAttribute('readonly');
 		    		document.getElementById('inputLastName').removeAttribute('readonly');
 		    		document.getElementById('inputMiddleName').removeAttribute('readonly');
@@ -52,33 +46,30 @@
 		    		document.getElementById('inputGender').removeAttribute('disabled');
 		    		document.getElementById('inputEmail').removeAttribute('readonly');
 		    		document.getElementById('inputAdmission').removeAttribute('readonly');
-					// location
 		    		document.getElementById('inputLocation').removeAttribute('disabled');
 		    		document.getElementById('inputGAResident').removeAttribute('disabled');
 		    		document.getElementById('inputMailStreet').removeAttribute('readonly');
 		    		document.getElementById('inputStreet2').removeAttribute('readonly');
 		    		document.getElementById('inputMailCity').removeAttribute('readonly');
-		    		document.getElementById('inputMailState').removeAttribute('disabled');
+		    		document.getElementById('inputMailState').removeAttribute('readonly');
 		    		document.getElementById('inputMailZip').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalStreet').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalStreet2').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalCity').removeAttribute('readonly');
-		    		document.getElementById('inputPhysicalState').removeAttribute('disabled');
+		    		document.getElementById('inputPhysicalState').removeAttribute('readonly');
 		    		document.getElementById('inputPhysicalZip').removeAttribute('readonly');
-					// guardian
-		    		$('[id^=inputGFirstName]').removeAttr('readonly');
-					$('[id^=inputGMiddleName]').removeAttr('readonly');
-		    		$('[id^=inputGLastName]').removeAttr('readonly');
-		    		$('[id^=inputGRelationship]').removeAttr('disabled');
-		    		$('[id^=inputGStreet]').removeAttr('readonly');
-		    		$('[id^=inputGStreet2]').removeAttr('readonly');
-		    		$('[id^=inputGCity]').removeAttr('readonly');
-		    		$('[id^=inputGState]').removeAttr('disabled');
-		    		$('[id^=inputGZip]').removeAttr('readonly');
-		    		$('[id^=inputGCell]').removeAttr('readonly');
-		    		$('[id^=inputGHomePhone]').removeAttr('readonly');
-		    		$('[id^=inputGEmail]').removeAttr('readonly');
-					// medical
+		    		document.getElementById('inputGFirstName').removeAttribute('readonly');
+		    		document.getElementById('inputGMiddleName').removeAttribute('readonly');
+		    		document.getElementById('inputGLastName').removeAttribute('readonly');
+		    		document.getElementById('inputRelationship').removeAttribute('disabled');
+		    		document.getElementById('inputGuardianStreet').removeAttribute('readonly');
+		    		document.getElementById('inputGuardianStreet2').removeAttribute('readonly');
+		    		document.getElementById('inputGuardianCity').removeAttribute('readonly');
+		    		document.getElementById('inputGuardianState').removeAttribute('disabled');
+		    		document.getElementById('inputGuardianZip').removeAttribute('readonly');
+		    		document.getElementById('inputGuardianCell').removeAttribute('readonly');
+		    		document.getElementById('inputGuardianHomePhone').removeAttribute('readonly');
+		    		document.getElementById('inputGuardianEmail').removeAttribute('readonly');
 		    		document.getElementById('inputDrugName').removeAttribute('readonly');
 		    		document.getElementById('inputDrugType').removeAttribute('readonly');
 		    		document.getElementById('inputDrugDosage').removeAttribute('readonly');
@@ -100,7 +91,6 @@
 					document.getElementById('inputAbuseResults').removeAttribute('readonly');
 					document.getElementById('inputAbuseName').removeAttribute('readonly');
 					document.getElementById('inputAbuseNotes').removeAttribute('readonly');
-					// misc
 					document.getElementById('inputHousePeople').removeAttribute('readonly');
 					document.getElementById('inputIncome').removeAttribute('readonly');
 					document.getElementById('inputGED').removeAttribute('readonly');
@@ -118,16 +108,11 @@
 				}
 
 			function changeEdit()
-				{
-					// basic info
+			{
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');
 		    		document.getElementById('viewCadet').setAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').setAttribute('disabled', 'true');
-					// ssn shenanigans
 		    		document.getElementById('inputSSN').setAttribute('readonly', 'true');
-					var tempSSN = document.getElementById('tempSsnVal').value;
-					document.getElementById('inputSSN').setAttribute('value', '*****'+tempSSN);
-					
 		    		document.getElementById('inputFirstName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputLastName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputMiddleName').setAttribute('readonly', 'true');
@@ -151,33 +136,30 @@
 		    		document.getElementById('inputGender').setAttribute('disabled', 'true');
 		    		document.getElementById('inputEmail').setAttribute('readonly', 'true');
 		    		document.getElementById('inputAdmission').setAttribute('readonly', 'true');
-					// location
 		    		document.getElementById('inputLocation').setAttribute('disabled', 'true');
 		    		document.getElementById('inputGAResident').setAttribute('disabled', 'true');
 		    		document.getElementById('inputMailStreet').setAttribute('readonly', 'true');
 		    		document.getElementById('inputStreet2').setAttribute('readonly', 'true');
 		    		document.getElementById('inputMailCity').setAttribute('readonly', 'true');
-		    		document.getElementById('inputMailState').setAttribute('disabled', 'true');
+		    		document.getElementById('inputMailState').setAttribute('readonly', 'true');
 		    		document.getElementById('inputMailZip').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalStreet').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalStreet2').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalCity').setAttribute('readonly', 'true');
-		    		document.getElementById('inputPhysicalState').setAttribute('disabled', 'true');
+		    		document.getElementById('inputPhysicalState').setAttribute('readonly', 'true');
 		    		document.getElementById('inputPhysicalZip').setAttribute('readonly', 'true');
-					// guardians
-					$('[id^=inputGFirstName]').attr('readonly', 'true');
-		    		$('[id^=inputGMiddleName]').attr('readonly', 'true');
-		    		$('[id^=inputGLastName]').attr('readonly', 'true');
-		    		$('[id^=inputGRelationship]').attr('disabled', 'true');
-		    		$('[id^=inputGStreet]').attr('readonly', 'true');
-		    		$('[id^=inputGStreet2]').attr('readonly', 'true');
-		    		$('[id^=inputGCity]').attr('readonly', 'true');
-		    		$('[id^=inputGState]').attr('disabled', 'true');
-		    		$('[id^=inputGZip]').attr('readonly', 'true');
-		    		$('[id^=inputGCell]').attr('readonly', 'true');
-		    		$('[id^=inputGHomePhone]').attr('readonly', 'true');
-		    		$('[id^=inputGEmail]').attr('readonly', 'true');
-					// medical
+		    		document.getElementById('inputGFirstName').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGMiddleName').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGLastName').setAttribute('readonly', 'true');
+		    		document.getElementById('inputRelationship').setAttribute('disabled', 'true');
+		    		document.getElementById('inputGuardianStreet').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGuardianStreet2').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGuardianCity').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGuardianState').setAttribute('disabled', 'true');
+		    		document.getElementById('inputGuardianZip').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGuardianCell').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGuardianHomePhone').setAttribute('readonly', 'true');
+		    		document.getElementById('inputGuardianEmail').setAttribute('readonly', 'true');
 		    		document.getElementById('inputDrugName').setAttribute('readonly', 'true');
 		    		document.getElementById('inputDrugType').setAttribute('readonly', 'true');
 		    		document.getElementById('inputDrugDosage').setAttribute('readonly', 'true');
@@ -198,7 +180,6 @@
 					document.getElementById('inputAbuseResults').setAttribute('readonly', 'true');
 					document.getElementById('inputAbuseName').setAttribute('readonly', 'true');
 					document.getElementById('inputAbuseNotes').setAttribute('readonly', 'true');
-					// misc
 					document.getElementById('inputHousePeople').setAttribute('readonly', 'true');
 					document.getElementById('inputIncome').setAttribute('readonly', 'true');
 					document.getElementById('inputGED').setAttribute('readonly', 'true');
@@ -212,7 +193,8 @@
 					document.getElementById('inputSecond').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommender').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommenderPhone').setAttribute('readonly', 'true');
-				}
+
+			}
 
 					function calcAge() {
 						var dob = $('#inputBirthday').val();
@@ -224,33 +206,8 @@
 					window.onload = calcAge;
 		</script>
 				<!-- edit buttons -->
-				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#graduateCheck">Graduate</button>
 				<button class="btn btn-danger" value="submit" id="editCadet" onclick=changeView()>Edit</button>
 				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick=changeEdit()>View</button>
-
-				<!-- Graduate Confirmation Check -->
-				<div class="modal fade" id="graduateCheck" tabindex="-1" role="dialog" aria-labelledby="graduateCheckTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure you want to graduate this cadet? Choosing 'Accept' will automatically transition this cadet into a graduate and bring you to the All Cadets page.</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary col-sm-1" data-dismiss="modal">Close</button>
-								<form action='graduateCadet.php' method = "POST" class='col-sm-1'>
-									<input type='hidden' name='ssnGraduate' value='<?php echo $ssn ?>'></input>
-									<button name='graduateCadet' class="btn btn-danger" value="submit" id="graduateCadet">Accept</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Confirmation Check End -->
 
 				<p></br></p>
 				
@@ -277,7 +234,7 @@
 					<!-- BASIC INFORMATION TAB -->
 					
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
-						<form>
+						<form action  = "update-cadets.php" method = "POST"enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
@@ -291,25 +248,23 @@
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputSSN">Social Security Number</label>
-									<input type="text" class="form-control" id="inputSSN" value = "<?= '*****'.substr($record['ssn'], -4) ?>"readonly>
-									<input type="hidden" id="ssnVal" value="<?= $record['ssn'] ?>">
-									<input type="hidden" id="tempSsnVal" value="<?= substr($record['ssn'], -4) ?>">
+									<input type="text" class="form-control" name ="inputSSN" id="inputSSN" value = "<?= $ssn;?>"readonly>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputFirstname">First Name</label>
-                                                                        <input type="text" class="form-control" id="inputFirstName" value = "<?= $record["fName"]?>" readonly>
+                                        <input type="text" name ="inputFirstName" class="form-control" id="inputFirstName" value = "<?= $record["fName"]?>" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputMiddleName">Middle Name</label>
-									<input type="text" class="form-control" id="inputMiddleName" value = "<?= $record["mName"]?>" placeholder="Middle Name" readonly>
+									<input type="text" class="form-control" name ="inputMiddleName" id="inputMiddleName" value = "<?= $record["mName"]?>" placeholder="Middle Name" readonly>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputLastName">Last Name</label>
-									<input type="text" class="form-control" id="inputLastName" value = "<?= $record["lName"]?>"placeholder="Last Name" readonly>
+									<input type="text" class="form-control" name ="inputLastName" id="inputLastName" value = "<?= $record["lName"]?>"placeholder="Last Name" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputGenQual">Gen. Qualifier</label>
-									<select class="form-control" id="inputGenQual" disabled="disabled">
+									<select class="form-control" name = "inputGenQual" id="inputGenQual" disabled="disabled">
 										<option></option>
 										<option <?php if($record['genQual']=='Jr') echo 'selected';?>>Jr.</option>
 										<option <?php if($record['genQual']=='Sr') echo 'selected';?>>Sr.</option>
@@ -320,19 +275,19 @@
 								</div>
 								<div class="form-group col-sm-3">
 									<label for="inputHair">Hair Color</label>
-									<input type="text" class="form-control" id="inputHair" value = "<?= $record["hairColor"]?>" placeholder="Hair Color" readonly>
+									<input type="text" class="form-control" name = "inputHair" id="inputHair" value = "<?= $record["hairColor"]?>" placeholder="Hair Color" readonly>
 								</div>
 								<div class="form-group col-sm-3">
 									<label for="inputEye">Eye Color</label>
-									<input type="text" class="form-control" id="inputEye" value = "<?= $record["eyeColor"]?>" placeholder="Eye Color" readonly>
+									<input type="text" name ="inputEye" class="form-control" id="inputEye" value = "<?= $record["eyeColor"]?>" placeholder="Eye Color" readonly>
 								</div>
 								<div class="form-group col-sm-3">
 									<label for="inputHeight">Height</label>
-									<input type="text" class="form-control" id="inputHeight" value = "<?= $record["height"]?>" placeholder="Height" readonly>
+									<input type="text" class="form-control" name="inputHeight" id="inputHeight" value = "<?= $record["height"]?>" placeholder="Height" readonly>
 								</div>
 								<div class="form-group col-sm-3">
 									<label for="inputWeight">Weight</label>
-									<input type="text" class="form-control" id="inputWeight" value = "<?= $record["weight"]?>" placeholder="Weight" readonly>
+									<input type="text" class="form-control" name= "inputWeight" id="inputWeight" value = "<?= $record["weight"]?>" placeholder="Weight" readonly>
 								</div>
 								<legend>Race</legend>
 								<div class="form-check form-check-inline col-sm-3">
@@ -343,7 +298,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="raceWhite" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name = "race"type="checkbox" id="raceWhite" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceWhite">White</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -354,7 +309,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="raceBlack" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name = "race" type="checkbox" id="raceBlack" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceBlack">Black</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -365,7 +320,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="raceAmerican" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name = "race"type="checkbox" id="raceAmerican" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceAmerican">Native American</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -376,7 +331,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="raceAsian" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race" type="checkbox" id="raceAsian" value="option1" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceAsian">Asian</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -387,7 +342,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="racePacific" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name ="race" type="checkbox" id="racePacific" value="option1" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="racePacific">Pacific Islander</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -398,7 +353,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="raceMiddleEast" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" type="checkbox" name ="race"id="raceMiddleEast" value="option1" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceMiddleEast">Middle Eastern</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-6">
@@ -409,7 +364,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="checkbox" id="raceOther" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name = "race" type="checkbox" id="raceOther" value="option1" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceOther">Other</label>
 								</div>
 								<div class="form-group col-sm-12">
@@ -423,15 +378,15 @@
                                                               
 								<div class="form-group col-sm-4">
 									<label for="inputAge">Age</label>
-									<input type="text" class="form-control" id="inputAge" value = "<?= $record["age"]?>" placeholder="Age" readonly>
+									<input type="text" class="form-control" id="inputAge" onload="calcAge()" value = "<?= $record["age"]?>" placeholder="Age" readonly>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputBirthday">Date of Birth</label>
-									<input type="date" class="form-control" id="inputBirthday" value = "<?= $record["birthday"]?>" placeholder="Birthday" onblur="calcAge()" readonly>
+									<input type="text" class="form-control" name = "inputBirthday" id="inputBirthday" value = "<?= $record["birthday"]?>" placeholder="Birthday"  readonly>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputGender">Gender</label>
-									<select class="form-control" id="inputGender" disabled="disabled">
+									<select class="form-control" name ="inputGender" id="inputGender" disabled="disabled">
 										<option></option>
 										<option <?php if($record['gender']=='M') echo 'selected';?>>Male</option>
 										<option <?php if($record['gender']=='F') echo 'selected';?>>Female</option>
@@ -454,16 +409,16 @@
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputEmail">Email</label>
-									<input type="email" class="form-control" id="inputEmail" value = "<?= $record["email"]?>" placeholder="Email" readonly>
+									<input type="email" class="form-control" name = "inputEmail" id="inputEmail" value = "<?= $record["email"]?>" placeholder="Email" readonly>
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputAdmission">Admission Status</label>
-									<input type="text" class="form-control" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" placeholder="Admission Status" readonly>
+									<input type="text" class="form-control" name ="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" placeholder="Admission Status" readonly>
 								</div>
 							</div>
-						</form>
+						
 						<!-- file upload -->
-						<form>
+						
 							<h3>Documents:</h3>
 							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
 								<thead>
@@ -494,16 +449,20 @@ _END;
 							</table>
                                                         <label class="custom-file"> Upload New Document
                                                              <input name="attachment" type="file" id="file" class="custom-file-input">
-                                                             <input name ="ssn" type ="hidden" value ="<?=$ssn?>"> 
+                                                             <input name ="ssnKey" type ="hidden" value ="<?=$ssn?>"> 
                                                               <span class="custom-file-control"></span>
                                                         </label>
+														<br>
+										<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 						</form>
+
 					</div>
 					
 					<!-- LOCATION INFORMATION TAB -->
 					
 					<div class="tab-pane col-sm-12 container" id="locationTab">
-						<form>
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="inputLocation">Campus Location</label>
@@ -525,267 +484,238 @@ _END;
 								<legend>Mailing Address</legend>
 								<div class="form-group col-sm-4">
 									<label for="inputMailStreet">Street</label>
-									<input type="text" class="form-control" id="inputMailStreet" value = "<?= $record["mStreet"]?>" placeholder="12345 Sample Street" readonly>
+									<input type="text" class="form-control" name = "inputMailStreet" id="inputMailStreet" value = "<?= $record["mStreet"]?>" placeholder="12345 Sample Street" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputStreet2">Apt. or Lot #</label>
-									<input type="text" class="form-control" id="inputStreet2" value = "<?= $record["mStreet2"]?>" placeholder="12A" readonly>
+									<input type="text" class="form-control" name ="inputStreet2" id="inputStreet2" value = "<?= $record["mStreet2"]?>" placeholder="12A" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputMailCity">City</label>
-									<input type="text" class="form-control" id="inputMailCity" value = "<?= $record["mCity"]?>" placeholder="City" readonly>
+									<input type="text" class="form-control" name = "inputMailCity" id="inputMailCity" value = "<?= $record["mCity"]?>" placeholder="City" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputMailState">State</label>
-									<select class="form-control" id="inputMailState" disabled="disabled">
+									<select class="form-control" name = "inputMailState" id="inputMailState" disabled="disabled">
 										<option selected></option>
 										<!--- PULL STATES FROM DATABASE -->
-										<?php
-											$states = $connection->runQuery("SELECT DISTINCT state FROM states");
-											foreach($states as $state)
-											{
-												if($record['mState'] == $state['state'])
-												{
-													echo "<option selected>" . $state['state'] . "</option>";
-												}
-												else
-												{
-													echo "<option>" . $state['state'] . "</option>";
-												}
-											}
-										?>
+                                                                                <?php
+                                                                                    $states = $connection->runQuery("SELECT DISTINCT state FROM states");
+                                                                                    foreach($states as $state)
+                                                                                    {
+                                                                                        if($record['mState'] == $state)
+                                                                                        {
+                                                                                            echo "<option selected>" . $state . "</option>";
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            echo "<option>" . $state . "</option>";
+                                                                                        }
+                                                                                    }
+                                                                                ?>
 									</select>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputMailZip">Zip Code</label>
-									<input type="text" class="form-control" id="inputMailZip" value = "<?= $record["mZip"]?>" placeholder="Zip Code" readonly>
+									<input type="text" class="form-control" name= "inputMailZip" id="inputMailZip" value = "<?= $record["mZip"]?>" placeholder="Zip Code" readonly>
 								</div>
 								<legend>Physical Address</legend>
 								<div class="form-group col-sm-4">
 									<label for="inputPhysicalStreet">Street</label>
-									<input type="text" class="form-control" id="inputPhysicalStreet" value = "<?= $record["pStreet"]?>" placeholder="12345 Sample Street" readonly>
+									<input type="text" class="form-control" name="inputPhysicalStreet" id="inputPhysicalStreet" value = "<?= $record["pStreet"]?>" placeholder="12345 Sample Street" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputPhysicalStreet2">Apt. or Lot #</label>
-									<input type="text" class="form-control" id="inputPhysicalStreet2" value = "<?= $record["pStreet2"]?>" placeholder="Apt 123" readonly>
+									<input type="text" class="form-control" name = "inputPhysicalStreet2" id="inputPhysicalStreet2" value = "<?= $record["pStreet2"]?>" placeholder="Apt 123" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputPhysicalCity">City</label>
-									<input type="text" class="form-control" id="inputPhysicalCity" value = "<?= $record["pCity"]?>" placeholder="pCity" readonly>
+									<input type="text" class="form-control" name = "inputPhysicalCity" id="inputPhysicalCity" value = "<?= $record["pCity"]?>" placeholder="pCity" readonly>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputPhysicalState">State</label>
-									<select class="form-control" id="inputPhysicalState" disabled="disabled">
+									<select class="form-control" id="inputPhysicalState" name = "inputPhysicalState" disabled="disabled">
 										<option></option>
 										<!--- PULL STATES FROM DATABASE -->
-										<?php
-											foreach($states as $state)
-											{
-												if($record['pState'] == $state['state'])
-												{
-													echo "<option selected>" . $state['state'] . "</option>";
-												}
-												else
-												{
-													echo "<option>" . $state['state'] . "</option>";
-												}
-											}
-										?>
+                                                                                <?php
+                                                                                    foreach($states as $state)
+                                                                                    {
+                                                                                        if($record['pState'] == $state)
+                                                                                        {
+                                                                                            echo "<option selected>" . $state . "</option>";
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            echo "<option>" . $state . "</option>";
+                                                                                        }
+                                                                                    }
+                                                                                ?>
 									</select>
 								</div>
 								<div class="form-group col-sm-2">
 									<label for="inputPhysicalZip">Zip Code</label>
-									<input type="text" class="form-control" id="inputPhysicalZip" value = "<?= $record["pZip"]?>" placeholder="Zip Code" readonly>
+									<input type="text" class="form-control" name = "inputPhysicalZip" id="inputPhysicalZip" value = "<?= $record["pZip"]?>" placeholder="Zip Code" readonly>
 								</div>
 							</div>
+                            <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 						</form>
 					</div>
 					
-					<!-- GUARDIAN INFORMATION TAB -->				
+					<!-- GUARDIAN INFORMATION TAB -->
+					
 					<div class="tab-pane col-sm-12 container" id="gTab">
-						<form>
-							<?php 
-								$guardianInfo = $connection->runQuery("SELECT * FROM guardians WHERE ssn = '$ssn'");
-								$numGuards = count($guardianInfo);
-								if($numGuards > 0) {
-									for($i = 0; $i < $numGuards; $i ++) {
-										$n = $i+1;
-										echo <<<_END
-										<legend>Guardian {$n}</legend>
-										<div>
-											<div class="form-group col-sm-3">
-												<label for="inputGFirstname{$i}">First Name</label>
-												<input type="text" class="form-control" id="inputGFirstName{$i}" value = {$guardianInfo[$i]['fName']} placeholder="First Name" readonly>
-											</div>
-											<div class="form-group col-sm-3">
-												<label for="inputGMiddleName{$i}">Middle Name</label>
-												<input type="text" class="form-control" id="inputGMiddleName{$i}" value = {$guardianInfo[$i]['mName']} placeholder="Middle Name" readonly>
-											</div>
-											<div class="form-group col-sm-3">
-												<label for="inputGLastName{$i}">Last Name</label>
-												<input type="text" class="form-control" id="inputGLastName{$i}" value = {$guardianInfo[$i]['lName']} placeholder="Last Name" readonly>
-											</div>
-											<div class="form-group col-sm-3">
-												<label for="inputGRelationship">Relationship</label>
-												<select class="form-control" id="inputGRelationship" disabled="disabled">
-													<option></option>
-_END;
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='father') ? 'selected' : "") .">Father</option>";
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='mother') ? 'selected' : "") .">Mother</option>";
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='stepfather') ? 'selected' : "") .">Stepfather</option>";
-											echo 	"<option ". (($guardianInfo[$i]['relationship']=='stepmother') ? 'selected' : "") .">Stepmother</option>";
-											echo    "<option ". (($guardianInfo[$i]['relationship']=='guardian') ? 'selected' : "") .">Guardian</option>";
-										echo <<<_END
-												</select>
-											</div>
-										<div class="form-group col-sm-4">
-											<label for="inputGStreet">Street</label>
-											<input type="text" class="form-control" id="inputGStreet{$i}" value = "{$guardianInfo[$i]["street1"]}" placeholder="12345 Sample Street" readonly>
-										</div>
-										<div class="form-group col-sm-2">
-											<label for="inputGStreet2{$i}">Apt. or Lot #</label>
-									<input type="text" class="form-control" id="inputGStreet2{$i}" value = "{$guardianInfo[$i]["street2"]}" placeholder="12A" readonly>
-										</div>
-										<div class="form-group col-sm-2">
-											<label for="inputGCity{$i}">City</label>
-								<input type="text" class="form-control" id="inputGCity{$i}" value = "{$guardianInfo[$i]["city"]}" placeholder="City" readonly>
-										</div>
-										<div class="form-group col-sm-2">
-											<label for="inputGState{$i}">State</label>
-											<select class="form-control" id="inputGState{$i}" disabled="disabled">
-												<option selected></option>
-												<!--- PULL STATES FROM DATABASE -->
-_END;
-													foreach($states as $state)
-													{
-														if($guardianInfo[$i]['state'] == $state['state'])
-														{
-															echo "<option selected>" . $state['state'] . "</option>";
-														}
-														else
-														{
-															echo "<option>" . $state['state'] . "</option>";
-														}
-													}
-										echo <<<_END
-											</select>
-										</div>
-										<div class="form-group col-sm-2">
-											<label for="inputGZip{$i}">Zip Code</label>
-											<input type="text" class="form-control" id="inputGZip{$i}" value = "{$guardianInfo[$i]["zip"]}" placeholder="Zip Code" readonly>
-										</div>
-										<div class="form-group col-sm-6">
-											<label for="inputGCell{$i}">Cell Phone</label>
-											<input type="text" class="form-control" id="inputGCell{$i}" value = "{$guardianInfo[$i]["cellPhone"]}" placeholder="(555)-555-5555" readonly>
-										</div>
-										<div class="form-group col-sm-6">
-											<label for="inputGHomePhone{$i}">Work Phone</label>
-											<input type="text" class="form-control" id="inputGHomePhone{$i}" value = "{$guardianInfo[$i]["workPhone"]}" placeholder="(555)-555-5555" readonly>
-										</div>
-										<div class="form-group col-sm-12">
-											<label for="inputGEmail{$i}">Email</label>
-											<input type="email" class="form-control" id="inputGEmail{$i}" value = "{$guardianInfo[$i]["email"]}" placeholder="Email" readonly>
-										</div>
-									</div>
-_END;
-									}
-								}
-							?>
-							
-						</form>
-					</div>
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<div class="form-row">
+								<div class="form-group col-sm-3">
+									<label for="inputGFirstname">First Name</label>
+									<input type="text" class="form-control" name="inputGFirstName" id="inputGFirstName" value = "<?= $record["gFirstName"]?>" placeholder="First Name" readonly>
+								</div>
+								<div class="form-group col-sm-3">
+									<label for="inputGMiddleName">Middle Name</label>
+									<input type="text" class="form-control" name = "inputGMiddleName" id="inputGMiddleName" value = "<?= $record["gMiddleName"]?>" placeholder="Middle Name" readonly>
+								</div>
+								<div class="form-group col-sm-3">
+									<label for="inputGLastName">Last Name</label>
+									<input type="text" class="form-control" name = "inputGLastName" id="inputGLastName" value = "<?= $record["gLastName"]?>" placeholder="Last Name" readonly>
+								</div>
+								<div class="form-group col-sm-3">
+									<label for="inputRelationship">Relationship</label>
+									<select class="form-control" name = "inputRelationship" id="inputRelationship" disabled="disabled">
+										<option></option>
+										<option <?php if($record['gRelationship']=='father') echo 'selected';?>>Father</option>
+										<option <?php if($record['gRelationship']=='mother') echo 'selected';?>>Mother</option>
+										<option <?php if($record['gRelationship']=='stepfather') echo 'selected';?>>Stepfather</option>
+										<option <?php if($record['gRelationship']=='stepmother') echo 'selected';?>>Stepmother</option>
+										<option <?php if($record['gRelationship']=='guardian') echo 'selected';?>>Guardian</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-4">
+									<label for="inputGuardianStreet">Street</label>
+									<input type="text" class="form-control" name = "inputGuardianStreet" id="inputGuardianStreet" value = "<?= $record["gStreet"]?>" placeholder="12345 Sample Street" readonly>
+								</div>
+								<div class="form-group col-sm-2">
+									<label for="inputGuardianStreet2">Apt. or Lot #</label>
+									<input type="text" class="form-control" name = "inputGuardianStreet2" id="inputGuardianStreet2" value = "<?= $record["gStreet2"]?>" placeholder="12A" readonly>
+								</div>
+								<div class="form-group col-sm-2">
+									<label for="inputGuardianCity">City</label>
+									<input type="text" class="form-control" name = "inputGuardianCity" id="inputGuardianCity" value = "<?= $record["gCity"]?>" placeholder="City" readonly>
+								</div>
+								<div class="form-group col-sm-2">
+									<label for="inputGuardianState">State</label>
+									<select class="form-control" name = "inputGuardianState" id="inputGuardianState" disabled="disabled">
+										<option selected></option>
+										<!--- PULL STATES FROM DATABASE -->
+                                                                                <?php
+                                                                                    foreach($states as $state)
+                                                                                    {
+                                                                                        if($record['gState'] == $state)
+                                                                                        {
+                                                                                            echo "<option selected>" . $state . "</option>";
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            echo "<option>" . $state . "</option>";
+                                                                                        }
+                                                                                    }
+                                                                                ?>
+									</select>
+								</div>
+								<div class="form-group col-sm-2">
+									<label for="inputGuardianZip">Zip Code</label>
+									<input type="text" class="form-control" name = "inputGuardianZip" id="inputGuardianZip" value = "<?= $record["gZip"]?>" placeholder="Zip Code" readonly>
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="inputGuardianCell">Cell Phone</label>
+									<input type="text" class="form-control" name = "inputGuardianCell" id="inputGuardianCell" value = "<?= $record["gLastName"]?>" placeholder="(555)-555-5555" readonly>
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="inputGuardianHomePhone">Work Phone</label>
+									<input type="text" class="form-control" name = "inputGuardianHomePhone" id="inputGuardianHomePhone" value = "<?= $record["gLastName"]?>" placeholder="(555)-555-5555" readonly>
+								</div>
+								<div class="form-group col-sm-12">
+									<label for="inputGuardianEmail">Email</label>
+									<input type="email" class="form-control" name ="inputGuardianEmail" id="inputGuardianEmail" value = "<?= $record["gEmail"]?>" placeholder="Email" readonly>
+								</div>
+							</div>
 						
+					</div>
+                    <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
+						</form>
 					<!-- MEDICAL SUB TABS -->
 					
 						<!-- MEDICATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="medTab">
 							<h2>Medications</h2>
 							<!-- backend- make form for each entry for this cadet -->
-							<form>
-							<?php 
-								$medInfo = $connection->runQuery("SELECT * FROM medications WHERE ssn = '$ssn'");
-								$numMeds = count($medInfo);
-								if($numMeds > 0) {
-									for($i = 0; $i < $numMeds; $i ++) {
-										$n = $i+1;
-										echo <<<_END
-										<legend>Medication {$n}</legend>
-										<div class="form-row">
-											<div class="form-group col-sm-6">
-												<label for="inputDrugName{$i}">Drug Name</label>
-												<input type="text" class="form-control" id="inputDrugName{$i}" value = {$medInfo[$i]['drugName']} placeholder="Drug Name" readonly>
-											</div>
-											<div class="form-group col-sm-6">
-												<label for="inputDrugType{$i}">Type</label>
-												<input type="text" class="form-control" id="inputDrugType{$i}" value = {$medInfo[$i]['type']} placeholder="Type" readonly>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-sm-4">
-												<label for="inputDrugDosage{$i}">Dosage</label>
-												<input type="text" class="form-control" id="inputDrugDosage{$i}" value = {$medInfo[$i]['dosage']} placeholder="Dosage" readonly>
-											</div>
-											<div class="form-group col-sm-4">
-												<label for="inputDrugFrequency{$i}">Frequency</label>
-												<input type="text" class="form-control" id="inputDrugFrequency{$i}" value = {$medInfo[$i]['frequency']} placeholder="Frequency" readonly>
-											</div>
-											<div class="form-group col-sm-4">
-												<label for="inputTakenWhen{$i}">Taken When</label>
-												<input type="text" class="form-control" id="inputTakenWhen{$i}" value = {$medInfo[$i]['takenWhen']} placeholder="Taken When" readonly>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-sm-6">
-												<label for="inputStartDate{$i}">Start Date</label>
-												<input type="date" class="form-control" id="inputStartDate{$i}" value = {$medInfo[$i]['startDate']} readonly>
-											</div>
-											<div class="form-group col-sm-6">
-												<label for="inputEndDate{$i}">End Date</label>
-												<input type="date" class="form-control" id="inputEndDate{$i}" value = {$medInfo[$i]['endDate']} readonly>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-sm-12">
-												<label for="inputDrugDosage{$i}">Notes</label>
-												<textarea class="form-control" id="inputDrugDosage{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
-											</div>
-										</div>
-_END;
-									}
-								}
-								?>
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="inputDrugName">Drug Name</label>
+										<input type="text" class="form-control" name = "inputDrugName" id="inputDrugName" placeholder="Drug Name" readonly>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="inputDrugType">Type</label>
+										<input type="text" class="form-control" name = "inputDrugType" id="inputDrugType" placeholder="Type" readonly>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-4">
+										<label for="inputDrugDosage">Dosage</label>
+										<input type="text" class="form-control" name = "inputDrugDosage" id="inputDrugDosage" placeholder="Dosage" readonly>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="inputDrugFrequency">Frequency</label>
+										<input type="text" class="form-control" name = "inputDrugFrequency" id="inputDrugFrequency" placeholder="Frequency" readonly>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="inputTakenWhen">Taken When</label>
+										<input type="text" class="form-control" name = "inputTakenWhen" id="inputTakenWhen" placeholder="Taken When" readonly>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="inputStartDate">Start Date</label>
+										<input type="date" class="form-control" name ="inputStartDate" id="inputStartDate" readonly>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="inputEndDate">End Date</label>
+										<input type="date" class="form-control"  name = "inputEndDate" id="inputEndDate" readonly>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-12">
+										<label for="inputDrugDosage">Notes</label>
+										<textarea class="form-control" name = "inputDrugDosage" id="inputDrugDosage" placeholder="Notes" rows="3" readonly></textarea>
+									</div>
+								</div>
+                                <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 							</form>
 						</div>
+                        
 						
 						<!-- ALLERGIES TAB -->
 						<div class="tab-pane container col-sm-12" id="allerTab">
 							<h2>Allergies</h2>
 							<!-- backend- make form for each entry for this cadet -->
-							<form>
-							<?php 
-								$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$ssn'");
-								$numAller = count($allerInfo);
-								if($numAller > 0) {
-									for($i = 0; $i < $numAller; $i ++) {
-										$n = $i+1;
-										echo <<<_END
-										<legend>Allergy {$n}</legend>
-										<div class="form-row">
-											<div class="form-group col-sm-12">
-												<label for="inputAllergyType{$i}">Allergy Type</label>
-												<input type="text" class="form-control" id="inputAllergyType{$i}" value = {$allerInfo[$i]['type']} placeholder="Allergy Type" readonly>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-sm-12">
-												<label for="inputAllergyNotes{$i}">Notes</label>
-												<textarea class="form-control" id="inputAllergyNotes{$i}" placeholder="Notes" rows="3" readonly>{$allerInfo[$i]['notes']}</textarea>
-											</div>
-										</div>
-_END;
-									}
-								}
-								?>
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<div class="form-row">
+									<div class="form-group col-sm-12">
+										<label for="inputAllergyTpye">Allergy Type</label>
+										<input type="text" class="form-control" name="inputSSN" id="inputSSN" placeholder="Allergy Type" readonly>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-12">
+										<label for="inputAllergyNotes">Notes</label>
+										<textarea class="form-control" name="inputAllergyNotes" id="inputAllergyNotes" placeholder="Notes" rows="3" readonly></textarea>
+									</div>
+								</div>
+                                <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 							</form>
 						</div>
 						
@@ -793,39 +723,29 @@ _END;
 						<div class="tab-pane container col-sm-12" id="immTab">
 							<h2>Immunizations</h2>
 							<!-- backend- make form for each entry for this cadet -->
-							<form>
-							<?php 
-								$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$ssn'");
-								$numImm = count($immInfo);
-								if($numImm > 0) {
-									for($i = 0; $i < $numImm; $i ++) {
-										$n = $i+1;
-										echo <<<_END
-										<legend>Immunization {$n}</legend>
-										<div class="form-row">
-											<div class="form-group col-sm-4">
-												<label for="inputImmDate{$i}">Date</label>
-												<input type="date" class="form-control" id="inputImmDate{$i}" value = {$immInfo[$i]['date']} readonly>
-											</div>
-											<div class="form-group col-sm-4">
-												<label for="inputImmType{$i}">Type</label>
-												<input type="text" class="form-control" id="inputImmType{$i}" value = {$immInfo[$i]['type']} placeholder="Type" readonly>
-											</div>
-											<div class="form-group col-sm-4">
-												<label for="inputImmValid{$i}">Valid Until</label>
-												<input type="date" class="form-control" id="inputImmValid{$i}" value = {$immInfo[$i]['validUntil']} placeholder="Valid Until" readonly>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group">
-												<label for="inputImmNotes{$i}">Notes</label>
-												<textarea class="form-control" id="inputImmNotes{$i}" placeholder="Immunization Notes" rows="3" readonly>{$immInfo[$i]['notes']}</textarea>
-											</div>
-										</div>
-_END;
-									}
-								}
-								?>
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<div class="form-row">
+									<div class="form-group col-sm-4">
+										<label for="inputImmDate">Date</label>
+										<input type="date" class="form-control" name = "inputImmDate" id="inputImmDate" readonly>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="inputImmType">Type</label>
+										<input type="text" class="form-control" name = "inputImmType" id="inputImmType" placeholder="Type" readonly>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="inputImmValid">Valid Until</label>
+										<input type="text" class="form-control" name ="inputImmValid" id="inputImmValid" placeholder="Valid Until" readonly>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group">
+										<label for="inputImmNotes">Notes</label>
+										<textarea class="form-control" name="inputImmNotes" id="inputImmNotes" placeholder="Immunization Notes" rows="3" readonly></textarea>
+									</div>
+								</div>
+                                <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 							</form>
 						</div>
 						
@@ -833,60 +753,50 @@ _END;
 						<div class="tab-pane container col-sm-12" id="abuseTab">
 							<h2>Substance Abuse</h2>
 							<!-- backend- make form for each entry for this cadet -->
-							<form>
-							<?php 
-								$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$ssn'");
-								$numSub = count($subInfo);
-								if($numSub > 0) {
-									for($i = 0; $i < $numSub; $i ++) {
-										$n = $i+1;
-										echo <<<_END
-										<legend>Immunization {$n}</legend>
-										<div class="form-row">
-											<div class="form-group col-sm-4">
-												<label for="inputAbuseDate{$i}">Test Date</label>
-												<input type="date" class="form-control" id="inputAbuseDate{$i}" value = {$subInfo[$i]['testDate']} placeholder="Test Date" readonly>
-											</div>
-											<div class="form-group col-sm-4">
-												<label for="inputAbuseResults{$i}">Results</label>
-												<input type="text" class="form-control" id="inputAbuseResults{$i}" value = {$subInfo[$i]['results']} placeholder="Results" readonly>
-											</div>
-											<div class="form-group col-sm-4">
-												<label for="inputAbuseName{$i}">Drug Name</label>
-												<input type="text" class="form-control" id="inputAbuseName{$i}" value = {$subInfo[$i]['drugName']} placeholder="Drug Name" readonly>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group">
-												<label for="inputAbuseNotes{$i}">Notes</label>
-												<textarea class="form-control" id="inputAbuseNotes{$i}" placeholder="Substance Abuse Notes" rows="3" readonly>{$subInfo[$i]['notes']}</textarea>
-											</div>
-										</div>
-_END;
-									}
-								}
-								?>
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<div class="form-row">
+									<div class="form-group col-sm-4">
+										<label for="inputAbuseDate">Test Date</label>
+										<input type="date" class="form-control" name = "inputAbuseDate" id="inputAbuseDate" readonly>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="inputAbuseResults">Results</label>
+										<input type="text" class="form-control" id="inputAbuseResults" name = "inputAbuseResults" placeholder="Results" readonly>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="inputAbuseName">Drug Name</label>
+										<input type="text" class="form-control" id="inputAbuseName" name = "inputAbuseName" placeholder="Drug Name" readonly>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group">
+										<label for="inputAbuseNotes">Notes</label>
+										<textarea class="form-control" id="inputAbuseNotes" name ="inputAbuseNotes" placeholder="Substance Abuse Notes" rows="3" readonly></textarea>
+									</div>
+								</div>
+                                <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 							</form>
 						</div>
 					
 					<!-- MISCELLANEOUS INFORMATION TAB -->
 					
 					<div class="tab-pane col-sm-12 container" id="miscTab">
-						<form>
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<div class="form-row">
 								<legend>Family Income</legend>
 								<div class="form-group col-sm-6">
 									<label for="inputHousePeople">Persons in Household</label>
-									<input type="text" class="form-control" id="inputHousePeople" value = "<?= $record["personsInHouse"]?>" placeholder="Persons in Household" readonly>
+									<input type="text" class="form-control" name = "inputHousePeople" id="inputHousePeople" value = "<?= $record["personsInHouse"]?>" placeholder="Persons in Household" readonly>
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputIncome">Total Annual Income</label>
-									<input type="text" class="form-control" id="inputIncome" value = "<?= $record["houseIncome"]?>" placeholder="Total Annual Income" readonly>
+									<input type="text" class="form-control" name = "inputIncome" id="inputIncome" value = "<?= $record["houseIncome"]?>" placeholder="Total Annual Income" readonly>
 									<br>
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputGED">Do you have a GED?</label>
-									<select class="form-control" id="inputGED" disabled="disabled">
+									<select class="form-control" name = "inputGED" id="inputGED" disabled="disabled">
 										<option></option>
 										<option <?php if($record['ged']) echo 'selected';?>>Yes</option>
 										<option <?php if(!$record['ged']) echo 'selected';?>>No</option>
@@ -894,11 +804,11 @@ _END;
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputLastGrade">Last Grade Completed</label>
-									<input type="text" class="form-control" id="inputLastGrade" value = "<?= $record["gradeCompleted"]?>" placeholder="Last Grade Completed" readonly>
+									<input type="text" class="form-control" name = "inputLastGrade" id="inputLastGrade" value = "<?= $record["gradeCompleted"]?>" placeholder="Last Grade Completed" readonly>
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputVolunteer">Did you volunteer for this program?</label>
-									<select class="form-control" id="inputVolunteer" disabled="disabled">
+									<select class="form-control" name = "inputVolunteer" id="inputVolunteer" disabled="disabled">
 										<option></option>
 										<option <?php if($record['volunteer']) echo 'selected';?>>Yes</option>
 										<option <?php if($record['volunteer']) echo 'selected';?>>No</option>
@@ -906,7 +816,7 @@ _END;
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputWithdraw">Month and Year of Withdrawing from School</label>
-									<input type="date" class="form-control" id="inputWithdraw" value = "<?= $record["schoolWithdrawDate"]?>" placeholder="Month and Year of Withdrawing from School" readonly>
+									<input type="date" class="form-control" name = "inputWithdraw" id="inputWithdraw" value = "<?= $record["schoolWithdrawlDate"]?>" placeholder="Month and Year of Withdrawing from School" readonly>
 								</div>
 								<legend>Are you unemployed or under-employed?</legend>
 								<div class="form-check form-check-inline col-sm-6">
@@ -934,42 +844,44 @@ _END;
 								<div class="form-group col-sm-12">
 									<br>
 									<label for="inputJob">If you are under-employed, what is your place of employment?</label>
-									<input type="text" class="form-control" id="inputJob" value = "<?= $record["workplace"]?>" placeholder="Place of Employment" readonly>
+									<input type="text" class="form-control" name="inputJob" id="inputJob" value = "<?= $record["workplace"]?>" placeholder="Place of Employment" readonly>
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputWage">If you are under-employed, what is your hourly wage?</label>
-									<input type="text" class="form-control" id="inputWage" value = "<?= $record["wage"]?>" placeholder="Hourly Wage" readonly>
+									<input type="text" class="form-control" id="inputWage" name ="inputWage" value = "<?= $record["wage"]?>" placeholder="Hourly Wage" readonly>
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="inputHours">If you are under-employed, how many hours a week do you work?</label>
-									<input type="text" class="form-control" id="inputHours" value = "<?= $record["hoursWorking"]?>" placeholder="Hours per Week" readonly>
+									<input type="text" class="form-control" id="inputHours" name ="inputHours" value = "<?= $record["hoursWorking"]?>" placeholder="Hours per Week" readonly>
 								</div>
 								<legend>List two personal accomplishments</legend>
 								<div class="form-group col-sm-12">
 									<label for="inputFirst">1.</label>
-									<input type="text" class="form-control" id="inputFirst" value = "<?= $record["accomplish1"]?>" placeholder="Accomplishment" readonly>
+									<input type="text" class="form-control" name = "inputFirst" id="inputFirst" value = "<?= $record["accomplish1"]?>" placeholder="Accomplishment" readonly>
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputSecond">2.</label>
-									<input type="text" class="form-control" id="inputSecond" value = "<?= $record["accomplish2"]?>" placeholder="Accomplishment" readonly>
+									<input type="text" class="form-control" id="inputSecond" name = "inputSecond" value = "<?= $record["accomplish2"]?>" placeholder="Accomplishment" readonly>
 								</div>
 								<legend>Recommendation (if applicable)</legend>
 								<div class="form-group col-sm-12">
 									<label for="inputRecommender">Recommender</label>
-									<input type="text" class="form-control" id="inputRecommender" value = "<?= $record["recBy"]?>" placeholder="Recommender" readonly>
+									<input type="text" class="form-control" name = "inputRecommender" id="inputRecommender" value = "<?= $record["recBy"]?>" placeholder="Recommender" readonly>
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputRecommenderPhone">Telephone Number</label>
-									<input type="text" class="form-control" id="inputRecommenderPhone" value = "<?= $record["recNum"]?>" placeholder="(555)-555-5555" readonly>
+									<input type="text" class="form-control" name = "inputRecommenderPhone" id="inputRecommenderPhone" value = "<?= $record["recNum"]?>" placeholder="(555)-555-5555" readonly>
 								</div>
 							</div>
+                            <button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+
 						</form>
 					</div>
 					
 					<!-- end of tabs -->
 				</div>
 				<!-- hide and unhide this with js -->
-				<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+				
 			<!-- beginning of end of basic page -->
             </div>
         </div>
