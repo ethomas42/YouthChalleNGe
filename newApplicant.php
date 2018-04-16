@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <?php
 	include_once "basicPage.php";
+        require_once 'dbcontroller.php'; 
 	basicPage("New Applicant");
 ?>
 				<div class="container col-sm-12">
-					<form>
+                                    <form action = "applicant-form-action.php" method = "POST" >
 						<div class="form-row">
 							<div class="form-group col-sm-6">
 								<label for="inputCommMethod">Preferred Method of Communication</label>
@@ -18,44 +19,52 @@
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputSSN">Social Security Number</label>
-								<input type="text" class="form-control" id="inputSSN" placeholder="SSN">
+								<input type="text" name = "inputSSN" class="form-control" id="inputSSN" placeholder="SSN">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputFirstname">First Name</label>
-								<input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+								<input type="text" class="form-control" name = "inputFirstName" id="inputFirstName" placeholder="First Name">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputMiddleName">Middle Name</label>
-								<input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name">
+								<input type="text" class="form-control" name ="inputMiddleName" id="inputMiddleName" placeholder="Middle Name">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputLastName">Last Name</label>
-								<input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+								<input type="text" class="form-control" name = "inputLastName" id="inputLastName" placeholder="Last Name">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputGAResident">GA Resident</label>
 								<select class="form-control" id="inputGAResident">
-									<option selected>Yes</option>
-									<option>No</option>
+									<option selected name = "inputGAResident"> Yes</option>
+									<option name = "inputGAResident">No</option>
 								</select>
 							</div>
 							<legend>Mailing Address</legend>
 							<div class="form-group col-sm-4">
 								<label for="inputMailStreet">Street</label>
-								<input type="text" class="form-control" id="inputMailStreet" placeholder="12345 Sample Street">
+								<input type="text" class="form-control" name = "inputMailStreet" id="inputMailStreet" placeholder="12345 Sample Street">
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputStreet2">Apt. or Lot #</label>
-								<input type="text" class="form-control" id="inputStreet2" placeholder="12A">
+								<input type="text" class="form-control" name ="inputStreet2" id="inputStreet2" placeholder="12A">
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputMailCity">City</label>
-								<input type="text" class="form-control" id="inputMailCity" placeholder="City">
+								<input type="text" class="form-control" name="inputMailCity" id="inputMailCity" placeholder="City">
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputMailState">State</label>
 								<select class="form-control" id="inputMailState">
 									<!--- PULL STATES FROM DATABASE -->
+                                                                        <?php
+                                                                            $connection = new DBController(); 
+                                                                            $record = $connection->runQuery("SELECT DISTINCT state FROM states WHERE state != '' ORDER BY state"); 
+                                                                            foreach ($record as $row)
+                                                                            {
+                                                                                echo '<option name = "inputState">'. $row['state'].'</option>';
+                                                                            }
+                                                                        ?>
 								</select>
 							</div>
 							<div class="form-group col-sm-2">
@@ -66,27 +75,27 @@
 								<label for="inputLocation">Campus Location</label>
 								<select class="form-control" id="inputLocation">
 									<option selected></option>
-									<option>Milledgeville</option>
-									<option>Fort Gordon</option>
-									<option>Fort Stuart</option>
+									<option name  = "inputLocation">Milledgeville</option>
+									<option name = "inputLocation">Fort Gordon</option>
+									<option name = "inputLocation">Fort Stuart</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputCell">Cell Phone</label>
-								<input type="text" class="form-control" id="inputCell" placeholder="(555)-555-5555">
+								<input type="text" name = "inputCell"class="form-control" id="inputCell" placeholder="(555)-555-5555">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputHomePhone">Home Phone</label>
-								<input type="text" class="form-control" id="inputHomePhone" placeholder="(555)-555-5555">
+								<input type="text"  name  = "inputHomePhone" class="form-control" id="inputHomePhone" placeholder="(555)-555-5555">
 							</div>
 							<legend>Family Income</legend>
 							<div class="form-group col-sm-6">
 								<label for="inputHousePeople">Persons in Household</label>
-								<input type="text" class="form-control" id="inputHousePeople" placeholder="Persons in Household">
+								<input type="text" name ="inputHousePeople" class="form-control" id="inputHousePeople" placeholder="Persons in Household">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputIncome">Total Annual Income</label>
-								<input type="text" class="form-control" id="inputIncome" placeholder="Total Annual Income">
+                                                                <input type="text" name="inputIncome" class="form-control" id="inputIncome" placeholder="Total Annual Income">
 								<br>
 							</div>
 							<div class="form-group col-sm-4">
@@ -95,94 +104,94 @@
 							</div>
 							<div class="form-group col-sm-4">
 								<label for="inputBirthday">Date of Birth</label>
-								<input type="date" class="form-control" id="inputBirthday" placeholder="Date of Birth">
+								<input type="date" name="inputBirthday" class="form-control" id="inputBirthday" placeholder="Date of Birth">
 							</div>
 							<div class="form-group col-sm-4">
 								<label for="inputGender">Gender</label>
 								<select class="form-control" id="inputGender">
-									<option>Male</option>
-									<option>Female</option>
-									<option selected>Prefer Not to Answer</option>
+									<option name = "inputGender">Male</option>
+									<option name = "inputGender">Female</option>
+									<option selected name ="inputGender">Prefer Not to Answer</option>
 								</select>
 							</div>
 							<legend>Race</legend>
 							<div class="form-check form-check-inline col-sm-3">
-								<input class="form-check-input" type="checkbox" id="raceWhite" value="option1">
+								<input class="form-check-input" name = "race" type="checkbox" id="raceWhite" value="White">
 								<label class="form-check-label" for="raceWhite">White</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-3">
-								<input class="form-check-input" type="checkbox" id="raceBlack" value="option1">
+								<input class="form-check-input" name = "race"type="checkbox" id="raceBlack" value="Black">
 								<label class="form-check-label" for="raceBlack">Black</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-3">
-								<input class="form-check-input" type="checkbox" id="raceAmerican" value="option1">
+								<input class="form-check-input" name = "race" type="checkbox" id="raceAmerican" value="Native American">
 								<label class="form-check-label" for="raceAmerican">Native American</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-3">
-								<input class="form-check-input" type="checkbox" id="raceAsian" value="option1">
+								<input class="form-check-input" name="race" type="checkbox" id="raceAsian" value="Asian">
 								<label class="form-check-label" for="raceAsian">Asian</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-3">
-								<input class="form-check-input" type="checkbox" id="racePacific" value="option1">
+								<input class="form-check-input" name="race" type="checkbox" id="racePacific" value="Pacific Islander">
 								<label class="form-check-label" for="racePacific">Pacific Islander</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-3">
-								<input class="form-check-input" type="checkbox" id="raceMiddleEast" value="option1">
+								<input class="form-check-input" name="race" type="checkbox" id="raceMiddleEast" value="Middle Eastern">
 								<label class="form-check-label" for="raceMiddleEast">Middle Eastern</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-6">
-								<input class="form-check-input" type="checkbox" id="raceOther" value="option1">
+								<input class="form-check-input" name="race" type="checkbox" id="raceOther" value="Other">
 								<label class="form-check-label" for="raceOther">Other</label>
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputHispanic">Hispanic/Latino</label>
 								<select class="form-control" id="inputHispanic">
-									<option>Yes</option>
-									<option selected>No</option>
+									<option name="isHispanic" value = "Yes">Yes</option>
+									<option selected name ="isHispanic" value = "No">No</option>
 								</select>
 								<br>
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputHair">Hair Color</label>
-								<input type="text" class="form-control" id="inputHair" placeholder="Hair Color">
+								<input type="text" name = "inputHair" class="form-control" id="inputHair" placeholder="Hair Color">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputEye">Eye Color</label>
-								<input type="text" class="form-control" id="inputEye" placeholder="Eye Color">
+                                                                <input type="text" class="form-control" name="inputEye" id="inputEye" placeholder="Eye Color">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputHeight">Height</label>
-								<input type="text" class="form-control" id="inputHeight" placeholder="Height">
+								<input type="text" class="form-control" id="inputHeight" name="height" placeholder="Height">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputWeight">Weight</label>
-								<input type="text" class="form-control" id="inputWeight" placeholder="Weight">
+								<input type="text" class="form-control" id="inputWeight" name="weight" placeholder="Weight">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputGED">Do you have a GED?</label>
 								<select class="form-control" id="inputGED">
-									<option>Yes</option>
-									<option selected>No</option>
+									<option name = "inputGED">Yes</option>
+									<option selected name ="inputGED">No</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputLastGrade">Last Grade Completed</label>
-								<input type="text" class="form-control" id="inputLastGrade" placeholder="Last Grade Completed">
+								<input type="text" name = "inputLastGrade" class="form-control" id="inputLastGrade" placeholder="Last Grade Completed">
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputVolunteer">Did you volunteer for this program?</label>
 								<select class="form-control" id="inputVolunteer">
-									<option selected>Yes</option>
-									<option>No</option>
+									<option name="inputVolunteer" selected>Yes</option>
+									<option name="inputVolunteer" >No</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputWithdraw">Month and Year of Withdrawing from School</label>
-								<input type="date" class="form-control" id="inputWithdraw" placeholder="Month and Year of Withdrawing from School">
+								<input type="date" class="form-control" name = "inputWithdraw" id="inputWithdraw" placeholder="Month and Year of Withdrawing from School">
 							</div>
 							<legend>Are you unemployed or under-employed?</legend>
 							<div class="form-check form-check-inline col-sm-6">
-								<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputUnemployed" value="option1">
+								<input class="form-check-input"  type="radio" name="inlineRadioOptions" id="inputUnemployed"  value="option1">
 								<label class="form-check-label" for="inputUnemployed">Unemployed</label>
 							</div>
 							<div class="form-check form-check-inline col-sm-6">
@@ -192,94 +201,96 @@
 							<div class="form-group col-sm-12">
 								<br>
 								<label for="inputJob">If you are under-employed, what is your place of employment?</label>
-								<input type="text" class="form-control" id="inputJob" placeholder="Place of Employment">
+								<input type="text" class="form-control" id="inputJob" name ="inputJob" placeholder="Place of Employment">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputWage">If you are under-employed, what is your hourly wage?</label>
-								<input type="text" class="form-control" id="inputWage" placeholder="Hourly Wage">
+								<input type="text" class="form-control" id="inputWage" name="inputWage" placeholder="Hourly Wage">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputJob">If you are under-employed, how many hours a week do you work?</label>
-								<input type="text" class="form-control" id="inputJob" placeholder="Hours per Week">
+								<input type="text" class="form-control" id="inputJob" name="hoursPerWeek" placeholder="Hours per Week">
 							</div>
 							<legend>List two personal accomplishments</legend>
 							<div class="form-group col-sm-12">
 								<label for="inputFirst">1.</label>
-								<input type="text" class="form-control" id="inputFirst" placeholder="Accomplishment">
+								<input type="text" class="form-control" id="inputFirst" name="personalAccomplishment1" placeholder="Accomplishment">
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputSecond">2.</label>
-								<input type="text" class="form-control" id="inputSecond" placeholder="Accomplishment">
+                                                                <input type="text" class="form-control" id="inputSecond" name="personalAccomplishment2" placeholder="Accomplishment">
 							</div>
 							<legend>Parent or Legal Guardian</legend>
 							<div class="form-group col-sm-3">
 								<label for="inputFirstname">First Name</label>
-								<input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+								<input type="text" class="form-control"  name ="pFirstName" id="inputFirstName" placeholder="First Name">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputMiddleName">Middle Name</label>
-								<input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name">
+								<input type="text" class="form-control" name="pMiddleName" id="inputMiddleName" placeholder="Middle Name">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputLastName">Last Name</label>
-								<input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+								<input type="text" class="form-control" name = "pLastName"id="inputLastName" placeholder="Last Name">
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputRelationship">Relationship</label>
 								<select class="form-control" id="inputRelationship">
-									<option selected></option>
-									<option>Father</option>
-									<option>Mother</option>
-									<option>Stepfather</option>
-									<option>Stepmother</option>
-									<option>Guardian</option>
+									<option name="inputRelationship" selected></option>
+									<option name ="inputRelationship">Father</option>
+									<option name ="inputRelationship">Mother</option>
+									<option name="inputRelationship">Stepfather</option>
+									<option name="inputRelationship">Stepmother</option>
+									<option name ="inputRelationship">Guardian</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-4">
 								<label for="inputGuardianStreet">Street</label>
-								<input type="text" class="form-control" id="inputGuardianStreet" placeholder="12345 Sample Street">
+								<input type="text" class="form-control" name = "inputGuardianStreet"id="inputGuardianStreet" placeholder="12345 Sample Street">
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputGuardianStreet2">Apt. or Lot #</label>
-								<input type="text" class="form-control" id="inputGuardianStreet2" placeholder="12A">
+								<input type="text" class="form-control" name = "inputGuardianStreet2" id="inputGuardianStreet2" placeholder="12A">
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputGuardianCity">City</label>
-								<input type="text" class="form-control" id="inputGuardianCity" placeholder="City">
+								<input type="text" class="form-control" id="inputGuardianCity" name = "inputGuardianCity" placeholder="City">
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputGuardianState">State</label>
 								<select class="form-control" id="inputGuardianState">
 									<!--- PULL STATES FROM DATABASE -->
+                                                                       
+                                                                        
 								</select>
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputGuardianZip">Zip Code</label>
-								<input type="text" class="form-control" id="inputGuardianZip" placeholder="Zip Code">
+								<input type="text" class="form-control" id="inputGuardianZip" name="inputGuardianZip" placeholder="Zip Code">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputGuardianCell">Cell Phone</label>
-								<input type="text" class="form-control" id="inputGuardianCell" placeholder="(555)-555-5555">
+								<input type="text" class="form-control" id="inputGuardianCell" name = "inputGuardianCell" placeholder="(555)-555-5555">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputGuardianHomePhone">Work Phone</label>
-								<input type="text" class="form-control" id="inputGuardianHomePhone" placeholder="(555)-555-5555">
+								<input type="text" class="form-control" id="inputGuardianHomePhone" name="inputGuardianHomePhone" placeholder="(555)-555-5555">
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputGuardianEmail">Email</label>
-								<input type="email" class="form-control" id="inputGuardianEmail" placeholder="Email">
+								<input type="email" class="form-control" name="inputGuardianEmail" id="inputGuardianEmail" placeholder="Email">
 							</div>
 							<legend>Recommendation (if applicable)</legend>
 							<div class="form-group col-sm-12">
 								<label for="inputRecommender">Recommender</label>
-								<input type="text" class="form-control" id="inputRecommender" placeholder="Recommender">
+								<input type="text" class="form-control" name = "inputRecommender" id="inputRecommender" placeholder="Recommender">
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputRecommenderPhone">Telephone Number</label>
-								<input type="text" class="form-control" id="inputRecommenderPhone" placeholder="(555)-555-5555">
+								<input type="text" class="form-control" name ="inputRecommenderPhone" id="inputRecommenderPhone" placeholder="(555)-555-5555">
 							</div>
 							<div class="form-group col-sm-12">
-								<button class="btn btn-success" type="submit" id="saveCadet">Save</button>
+								<button class="btn btn-success" type="submit" name = "saveApplicant" id="saveCadet">Save</button>
 							</div>
 						</div>
 					</form>
