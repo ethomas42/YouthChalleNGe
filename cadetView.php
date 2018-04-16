@@ -78,27 +78,27 @@
 		    		$('[id^=inputGHomePhone]').removeAttr('readonly');
 		    		$('[id^=inputGEmail]').removeAttr('readonly');
 					// medical
-		    		document.getElementById('inputDrugName').removeAttribute('readonly');
-		    		document.getElementById('inputDrugType').removeAttribute('readonly');
-		    		document.getElementById('inputDrugDosage').removeAttribute('readonly');
-		    		document.getElementById('inputDrugFrequency').removeAttribute('readonly');
-		    		document.getElementById('inputTakenWhen').removeAttribute('readonly');
-		    		document.getElementById('inputStartDate').removeAttribute('readonly');
-		    		document.getElementById('inputEndDate').removeAttribute('readonly');
-		    		document.getElementById('inputDrugDosage').removeAttribute('readonly');
-		    		document.getElementById('inputAllergyType').removeAttribute('readonly');
-		    		document.getElementById('inputAllergyNotes').removeAttribute('readonly');
-		    		document.getElementById('inputImmDate').removeAttribute('readonly');
-		    		document.getElementById('inputUnemployed').removeAttribute('disabled');
-		    		document.getElementById('inputUnder').removeAttribute('disabled');
-		    		document.getElementById('inputImmDate').removeAttribute('readonly');
-					document.getElementById('inputImmType').removeAttribute('readonly');
-					document.getElementById('inputImmValid').removeAttribute('readonly');
-					document.getElementById('inputImmNotes').removeAttribute('readonly');
-					document.getElementById('inputAbuseDate').removeAttribute('readonly');
-					document.getElementById('inputAbuseResults').removeAttribute('readonly');
-					document.getElementById('inputAbuseName').removeAttribute('readonly');
-					document.getElementById('inputAbuseNotes').removeAttribute('readonly');
+		    		$('[id^=inputDrugName').removeAttribute('readonly');
+		    		$('[id^=inputDrugType').removeAttr('readonly');
+		    		$('[id^=inputDrugDosage').removeAttr('readonly');
+		    		$('[id^=inputDrugFrequency').removeAttr('readonly');
+		    		$('[id^=inputTakenWhen').removeAttr('readonly');
+		    		$('[id^=inputStartDate').removeAttr('readonly');
+		    		$('[id^=inputEndDate').removeAttr('readonly');
+		    		$('[id^=inputDrugDosage').removeAttr('readonly');
+		    		$('[id^=inputAllergyType').removeAttr('readonly');
+		    		$('[id^=inputAllergyNotes').removeAttr('readonly');
+		    		$('[id^=inputImmDate').removeAttr('readonly');
+		    		$('[id^=inputUnemployed').removeAttr('disabled');
+		    		$('[id^=inputUnder').removeAttr('disabled');
+		    		$('[id^=inputImmDate').removeAttr('readonly');
+					$('[id^=inputImmType').removeAttr('readonly');
+					$('[id^=inputImmValid').removeAttr('readonly');
+					$('[id^=inputImmNotes').removeAttr('readonly');
+					$('[id^=inputAbuseDate').removeAttr('readonly');
+					$('[id^=inputAbuseResults').removeAttr('readonly');
+					$('[id^=inputAbuseName').removeAttr('readonly');
+					$('[id^=inputAbuseNotes').removeAttr('readonly');
 					// misc
 					document.getElementById('inputHousePeople').removeAttribute('readonly');
 					document.getElementById('inputIncome').removeAttribute('readonly');
@@ -175,26 +175,26 @@
 		    		$('[id^=inputGHomePhone]').attr('readonly', 'true');
 		    		$('[id^=inputGEmail]').attr('readonly', 'true');
 					// medical
-		    		document.getElementById('inputDrugName').setAttribute('readonly', 'true');
-		    		document.getElementById('inputDrugType').setAttribute('readonly', 'true');
-		    		document.getElementById('inputDrugDosage').setAttribute('readonly', 'true');
-		    		document.getElementById('inputDrugFrequency').setAttribute('readonly', 'true');
-		    		document.getElementById('inputTakenWhen').setAttribute('readonly', 'true');
-		    		document.getElementById('inputStartDate').setAttribute('readonly', 'true');
-		    		document.getElementById('inputEndDate').setAttribute('readonly', 'true');
-		    		document.getElementById('inputDrugDosage').setAttribute('readonly', 'true');
-		    		document.getElementById('inputAllergyType').setAttribute('readonly', 'true');
-		    		document.getElementById('inputAllergyNotes').setAttribute('readonly', 'true');
-		    		document.getElementById('inputUnemployed').setAttribute('disabled', 'true');
-		    		document.getElementById('inputUnder').setAttribute('disabled', 'true');
-		    		document.getElementById('inputImmDate').setAttribute('readonly', 'true');
-					document.getElementById('inputImmType').setAttribute('readonly', 'true');
-					document.getElementById('inputImmValid').setAttribute('readonly', 'true');
-					document.getElementById('inputImmNotes').setAttribute('readonly', 'true');
-					document.getElementById('inputAbuseDate').setAttribute('readonly', 'true');
-					document.getElementById('inputAbuseResults').setAttribute('readonly', 'true');
-					document.getElementById('inputAbuseName').setAttribute('readonly', 'true');
-					document.getElementById('inputAbuseNotes').setAttribute('readonly', 'true');
+		    		$('[id^=inputDrugName').attr('readonly', 'true');
+		    		$('[id^=inputDrugType').attr('readonly', 'true');
+		    		$('[id^=inputDrugDosage').attr('readonly', 'true');
+		    		$('[id^=inputDrugFrequency').attr('readonly', 'true');
+		    		$('[id^=inputTakenWhen').attr('readonly', 'true');
+		    		$('[id^=inputStartDate').attr('readonly', 'true');
+		    		$('[id^=inputEndDate').attr('readonly', 'true');
+		    		$('[id^=inputDrugDosage').attr('readonly', 'true');
+		    		$('[id^=inputAllergyType').attr('readonly', 'true');
+		    		$('[id^=inputAllergyNotes').attr('readonly', 'true');
+		    		$('[id^=inputUnemployed').attr('disabled', 'true');
+		    		$('[id^=inputUnder').attr('disabled', 'true');
+		    		$('[id^=inputImmDate').attr('readonly', 'true');
+					$('[id^=inputImmType').attr('readonly', 'true');
+					$('[id^=inputImmValid').attr('readonly', 'true');
+					$('[id^=inputImmNotes').attr('readonly', 'true');
+					$('[id^=inputAbuseDate').attr('readonly', 'true');
+					$('[id^=inputAbuseResults').attr('readonly', 'true');
+					$('[id^=inputAbuseName').attr('readonly', 'true');
+					$('[id^=inputAbuseNotes').attr('readonly', 'true');
 					// misc
 					document.getElementById('inputHousePeople').setAttribute('readonly', 'true');
 					document.getElementById('inputIncome').setAttribute('readonly', 'true');
@@ -265,15 +265,16 @@
 					  <li><a data-toggle="tab" href="#abuseTab">Substance Abuse</a></li>
 					</ul>
 				  </li>
-				<li class="nav-item"><a data-toggle="tab" href="#miscTab">Misc.</a></li>
+				  <li class="nav-item"><a data-toggle="tab" href="#fileTab">Files</a></li>
+				  <li class="nav-item"><a data-toggle="tab" href="#miscTab">Misc.</a></li>
 				</ul>
-				<br>
+				</br>
 				<div class="tab-content">
 
 					<!-- BASIC INFORMATION TAB -->
 					
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
-						<form action  = "update-cadets.php" method = "POST"enctype="multipart/form-data">
+						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
@@ -434,18 +435,16 @@
 										<option <?php if($record['gender']=='P') echo 'selected';?>>Prefer Not to Answer</option>
 									</select>
 								</div>
-								<div class="form-row col-sm-12">
+								<div class="form-group col-sm-12">
 								<?php 
 									$phoneInfo = $connection->runQuery("SELECT * FROM phonenumbers WHERE ssn = '$ssn'");
 									$numPhones = count($phoneInfo);
 									for($i = 0; $i < $numPhones; $i ++) {
-										echo '<div class="col-sm-6">';
-										echo '<input type="hidden" name="inputPhoneID'. $i .'" value="'. $phoneInfo[$i]['phoneID'] .'"';
+										echo '<input type="hidden" name="inputPhoneID'. $i .'" value="'. $phoneInfo[$i]['phoneID'] .'">';
 										echo '<div class="col-sm-6"><label for="inputPhone'. $i .'">Phone '. ($i+1) .'</label>';
 										echo '<input type="text" class="form-control" name="inputPhone'. $i .'" id="inputPhone'. $i .'" value = "'. $phoneInfo[$i]['phoneNumber'] .','. $phoneInfo[$i]['ext'] .'" placeholder="(555)-555-5555" readonly></div>';
 										echo '<div class="col-sm-6"><label for="inputPhoneNotes'. $i .'">Notes '. ($i+1) .'</label>';
 										echo '<textarea class="form-control" name="inputPhoneNotes'. $i .'" id="inputPhoneNotes'. $i .'" placeholder="Notes" rows="1" readonly>'. $phoneInfo[$i]['notes'] .'</textarea></div>';
-										echo '</div>';
 									}
 								?>
 								</div>
@@ -458,8 +457,13 @@
 									<input type="text" class="form-control" name="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" placeholder="Admission Status" readonly>
 								</div>
 							</div>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
-						<!-- file upload -->
+					</div>
+					
+					<!-- FILE UPLOAD TAB -->
+					
+					<div class="tab-pane col-sm-12 container" id="fileTab">
 						<form>
 							<h3>Documents:</h3>
 							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
@@ -489,13 +493,13 @@ _END;
 									?>
 								</tbody>
 							</table>
-                                                        <label class="custom-file"> Upload New Document
-                                                             <input name="attachment" type="file" id="file" class="custom-file-input">
-                                                             <input name ="ssn" type ="hidden" value ="<?=$ssn?>"> 
-                                                              <span class="custom-file-control"></span>
-                                                        </label>
-														<br>
-														<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<label class="custom-file"> Upload New Document
+								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>"> 
+								  <span class="custom-file-control"></span>
+							</label>
+							</br>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
 					</div>
 					
