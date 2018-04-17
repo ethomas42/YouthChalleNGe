@@ -27,6 +27,12 @@ class DBController {
 
 	function runQuery($query) {
 		$result = mysqli_query($this->conn,$query);
+		if($result == false) {
+			return false;
+		}
+		if($result === true) {
+			return false;
+		}
 		while($row=mysqli_fetch_assoc($result)) {
 			$resultset[] = $row;
 		}		
