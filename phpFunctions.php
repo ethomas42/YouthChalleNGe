@@ -7,10 +7,6 @@
  */
 require_once 'dbcontroller.php';
 
-if(isset($_POST['saveCadet']))
-{
-    importFile("cadet","saveCadet","attachment", $_POST['ssn']); 
-}
 function statesDropdown()
 {
  $connection = new DBController(); 
@@ -27,20 +23,18 @@ function statesDropdown()
  * @ name of <input type = file> tag 
  */
 
-function importFile($directory , $buttonName ,$inputFileName, $ssn)
+function importFile($directory , $buttonName ,$inputFileName, $ssn, $category)
 {
     $directory = "cadets";
     if(isset($_POST[$buttonName]))
     {
         $attachment = $_FILES[$inputFileName]['name']; 
-        $attachment_tmp_name = $_FILES[$inputFileName]['tmp_name']; 
+        $attachment_tmp_name = $_FILES[$inputFileName]['tmp_name'];
         
         //Send File Name to the database and date to the database 
-        $connection = new DBController(); 
-        $currentDate = date("Y-m-d");
-        $query = "INSERT INTO attachments (filename, ssn, uploadDate) VALUES ('$attachment_tmp_name', '$ssn', '$currentDate'"; 
+        $connection = new DBController();
+        $query = "INSERT INTO attachments (filename, ssn, category) VALUES ('$attachment', '$ssn', '$category')"; 
        $results = $connection->runQuery($query);
-        
        
         if(is_dir($directory))
         {
@@ -52,7 +46,10 @@ function importFile($directory , $buttonName ,$inputFileName, $ssn)
             move_uploaded_file($attachment_tmp_name, $directory."/".$attachment); 
             
         }
-        
+		if($results)
+			return true;
+		else
+			return false;
     }
 }
 ?>
