@@ -8,7 +8,7 @@ if(isset($_POST['saveCadet']))
     $key = $_POST['ssnKey']; 
     if(isset($_POST['attachments']))
     { 
-        importFile("cadet","saveCadet","attachment", $_POST['ssnKey']);
+        importFile("cadet","saveCadet","attachment", $_POST['ssnKey'], "category");
     }
     
     if(isset($_POST['inputCommMethod']))
@@ -71,11 +71,27 @@ if(isset($_POST['saveCadet']))
         $connection->runQuery("UPDATE cadets SET height = '$height' WHERE ssn = '$key'"); 
     }
      
-     if(isset($_POST['inputGender']))
+    if(isset($_POST['inputGender']))
     {
         $gender = filter_input(INPUT_POST,"inputGender"); 
         $connection->runQuery("UPDATE cadets SET gender = '$gender' WHERE ssn = '$key'"); 
     }
+	
+	if(isset($_POST['inputPhoneID0'])) { 
+		$phoneInfo = $connection->runQuery("SELECT * FROM phonenumbers WHERE ssn = '$key'");
+		$numPhones = count($phoneInfo);
+		for($i = 0; $i < $numPhones; $i ++) {
+			if(isset($_POST['inputPhoneID'.$i]))
+			{
+				$phone = filter_input(INPUT_POST, "inputPhone".$i);
+				$ext = filter_input(INPUT_POST, "inputPhoneExt".$i);
+				$notes = filter_input(INPUT_POST, "inputPhoneNotes".$i);
+				$id = filter_input(INPUT_POST, "inputPhoneID".$i);
+				$connection->runQuery("UPDATE phonenumbers SET phoneNumber = '$phone', ext = '$ext', notes = '$notes' WHERE phoneID = '$id'");
+			} 
+		}
+	}
+	
     if(isset($_POST['inputEmail']))
     {
         $email = filter_input(INPUT_POST,"inputEmail",FILTER_VALIDATE_EMAIL); 
@@ -235,7 +251,7 @@ if(isset($_POST['saveCadet']))
 
 
 
-    echo '<script> alert("Cadet has been Updated!"); </script>';
+    //echo '<script> window.confirm("Cadet has been Updated!"); </script>';
     header("refresh:2;url=allCadetView.php"); 
     
     //echo "Button is pushed"

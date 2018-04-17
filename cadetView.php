@@ -45,7 +45,6 @@
 		    		document.getElementById('raceOther').removeAttribute('disabled');
 		    		document.getElementById('inputHispanic').removeAttribute('disabled');
 		    		$('[id^=inputPhone]').removeAttr('readonly');
-		    		$('[id^=inputPhoneNotes]').removeAttr('readonly');
 		    		document.getElementById('inputAge').removeAttribute('readonly');
 		    		document.getElementById('inputBirthday').removeAttribute('readonly');
 		    		document.getElementById('inputGender').removeAttribute('disabled');
@@ -142,7 +141,6 @@
 		    		document.getElementById('raceOther').setAttribute('disabled', 'true');
 		    		document.getElementById('inputHispanic').setAttribute('disabled', 'true');
 		    		$('[id^=inputPhone]').attr('readonly', 'true');
-		    		$('[id^=inputPhoneNotes]').attr('readonly', 'true');
 		    		document.getElementById('inputAge').setAttribute('readonly', 'true');
 		    		document.getElementById('inputBirthday').setAttribute('readonly', 'true');
 		    		document.getElementById('inputGender').setAttribute('disabled', 'true');
@@ -210,19 +208,20 @@
 					document.getElementById('inputRecommender').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommenderPhone').setAttribute('readonly', 'true');
 				}
-					function calcAge() {
-						var dob = $('#inputBirthday').val();
-						dob = new Date(dob);
-						var today = new Date();
-						var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-						$('#inputAge').val(age);
-					}
-					window.onload = calcAge;
+			
+			function calcAge() {
+				var dob = $('#inputBirthday').val();
+				dob = new Date(dob);
+				var today = new Date();
+				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+				$('#inputAge').val(age);
+			}
+			window.onload = calcAge;
 		</script>
 				<!-- edit buttons -->
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#graduateCheck">Graduate</button>
-				<button class="btn btn-danger" value="submit" id="editCadet" onclick=changeView()>Edit</button>
-				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick=changeEdit()>View</button>
+				<button class="btn btn-danger" value="submit" id="editCadet" onclick='changeView()'>Edit</button>
+				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick='changeEdit()'>View</button>
 
 				<!-- Graduate Confirmation Check -->
 				<div class="modal fade" id="graduateCheck" tabindex="-1" role="dialog" aria-labelledby="graduateCheckTitle" aria-hidden="true">
@@ -274,7 +273,8 @@
 					<!-- BASIC INFORMATION TAB -->
 					
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
-						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to submit this form?');">
+							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
@@ -441,8 +441,10 @@
 									$numPhones = count($phoneInfo);
 									for($i = 0; $i < $numPhones; $i ++) {
 										echo '<input type="hidden" name="inputPhoneID'. $i .'" value="'. $phoneInfo[$i]['phoneID'] .'">';
-										echo '<div class="col-sm-6"><label for="inputPhone'. $i .'">Phone '. ($i+1) .'</label>';
-										echo '<input type="text" class="form-control" name="inputPhone'. $i .'" id="inputPhone'. $i .'" value = "'. $phoneInfo[$i]['phoneNumber'] .','. $phoneInfo[$i]['ext'] .'" placeholder="(555)-555-5555" readonly></div>';
+										echo '<div class="col-sm-4"><label for="inputPhone'. $i .'">Phone '. ($i+1) .'</label>';
+										echo '<input type="text" class="form-control" name="inputPhone'. $i .'" id="inputPhone'. $i .'" value = "'. $phoneInfo[$i]['phoneNumber'] .'" placeholder="(555)-555-5555" readonly></div>';
+										echo '<div class="col-sm-2"><label for="inputPhone'. $i .'">Ext '. ($i+1) .'</label>';
+										echo '<input type="text" class="form-control" name="inputPhoneExt'. $i .'" id="inputPhoneExt'. $i .'" value = "'. $phoneInfo[$i]['ext'] .'" placeholder="1234" readonly></div>';
 										echo '<div class="col-sm-6"><label for="inputPhoneNotes'. $i .'">Notes '. ($i+1) .'</label>';
 										echo '<textarea class="form-control" name="inputPhoneNotes'. $i .'" id="inputPhoneNotes'. $i .'" placeholder="Notes" rows="1" readonly>'. $phoneInfo[$i]['notes'] .'</textarea></div>';
 									}
@@ -465,6 +467,7 @@
 					
 					<div class="tab-pane col-sm-12 container" id="fileTab">
 						<form>
+							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<h3>Documents:</h3>
 							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
 								<thead>
@@ -499,7 +502,6 @@ _END;
 								  <span class="custom-file-control"></span>
 							</label>
 							</br>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
 					</div>
 					
@@ -507,6 +509,7 @@ _END;
 					
 					<div class="tab-pane col-sm-12 container" id="locationTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="inputLocation">Campus Location</label>
@@ -608,6 +611,7 @@ _END;
 					<!-- GUARDIAN INFORMATION TAB -->				
 					<div class="tab-pane col-sm-12 container" id="gTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$guardianInfo = $connection->runQuery("SELECT * FROM guardians WHERE ssn = '$ssn'");
 								$numGuards = count($guardianInfo);
@@ -705,8 +709,8 @@ _END;
 						<!-- MEDICATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="medTab">
 							<h2>Medications</h2>
-							<!-- backend- make form for each entry for this cadet -->
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$medInfo = $connection->runQuery("SELECT * FROM medications WHERE ssn = '$ssn'");
 								$numMeds = count($medInfo);
@@ -767,8 +771,8 @@ _END;
 						<!-- ALLERGIES TAB -->
 						<div class="tab-pane container col-sm-12" id="allerTab">
 							<h2>Allergies</h2>
-							<!-- backend- make form for each entry for this cadet -->
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$ssn'");
 								$numAller = count($allerInfo);
@@ -801,8 +805,8 @@ _END;
 						<!-- IMMUNIZATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="immTab">
 							<h2>Immunizations</h2>
-							<!-- backend- make form for each entry for this cadet -->
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$ssn'");
 								$numImm = count($immInfo);
@@ -845,6 +849,7 @@ _END;
 							<h2>Substance Abuse</h2>
 							<!-- backend- make form for each entry for this cadet -->
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$ssn'");
 								$numSub = count($subInfo);
@@ -886,6 +891,7 @@ _END;
 					
 					<div class="tab-pane col-sm-12 container" id="miscTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<legend>Family Income</legend>
 								<div class="form-group col-sm-6">
