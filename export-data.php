@@ -65,7 +65,7 @@
 						$sheet->setCellValue('AF' . $int, $row['accomplish2']);
 						$sheet->setCellValue('AG' . $int, $row['recBy']);
 						$sheet->setCellValue('AH' . $int, $row['recNum']);
-						$sheet->setCellValue('AI' . $int, $row['  gradeCompleted']);
+						$sheet->setCellValue('AI' . $int, $row['gradeCompleted']);
 						$sheet->setCellValue('AJ' . $int, $row['hairColor']);
 						$sheet->setCellValue('AK' . $int, $row['eyeColor']);
 						$sheet->setCellValue('AL' . $int, $row['height']);
