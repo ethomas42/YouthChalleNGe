@@ -5,7 +5,6 @@
 	basicPage("Report Generation");
     
     $repName = $_POST['repName']; 
-
 	include_once "dbcontroller.php";
 	// if editing an existing report, grab the fields
 	if(!empty($repName)) {
@@ -262,7 +261,6 @@
 				
             });
             </script>
-
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-10">
@@ -713,6 +711,8 @@
 				</div>
 			</div>
 			
+			<form action = "export-template.php" method = "POST"> 
+			<input type="text" name ="fieldNames" class="form-control" id="fieldNames" value ="" >
 			<!-- MODAL START -->
 			<div class="modal fade" id="genModal" tabindex="-1" role="dialog" aria-labelledby="genModalTitle" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -732,19 +732,23 @@
 					</form>
 				  </div>
 				  <div class="modal-footer">
-						<button type="button" class="btn btn-primary">Just Generate</button>
+						<button type="submit" name="createTemp" class="btn btn-primary">Just Generate</button>
 						<button type="button" class="btn btn-primary">Generate & Save</button>
 				  </div>
 				</div>
 			  </div>
 			</div>			
-
+			</form>
 			<!-- beginning of end of basic page -->
             </div>
         </div>
     </body>
 	<script>
+	var fields = [];
+	var string;
 	function addToReport(tableText, colText, id) {
+		var field = id.split(".");
+		fields.push(field[1]);
 		var table = document.getElementById("reportToGen");
 		var row = table.insertRow(1);
 		row.id = id;
@@ -752,14 +756,21 @@
 		var buttonCell = row.insertCell(1);
 		textCell.innerHTML = tableText + " Table: " + colText;
 		buttonCell.innerHTML = "<button class='btn btn-primary' name='add' onclick=\"removeFromReport('"+ id +"')\">Remove</button>";
+		console.log(getFields());
 	}
 	
+	function getFields(){
+		var str = fields.join(", ");
+		string = str;
+		document.getElementById('fieldNames').value = fields;
+		return fields;
+	}
+
 	function removeFromReport(rowid) {
 		var table = document.getElementById("reportToGen");
 		var row = document.getElementById(rowid);
 		row.parentNode.removeChild(row);
 	}
-	
 	
 	</script>
 </html>

@@ -77,7 +77,7 @@
 		    		$('[id^=inputGHomePhone]').removeAttr('readonly');
 		    		$('[id^=inputGEmail]').removeAttr('readonly');
 					// medical
-		    		$('[id^=inputDrugName').removeAttribute('readonly');
+		    		$('[id^=inputDrugName').removeAttr('readonly');
 		    		$('[id^=inputDrugType').removeAttr('readonly');
 		    		$('[id^=inputDrugDosage').removeAttr('readonly');
 		    		$('[id^=inputDrugFrequency').removeAttr('readonly');
@@ -264,7 +264,16 @@
 					  <li><a data-toggle="tab" href="#abuseTab">Substance Abuse</a></li>
 					</ul>
 				  </li>
-				  <li class="nav-item"><a data-toggle="tab" href="#fileTab">Files</a></li>
+				  <li class="nav-item dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Files
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+                      <li><a data-toggle="tab" href="#fileGeneralTab">General</a></li>
+					  <li><a data-toggle="tab" href="#fileMedicalTab">Medical</a></li>
+					  <li><a data-toggle="tab" href="#fileCounselorTab">Counseling</a></li>
+					  <li><a data-toggle="tab" href="#fileRecruitmentTab">Recruitment</a></li> 
+					</ul>
+				  </li>
 				  <li class="nav-item"><a data-toggle="tab" href="#miscTab">Misc.</a></li>
 				</ul>
 				</br>
@@ -274,6 +283,7 @@
 					
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to submit this form?');">
+						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
@@ -424,7 +434,7 @@
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputBirthday">Date of Birth</label>
-									<input type="date" class="form-control" name="inputBirthday" id="inputBirthday" value = "<?= $record["birthday"]?>" placeholder="Birthday"readonly>
+									<input type="date" class="form-control" name="inputBirthday" id="inputBirthday" onblur="calcAge()" value = "<?= $record["birthday"]?>" placeholder="Birthday"readonly>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputGender">Gender</label>
@@ -463,11 +473,10 @@
 						</form>
 					</div>
 					
-					<!-- FILE UPLOAD TAB -->
+					<!-- GENRAL FILE UPLOAD TAB -->
 					
-					<div class="tab-pane col-sm-12 container" id="fileTab">
-						<form>
-							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
+					<div class="tab-pane col-sm-12 container" id="fileGeneralTab">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<h3>Documents:</h3>
 							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
 								<thead>
@@ -480,9 +489,9 @@
 									<?php
 										include_once "dbcontroller.php";
 										$db = new DBController();
-										if($db->numRows("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn"))
+										if($db->numRows("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'general'"))
 										{
-											$results = $db->runQuery("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn");
+											$results = $db->runQuery("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'general'");
 											foreach($results as $row)
 											{
 												echo <<<_END
@@ -498,7 +507,137 @@ _END;
 							</table>
 							<label class="custom-file"> Upload New Document
 								 <input name="attachment" type="file" id="file" class="custom-file-input">
-								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>"> 
+								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
+                              	 <input name="category" type="hidden" value="general">
+								  <span class="custom-file-control"></span>
+							</label>
+							<br>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+						 </form>
+					</div>
+
+<!-- MEDICAL FILE UPLOAD TAB -->
+					
+					<div class="tab-pane col-sm-12 container" id="fileMedicalTab">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
+							<h3>Documents:</h3>
+							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
+								<thead>
+									<tr>
+										<th>Filename</th>
+										<th>Upload Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										include_once "dbcontroller.php";
+										$db = new DBController();
+										if($db->numRows("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'medical'"))
+										{
+											$results = $db->runQuery("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'medical'");
+											foreach($results as $row)
+											{
+												echo <<<_END
+														<tr>
+															<td>{$row['filename']}</td>
+															<td>{$row['uploadDate']}</td>
+														</tr>
+_END;
+											}
+										}
+									?>
+								</tbody>
+							</table>
+							<label class="custom-file"> Upload New Document
+								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
+                              	 <input name="category" type="hidden" value="medical">
+								  <span class="custom-file-control"></span>
+							</label>
+							</br>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+						</form>
+					</div>
+
+<!-- COUNSELOR FILE UPLOAD TAB -->
+					
+					<div class="tab-pane col-sm-12 container" id="fileCounselorTab">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
+							<h3>Documents:</h3>
+							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
+								<thead>
+									<tr>
+										<th>Filename</th>
+										<th>Upload Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										include_once "dbcontroller.php";
+										$db = new DBController();
+										if($db->numRows("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'counselor'"))
+										{
+											$results = $db->runQuery("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'counselor'");
+											foreach($results as $row)
+											{
+												echo <<<_END
+														<tr>
+															<td>{$row['filename']}</td>
+															<td>{$row['uploadDate']}</td>
+														</tr>
+_END;
+											}
+										}
+									?>
+								</tbody>
+							</table>
+							<label class="custom-file"> Upload New Document
+								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
+                              	 <input name="category" type="hidden" value="counselor">
+								  <span class="custom-file-control"></span>
+							</label>
+							</br>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+						</form>
+					</div>
+
+<!-- RECRUITMENT FILE UPLOAD TAB -->
+					
+					<div class="tab-pane col-sm-12 container" id="fileRecruitmentTab">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
+							<h3>Documents:</h3>
+							<table id="documents-table" class="table table-striped table-bordered" cellspacing="0">
+								<thead>
+									<tr>
+										<th>Filename</th>
+										<th>Upload Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										include_once "dbcontroller.php";
+										$db = new DBController();
+										if($db->numRows("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'recruitment'"))
+										{
+											$results = $db->runQuery("SELECT filename, uploadDate FROM attachments WHERE ssn = $ssn AND category = 'recruitment'");
+											foreach($results as $row)
+											{
+												echo <<<_END
+														<tr>
+															<td>{$row['filename']}</td>
+															<td>{$row['uploadDate']}</td>
+														</tr>
+_END;
+											}
+										}
+									?>
+								</tbody>
+							</table>
+							<label class="custom-file"> Upload New Document
+								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
+                              	 <input name="category" type="hidden" value="recruitment">
 								  <span class="custom-file-control"></span>
 							</label>
 							</br>
@@ -509,6 +648,7 @@ _END;
 					
 					<div class="tab-pane col-sm-12 container" id="locationTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
@@ -611,6 +751,7 @@ _END;
 					<!-- GUARDIAN INFORMATION TAB -->				
 					<div class="tab-pane col-sm-12 container" id="gTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$guardianInfo = $connection->runQuery("SELECT * FROM guardians WHERE ssn = '$ssn'");
@@ -653,7 +794,7 @@ _END;
 										</div>
 										<div class="form-group col-sm-2">
 											<label for="inputGStreet2{$i}">Apt. or Lot #</label>
-									<input type="text" class="form-control" name="inputGStreet2{$i}" id="inputGStreet2{$i}" value = "{$guardianInfo[$i]["street2"]}" placeholder="12A" readonly>
+									<input type="text" class="form-control" name="inputGStreet2{$i}" id="inputGStreet2{$i}" value = "{$guardianInfo[$i]["street2"]}" placeholder="Sample Apt" readonly>
 										</div>
 										<div class="form-group col-sm-2">
 											<label for="inputGCity{$i}">City</label>
@@ -710,6 +851,7 @@ _END;
 						<div class="tab-pane container col-sm-12" id="medTab">
 							<h2>Medications</h2>
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$medInfo = $connection->runQuery("SELECT * FROM medications WHERE ssn = '$ssn'");
@@ -772,6 +914,7 @@ _END;
 						<div class="tab-pane container col-sm-12" id="allerTab">
 							<h2>Allergies</h2>
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$ssn'");
@@ -806,6 +949,7 @@ _END;
 						<div class="tab-pane container col-sm-12" id="immTab">
 							<h2>Immunizations</h2>
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$ssn'");
@@ -849,6 +993,7 @@ _END;
 							<h2>Substance Abuse</h2>
 							<!-- backend- make form for each entry for this cadet -->
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
 								$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$ssn'");
@@ -891,6 +1036,7 @@ _END;
 					
 					<div class="tab-pane col-sm-12 container" id="miscTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
+						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<legend>Family Income</legend>
