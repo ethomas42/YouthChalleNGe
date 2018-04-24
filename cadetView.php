@@ -1055,7 +1055,7 @@ _END;
 									<select class="form-control" name="inputVolunteer" id="inputVolunteer" disabled="disabled">
 										<option></option>
 										<option <?php if($record['volunteer']) echo 'selected';?>>Yes</option>
-										<option <?php if($record['volunteer']) echo 'selected';?>>No</option>
+										<option <?php if(!$record['volunteer']) echo 'selected';?>>No</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-12">
