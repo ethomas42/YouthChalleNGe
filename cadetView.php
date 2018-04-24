@@ -49,7 +49,6 @@
 		    		document.getElementById('inputBirthday').removeAttribute('readonly');
 		    		document.getElementById('inputGender').removeAttribute('disabled');
 		    		document.getElementById('inputEmail').removeAttribute('readonly');
-		    		document.getElementById('inputAdmission').removeAttribute('readonly');
 					// location
 		    		document.getElementById('inputLocation').removeAttribute('disabled');
 		    		document.getElementById('inputGAResident').removeAttribute('disabled');
@@ -145,7 +144,6 @@
 		    		document.getElementById('inputBirthday').setAttribute('readonly', 'true');
 		    		document.getElementById('inputGender').setAttribute('disabled', 'true');
 		    		document.getElementById('inputEmail').setAttribute('readonly', 'true');
-		    		document.getElementById('inputAdmission').setAttribute('readonly', 'true');
 					// location
 		    		document.getElementById('inputLocation').setAttribute('disabled', 'true');
 		    		document.getElementById('inputGAResident').setAttribute('disabled', 'true');
@@ -466,7 +464,7 @@
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputAdmission">Admission Status</label>
-									<input type="text" class="form-control" name="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" placeholder="Admission Status" readonly>
+									<input type="text" class="form-control" name="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" readonly>
 								</div>
 							</div>
 							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
@@ -924,7 +922,7 @@ _END;
 										$n = $i+1;
 										echo <<<_END
 										<legend>Allergy {$n}</legend>
-										<input type="hidden" name="inputAllergyID{$i}" value="{$allerInfo[$i]['allergyID']}">
+										<input type="hidden" name="inputAllergyID{$i}" value="{$allerInfo[$i]['allerID']}">
 										<div class="form-row">
 											<div class="form-group col-sm-12">
 												<label for="inputAllergyType{$i}">Allergy Type</label>
