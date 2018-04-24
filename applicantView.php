@@ -503,15 +503,6 @@ _END;
 						<form>
 							<div class="form-row">
 								<div class="form-group col-sm-6">
-									<label for="inputLocation">Campus Location</label>
-									<select class="form-control" id="inputLocation" disabled="disabled">
-										<option selected></option>
-										<option <?php if($record['campusLocation']=='Milledgeville') echo 'selected';?>>Milledgeville</option>
-										<option <?php if($record['campusLocation']=='Fort Gordon') echo 'selected';?>>Fort Gordon</option>
-										<option <?php if($record['campusLocation']=='Fort Stuart') echo 'selected';?>>Fort Stuart</option>
-									</select>
-								</div>
-								<div class="form-group col-sm-6">
 									<label for="inputGAResident">GA Resident</label>
 									<select class="form-control" id="inputGAResident" disabled="disabled">
 										<option></option>
