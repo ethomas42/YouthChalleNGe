@@ -8,7 +8,8 @@
     include_once "dbcontroller.php";
 	  $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 		$reader->setReadDataOnly(TRUE);
-		$spreadsheet = $reader->load("CadetImport.xlsx");
+    $fileName = $_POST['importFile'];
+		$spreadsheet = $reader->load($fileName);
     $sheet = $spreadsheet->getActiveSheet();
     $db = new DBController();
 
@@ -37,7 +38,6 @@
       $race = $rows[$int][7]; 
       $isHispanic = $rows[$int][8];
       $email = $rows[$int][9];
-      /*
       $mStreet = $rows[$int][10]; 
       $mStreet2 = $rows[$int][11];
       $mCity = $rows[$int][12]; 
@@ -71,8 +71,9 @@
       $houseIncome = $rows[$int][39];
       $gaResident = $rows[$int][40]; 
       $preferredComm = $rows[$int][41];
-      */
-      $db->createRecord("INSERT INTO cadets (fName, mName, lName, gender, ssn, genQual, birthday, race, isHispanic, email) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '$genQual', '$birthday', '$race', '$isHispanic', '$email')");
+      $db->createRecord("INSERT INTO cadets (fName, mName, lName, gender, ssn, genQual, birthday, race, isHispanic, email, mStreet, mStreet2, City, mState,  mZip,  pStreet, pStreet2, pCity, pState, pZip, isCitizen, ged, volunteer, admissionStatus, schoolWithdrawDate, unemployed, underemployed, workplace, wage, hoursWorking, accomplish1, accomplish2, recBy, recNum,  gradeCompleted, hairColor, eyeColor, height, weight, personsInHouse, houseIncome, gaResident, preferredComm, campusLocation
+) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '$genQual', '$birthday', '$race', '$isHispanic', '$email', '$mStreet', '$mStreet2', '$City', '$mState',  '$mZip',  '$pStreet', '$pStreet2', '$pCity', '$pState', '$pZip', '$isCitizen', '$ged', '$volunteer', '$admissionStatus', '$schoolWithdrawDate', '$unemployed', '$underemployed', '$workplace', '$wage', '$hoursWorking', '$accomplish1', '$accomplish2', '$recBy', '$recNum',  '$gradeCompleted', '$hairColor', '$eyeColor', '$height', '$weight', '$personsInHouse', '$houseIncome', '$gaResident', '$preferredComm', '$campusLocation')");
     }
+    header("Location:allCadetView.php"); //Redirects to allCadetView page.
 	?>
 </html>
