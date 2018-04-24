@@ -1098,15 +1098,6 @@ _END;
 									<label for="inputHours">If you are under-employed, how many hours a week do you work?</label>
 									<input type="text" class="form-control" name="inputHours" id="inputHours" value = "<?= $record["hoursWorking"]?>" placeholder="Hours per Week" readonly>
 								</div>
-								<legend>List two personal accomplishments</legend>
-								<div class="form-group col-sm-12">
-									<label for="inputFirst">1.</label>
-									<input type="text" class="form-control" name="inputFirst" id="inputFirst" value = "<?= $record["accomplish1"]?>" placeholder="Accomplishment" readonly>
-								</div>
-								<div class="form-group col-sm-12">
-									<label for="inputSecond">2.</label>
-									<input type="text" class="form-control" name="inputSecond" id="inputSecond" value = "<?= $record["accomplish2"]?>" placeholder="Accomplishment" readonly>
-								</div>
 								<legend>Recommendation (if applicable)</legend>
 								<div class="form-group col-sm-12">
 									<label for="inputRecommender">Recommender</label>
