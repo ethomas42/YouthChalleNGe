@@ -13,7 +13,7 @@ $db = new DBController();
 basicPage("Users");
 
 ?>
-
+				<form method="post" action="newUser.php"><button type="submit" class="btn btn-primary">New Applicant</button></form><p></br></p>
 				  <ul class="nav nav-tabs nav-justified" role="tablist">
 					<li class="nav-item active">
 					  <a class="nav-link" data-toggle="tab" href="#nav-general">General Users</a>
