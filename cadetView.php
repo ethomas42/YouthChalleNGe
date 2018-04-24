@@ -922,7 +922,7 @@ _END;
 										$n = $i+1;
 										echo <<<_END
 										<legend>Allergy {$n}</legend>
-										<input type="hidden" name="inputAllergyID{$i}" value="{$allerInfo[$i]['allergyID']}">
+										<input type="hidden" name="inputAllergyID{$i}" value="{$allerInfo[$i]['allerID']}">
 										<div class="form-row">
 											<div class="form-group col-sm-12">
 												<label for="inputAllergyType{$i}">Allergy Type</label>
