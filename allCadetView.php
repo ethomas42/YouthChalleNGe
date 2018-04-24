@@ -134,9 +134,9 @@ _END;
 							<?php
 								include_once "dbcontroller.php";
 								$db = new DBController();
-								if($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets"))
+								if($db->numRows("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus != 'pending'"))
 								{
-									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets");
+									$results = $db->runQuery("SELECT ssn, fName, mName, lName, genQual, gender, birthday, email FROM cadets WHERE admissionStatus != 'pending'");
 									foreach($results as $row)
 									{
 										$tempSSN = substr($row['ssn'], -4);
