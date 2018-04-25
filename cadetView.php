@@ -280,7 +280,6 @@
 					<!-- BASIC INFORMATION TAB -->
 					
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
-						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to submit this form?');">
 						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">

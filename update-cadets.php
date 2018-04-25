@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require_once 'phpFunctions.php'; 
 require_once 'dbcontroller.php';
@@ -256,7 +255,7 @@ if(isset($_POST['saveUser']))
           
 }
 ?>
-=======
+
 <?php
 require_once 'phpFunctions.php'; 
 require_once 'dbcontroller.php';
@@ -264,7 +263,7 @@ $connection = new DBController();
 if(isset($_POST['saveCadet']))
 {
     
-    $key = $_POST['ssn'];
+    $key = $_POST['ssnKey'];
     if(isset($_POST['category']))
     { 
         importFile("cadet","saveCadet","attachment", $_POST['ssn'], $_POST['category']);
@@ -545,4 +544,3 @@ if(isset($_POST['saveUser']))
           
 }
 ?>
->>>>>>> e2e0d9ce51bf2d02fb2eaa2ee8ddd7714b716c26
