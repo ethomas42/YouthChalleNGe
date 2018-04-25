@@ -725,15 +725,15 @@
 				  </div>
 				  <div class="modal-body">
 					<p>Name your report if you would like to save it as a template for future use.</p>
-					<form>
+					
 					    <div class="form-group col-sm-6">
 							<input type="text" class="form-control" id="inputTemplateName" placeholder='Report Template X'>
 						</div>
-					</form>
+					
 				  </div>
 				  <div class="modal-footer">
 						<button type="submit" name="createTemp" class="btn btn-primary">Just Generate</button>
-						<button type="button" class="btn btn-primary">Generate & Save</button>
+						<button type="button" formaction = 'save-template.php'class="btn btn-primary">Generate & Save</button>
 				  </div>
 				</div>
 			  </div>
