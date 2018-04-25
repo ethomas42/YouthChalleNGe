@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require_once 'phpFunctions.php'; 
 require_once 'dbcontroller.php';
@@ -15,7 +14,13 @@ if(isset($_POST['saveCadet']))
     if(isset($_POST['inputCommMethod']))
     {
         $preferredCommunication = filter_input(INPUT_POST, "inputCommMethod"); 
-        $connection->runQuery("UPDATE cadets SET preferredComm = '$preferredCommunication'");
+        $connection->runQuery("UPDATE cadets SET preferredComm = '$preferredCommunication' WHERE ssn = '$key'");
+    }
+	
+	if(isset($_POST['inputCompany']))
+    {
+        $company = filter_input(INPUT_POST, "inputCompany"); 
+        $connection->runQuery("UPDATE cadets SET company = '$company' WHERE ssn = '$key'");
     }
     
     if(isset($_POST['ssn']))
@@ -256,8 +261,6 @@ if(isset($_POST['saveUser']))
           
 }
 ?>
-=======
-<?php
 require_once 'phpFunctions.php'; 
 require_once 'dbcontroller.php';
 $connection = new DBController(); 
@@ -273,7 +276,7 @@ if(isset($_POST['saveCadet']))
     if(isset($_POST['inputCommMethod']))
     {
         $preferredCommunication = filter_input(INPUT_POST, "inputCommMethod"); 
-        $connection->runQuery("UPDATE cadets SET preferredComm = '$preferredCommunication'");
+        $connection->runQuery("UPDATE cadets SET preferredComm = '$preferredCommunication' WHERE ssn = '$key'");
     }
     
     if(isset($_POST['ssn']))
@@ -545,4 +548,4 @@ if(isset($_POST['saveUser']))
           
 }
 ?>
->>>>>>> e2e0d9ce51bf2d02fb2eaa2ee8ddd7714b716c26
+
