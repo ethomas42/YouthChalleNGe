@@ -70,6 +70,13 @@ button.login {
     margin: 24px 0 12px 0;
     position: relative;
 }
+
+/* image */
+.logImg {
+	max-width:300px;
+	height:auto;
+}
+
 img.avatar {
     width: 40%;
     border-radius: 50%;
@@ -99,7 +106,7 @@ span.psw {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width:80%; /* Could be more or less, depending on screen size */
 }
 
 .login {
@@ -216,33 +223,33 @@ span.psw {
 		
 			<body onload="document.getElementById('id01').style.display='block'"> <!--style="width:auto;"> -->
 
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <span onload="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="ngyc.png" alt="Avatar" class="avatar">
-    </div>
+		<div id="id01" class="modal">
+	  
+			<form class="modal-content animate" action="/action_page.php">
+				<div class="imgcontainer">
+					<span onload="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					<img class="logImg" src="ngyc.png" alt="Avatar" class="avatar">
+				</div>
 
-    <div class="container">
-		<div align = "center"> 
-      <label for="uname"><b>Username</b></label> <br>
-      <input type="text" placeholder="Enter Username" name="username" required> <br>
+				<div class="container">
+					<div align = "center"> 
+						<label for="uname"><b>Username</b></label> <br>
+						<input type="text" placeholder="Enter Username" name="username" required> <br>
 
-      <label for="psw"><b>Password</b></label> <br>
-      <input type="password" placeholder="Enter Password" name="password" required><br>
-    </div>
-      <button type="submit" class="login">Login</button><br>
-    <div align = "center">
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-    </div>
+						<label for="psw"><b>Password</b></label> <br>
+						<input type="password" placeholder="Enter Password" name="password" required><br>
+					</div>
+					<button type="submit" class="login">Login</button><br>
+					<div align = "center">
+						<label>
+							<input type="checkbox" checked="checked" name="remember"> Remember me
+						</label>
+					</div>
+				</div>
 
-    
-  </form>
-</div>
+			
+			</form>
+		</div>
 		 
 		<!---
       <form action = "loginSessions.php" method = "POST"> 
