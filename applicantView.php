@@ -223,30 +223,6 @@
 				<button class="btn btn-danger" value="submit" id="editCadet" onclick='changeView()'>Edit</button>
 				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick='changeEdit()'>View</button>
 
-				<!-- Graduate Confirmation Check -->
-				<div class="modal fade" id="graduateCheck" tabindex="-1" role="dialog" aria-labelledby="graduateCheckTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure you want to graduate this cadet? Choosing 'Accept' will automatically transition this cadet into a graduate and bring you to the All Cadets page.</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary col-sm-1" data-dismiss="modal">Close</button>
-								<form action='graduateCadet.php' method = "POST" class='col-sm-1'>
-									<input type='hidden' name='ssnGraduate' value='<?php echo $ssn ?>'></input>
-									<button name='graduateCadet' class="btn btn-danger" value="submit" id="graduateCadet">Accept</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Confirmation Check End -->
-
 				<p></br></p>
 				
 				<!-- Centered Tabs -->
@@ -283,7 +259,6 @@
 					
 					<div class="tab-pane container col-sm-12 active" id="basicTab">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to submit this form?');">
-						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
 								<div class="form-group col-sm-4">
@@ -479,7 +454,7 @@
 									<input type="text" class="form-control" name="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" readonly>
 								</div>
 							</div>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
 					
@@ -522,7 +497,7 @@ _END;
 								  <span class="custom-file-control"></span>
 							</label>
 							<br>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						 </form>
 					</div>
 
@@ -565,7 +540,7 @@ _END;
 								  <span class="custom-file-control"></span>
 							</label>
 							</br>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
 
@@ -608,7 +583,7 @@ _END;
 								  <span class="custom-file-control"></span>
 							</label>
 							</br>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
 
@@ -745,7 +720,7 @@ _END;
 									<input type="text" class="form-control" name="inputPhysicalZip" id="inputPhysicalZip" value = "<?= $record["pZip"]?>" placeholder="Zip Code" readonly>
 								</div>
 							</div>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
 					
@@ -842,7 +817,7 @@ _END;
 									}
 								}
 							?>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
 						
@@ -907,7 +882,7 @@ _END;
 									}
 								}
 								?>
-								<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+								<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 							</form>
 						</div>
 						
@@ -942,7 +917,7 @@ _END;
 									}
 								}
 								?>
-								<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+								<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 							</form>
 						</div>
 						
@@ -985,7 +960,7 @@ _END;
 									}
 								}
 								?>
-								<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+								<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 							</form>
 						</div>
 						
@@ -1029,7 +1004,7 @@ _END;
 									}
 								}
 								?>
-								<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+								<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 							</form>
 						</div>
 					
@@ -1129,7 +1104,7 @@ _END;
 									<input type="text" class="form-control" name="inputRecommenderPhone" id="inputRecommenderPhone" value = "<?= $record["recNum"]?>" placeholder="(555)-555-5555" readonly>
 								</div>
 							</div>
-							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
+							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
 					
