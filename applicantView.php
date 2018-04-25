@@ -23,6 +23,7 @@
 		    		document.getElementById('editCadet').setAttribute('style','display:none');
 		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').removeAttribute('disabled');
+					document.getElementById('inputCompany').removeAttribute('disabled');
 					// ssn shenanigans
 		    		document.getElementById('inputSSN').removeAttribute('readonly');
 					var realSSN = document.getElementById('ssnVal').value;
@@ -118,6 +119,7 @@
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');
 		    		document.getElementById('viewCadet').setAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').setAttribute('disabled', 'true');
+					document.getElementById('inputCompany').setAttribute('disabled', 'true');
 					// ssn shenanigans
 		    		document.getElementById('inputSSN').setAttribute('readonly', 'true');
 					var tempSSN = document.getElementById('tempSsnVal').value;
@@ -284,7 +286,7 @@
 						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
-								<div class="form-group col-sm-6">
+								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
 									<select class="form-control" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
 										<option selected></option>
@@ -294,7 +296,17 @@
 										<option>Phone</option>
 									</select>
 								</div>
-								<div class="form-group col-sm-6">
+								<div class="form-group col-sm-4">
+									<label for="inputCommMethod">Company</label>
+									<select class="form-control" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
+										<option selected></option>
+										<option>Alpha</option>
+										<option>Bravo</option>
+										<option>Charlie</option>
+										<option>Delta</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-4">
 									<label for="inputSSN">Social Security Number</label>
 									<input type="text" class="form-control" id="inputSSN" value = "<?= '*****'.substr($record['ssn'], -4) ?>"readonly>
 									<input type="hidden" id="ssnVal" value="<?= $record['ssn'] ?>">
