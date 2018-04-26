@@ -13,7 +13,7 @@ $db = new DBController();
 basicPage("Users");
 
 ?>
-				<form method="post" action="newUser.php"><button type="submit" class="btn btn-primary">New Applicant</button></form><p></br></p>
+				<form method="post" action="newUser.php"><button type="submit" class="btn btn-primary">New User</button></form><p></br></p>
 				  <ul class="nav nav-tabs nav-justified" role="tablist">
 					<li class="nav-item active">
 					  <a class="nav-link" data-toggle="tab" href="#nav-general">General Users</a>
@@ -33,7 +33,7 @@ basicPage("Users");
 				  </ul>
 <div class ="tab-content">
     <div class ="tab-pane active container col-sm-12" id = "nav-general"> 
-        <table id ="current-table" class="table table-striped table-bordered" cellspacing="0">
+        <table id ="general-table" class="table table-striped table-bordered" cellspacing="0">
             <thead>
                 <tr>
                     <th> Name</th>
@@ -49,12 +49,14 @@ basicPage("Users");
                 }
                 else
                 {
+					echo "<br>";
                     foreach($results as $row)
                     {
 echo <<<_END
-			<td><form method ="post" action = "newUser.php"> <input type = "hidden" name ="ssn" value ="{$row['email']}"> </form></td>'; 
-                        <td>{$row['fName']} {$row['lName']}</td>"; 
-                        <td>{$row['email']}</td>;
+					<tr>
+                        <td>{$row['fName']} {$row['lName']}</td>
+                        <td>{$row['email']}</td>
+					</tr>
 _END;
                     }
                 }
@@ -67,11 +69,11 @@ _END;
     </div>
  <!-- END OF GENERAL USERS LIST-->  
  <div class = "tab-pane container col-sm-12" id = "nav-recruiter">
-     <table class="table table-striped table-bordered"> 
+     <table id="recruiter-table" class="table table-striped table-bordered"> 
          <thead>
              <tr>
                  <th> Name </th>
-                 <th> Email /th>
+                 <th> Email </th>
              </tr>
          </thead>
          <tbody>
@@ -83,10 +85,13 @@ _END;
                 }
                 else
                 {
+					echo "<br>";
                     foreach($results as $row)
                     {
+						echo "<tr>";
                         echo "<td>{$row['fName']} {$row['lName']}</td>"; 
                         echo "<td>{$row['email']}</td>";
+						echo "</tr>";
                     }
                 }
              ?>
@@ -94,11 +99,11 @@ _END;
      </table>
  </div>
   <div class = "tab-pane container col-sm-12" id = "nav-counselor">
-       <table class="table table-striped table-bordered"> 
+       <table id="counselor-table" class="table table-striped table-bordered"> 
          <thead>
              <tr>
                  <th> Name </th>
-                 <th> Email /th>
+                 <th> Email </th>
              </tr>
          </thead>
          <tbody>
@@ -110,10 +115,13 @@ _END;
                 }
                 else
                 {
+					echo "<br>";
                     foreach($results as $row)
                     {
+						echo "<tr>";
                         echo "<td>{$row['fName']} {$row['lName']}</td>"; 
                         echo "<td>{$row['email']}</td>";
+						echo "</tr>";
                     }
                 }
              ?>
@@ -121,11 +129,11 @@ _END;
      </table>
  </div>
   <div class = "tab-pane container col-sm-12" id = "nav-admin">
-       <table class="table table-striped table-bordered"> 
+       <table id="admin-table" class="table table-striped table-bordered"> 
          <thead>
              <tr>
                  <th> Name </th>
-                 <th> Email /th>
+                 <th> Email </th>
              </tr>
          </thead>
          <tbody>
@@ -137,10 +145,13 @@ _END;
                 }
                 else
                 {
+					echo "<br>";
                     foreach($results as $row)
                     {
+						echo "<tr>";
                         echo "<td>{$row['fName']} {$row['lName']}</td>"; 
                         echo "<td>{$row['email']}</td>";
+						echo "</tr>";
                     }
                 }
              ?>
@@ -148,11 +159,11 @@ _END;
      </table>
  </div>
   <div class = "tab-pane container col-sm-12" id = "nav-custom">
-       <table class="table table-striped table-bordered"> 
+       <table id="custom-table" class="table table-striped table-bordered"> 
          <thead>
              <tr>
                  <th> Name </th>
-                 <th> Email /th>
+                 <th> Email </th>
              </tr>
          </thead>
          <tbody>
@@ -164,10 +175,13 @@ _END;
                 }
                 else
                 {
+					echo "<br>";
                     foreach($results as $row)
                     {
+						echo "<tr>";
                         echo "<td>{$row['fName']} {$row['lName']}</td>"; 
                         echo "<td>{$row['email']}</td>";
+						echo "</tr>";
                     }
                 }
              ?>

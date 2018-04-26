@@ -20,11 +20,11 @@
             </script>
 
             <div class="container col-sm-12">
-              <form action="saver-user-action.php" method = "POST">
+              <form action="save-user-action.php" method = "POST">
                 <div class="form-row">
                   <div class="form-group col-sm-12">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                    <label for="inputEmail">Email</label>
+                    <input type="text" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email">
                   </div>
                   <div class="form-group col-sm-12">
                     <label for="inputFirstName">First name</label>
@@ -34,18 +34,18 @@
                     <label for="inputLastName">Last Name</label>
                     <input type="text" class="form-control" name = "inputLastName" id="inputLastName" placeholder="Last Name">
                   </div>
-    							<div class="form-group col-sm-12">
-    								<label for="inputRole">Role</label>
-    								<select class="form-control" name = "inputRole" id="inputRole">
-    									<option selected value="0"></option>
-    									<option value="0">General User</option>
-    									<option value="0">Recruiter</option>
-    									<option value="0">Counsellor</option>
-    									<option value="0">Administrator</option>
-                      <!-- Pull custom roles? -->
-                      <option value="1">Create New Role</option>
-    								</select>
-    							</div>
+				<div class="form-group col-sm-12">
+					<label for="inputRole">Role</label>
+					<select class="form-control" name = "inputRole" id="inputRole">
+						<option selected value="0"></option>
+						<option value="general">General User</option>
+						<option value="recruiter">Recruiter</option>
+						<option value="counselor">Counselor</option>
+						<option value="admin">Administrator</option>
+						<!-- Pull custom roles? -->
+						<option value="1">Create New Role</option>
+					</select>
+				</div>
                 </div>
 
                   <!-- Custom Role Settings Beginning -->
@@ -53,7 +53,7 @@
                   <legend>Custom Role Settings</legend>
                   <div class="form-group col-sm-12">
                     <label for="inputRoleTitle">Role Title</label>
-                    <input type="text" class="form-control" id="inputRoleTitle" placeholder="Custom Role Title">
+                    <input type="text" class="form-control" name="inputRoleTitle" id="inputRoleTitle" placeholder="Custom Role Title">
                   </div>
                   <div class="form-group col-sm-12">
     								<label for="inputCadetPermission">Cadets Table Permission Level</label>
@@ -83,7 +83,7 @@
                   <!-- Custom Role Settings End -->
                 <div class='form-row'>
                   <div class="form-group col-sm-12">
-    								<button class="btn btn-success" type="submit" id="saveUser">Save</button>
+    								<button class="btn btn-success" type="submit" name="saveUser" id="saveUser">Save</button>
     							</div>
                 </div>
               </form>
