@@ -288,7 +288,7 @@
 							<div class="form-row">
 								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
-									<select class="form-control" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
+									<select class="form-control" name="inputCommMethod" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
 										<option selected></option>
 										<option>Email</option>
 										<option>Text</option>
@@ -298,7 +298,7 @@
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Company</label>
-									<select class="form-control" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
+									<select class="form-control" name="inputCompany" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
 										<option selected></option>
 										<option>Alpha</option>
 										<option>Bravo</option>

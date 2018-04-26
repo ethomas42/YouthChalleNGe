@@ -7,9 +7,9 @@
 				<div class="container col-sm-12">
                                     <form action = "applicant-form-action.php" method = "POST" >
 						<div class="form-row">
-							<div class="form-group col-sm-6">
+							<div class="form-group col-sm-4">
 								<label for="inputCommMethod">Preferred Method of Communication</label>
-								<select class="form-control" id="inputCommMethod">
+								<select class="form-control" name="inputCommMethod" id="inputCommMethod">
 									<option selected></option>
 									<option>Email</option>
 									<option>Text</option>
@@ -17,7 +17,17 @@
 									<option>Phone</option>
 								</select>
 							</div>
-							<div class="form-group col-sm-6">
+							<div class="form-group col-sm-4">
+									<label for="inputCommMethod">Company</label>
+									<select class="form-control" name="inputCompany" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
+										<option selected></option>
+										<option>Alpha</option>
+										<option>Bravo</option>
+										<option>Charlie</option>
+										<option>Delta</option>
+									</select>
+								</div>
+							<div class="form-group col-sm-4">
 								<label for="inputSSN">Social Security Number</label>
 								<input type="text" name = "inputSSN" class="form-control" id="inputSSN" placeholder="SSN">
 							</div>
