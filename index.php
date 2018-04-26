@@ -225,7 +225,7 @@ span.psw {
 
 		<div id="id01" class="modal">
 	  
-			<form class="modal-content animate" action="/action_page.php">
+			<form class="modal-content animate" method="POST" action="loginSessions.php">
 				<div class="imgcontainer">
 					<span onload="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 					<img class="logImg" src="ngyc.png" alt="Avatar" class="avatar">
@@ -233,8 +233,8 @@ span.psw {
 
 				<div class="container">
 					<div align = "center"> 
-						<label for="uname"><b>Username</b></label> <br>
-						<input type="text" placeholder="Enter Username" name="username" required> <br>
+						<label for="uname"><b>Email</b></label> <br>
+						<input type="text" placeholder="Enter email" name="email" required> <br>
 
 						<label for="psw"><b>Password</b></label> <br>
 						<input type="password" placeholder="Enter Password" name="password" required><br>
@@ -255,8 +255,8 @@ span.psw {
       <form action = "loginSessions.php" method = "POST"> 
         <div class='row'>
           <div class="form-group col-sm-6 col-m-6">
-            <label for="inputUsername">Username</label>
-            <input type="text" class="form-control" name="inputUsername" id="inputUsername" placeholder='Username'>
+            <label for="inputemail">email</label>
+            <input type="text" class="form-control" name="inputemail" id="inputemail" placeholder='email'>
           </div>
         </div>
         <div class="row">

@@ -6,18 +6,21 @@
 require_once 'dbcontroller.php'; 
 session_start(); 
 $connection = new DBController(); 
-$username = filter_input(INPUT_POST, "inputUsername");
+$email = filter_input(INPUT_POST, 'email');
+$email = $_POST['email'];
 $password = $_POST['password']; 
 
-
-//$rowCount = $connection->numRows("SELECT * FROM users WHERE username = '$username' AND password = '$password'"); 
-$rowCount = $connection->numRows("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
+echo $email;
+echo $password;
+//$rowCount = $connection->numRows("SELECT * FROM users WHERE email = '$email' AND password = '$password'"); 
+$rowCount = $connection->numRows("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
+echo $rowCount;
 if($rowCount)
 {
-     $record = $connection->runQuery("SELECT * FROM users WHERE username = '$username' AND password = '$password'")[0];
+     $record = $connection->runQuery("SELECT * FROM users WHERE email = '$email' AND password = '$password'")[0];
      $_SESSION["loggedIn"] = true; 
      
-     setcookie("username", $record['username'], time() + 86400, "/"); 
+     setcookie("email", $record['email'], time() + 86400, "/"); 
      header("Location: allCadetView.php?");    
 }
 
