@@ -1,4 +1,6 @@
 <?php
+require_once "dbcontroller.php";
+
 function randomPassword() {
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     $pass = array(); //remember to declare $pass as an array
@@ -12,15 +14,15 @@ function randomPassword() {
 $connection  = new DBController(); 
 if(isset($_POST['saveUser']))
 {
-    $username = $_POST['username'];
+    $email = $_POST['inputEmail'];
     $firstName = $_POST['inputFirstName']; 
     $lastName = $_POST['inputLastName']; 
-    $password = randomPassword();  
-    $role = $_POST['inputRole']; 
+    $password = randomPassword();
+    $role = $_POST['inputRole'];
 
-    $connection->runQuery("INSERT INTO users (fName,lName, username, password, email, role) VALUES ('$firstName', '$lastName', '$username','$password','$role')"); 
+    $connection->runQuery("INSERT INTO users (fName,lName, password, email, role) VALUES ('$firstName', '$lastName', '$password', '$email','$role')"); 
 
 }
 echo "<script>alert('User have been saved');  </script>"; 
-header("allApplicantView.php"); 
+header("location: roles.php"); 
 ?> 
