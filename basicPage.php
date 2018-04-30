@@ -90,7 +90,7 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 										<?php
 										if(isset($_SESSION['username']))
 										{
-										echo '<button type="submit" class="btn btn-danger">Logout</button>'; 
+										echo "<button type='submit' href = "logout.php" class='btn btn-danger'>Logout</button>"; 
 										}
 										?> 
 										
