@@ -1,6 +1,7 @@
 <!-- Version 5: Implements functions to create a View Cadet Page and an Edit Cadet Page -->
 <!DOCTYPE html>
 <?php
+session_start();
 function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 {
 	echo <<<_END

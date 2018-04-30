@@ -18,7 +18,9 @@ echo $rowCount;
 if($rowCount)
 {
      $record = $connection->runQuery("SELECT * FROM users WHERE email = '$email' AND password = '$password'")[0];
-     $_SESSION["loggedIn"] = true; 
+	 $role = $record['role'];
+     $_SESSION["loggedIn"] = true;
+	 $_SESSION["permissions"] = $connection->runQuery("SELECT * FROM roles WHERE role = '$role'")[0];
      
      setcookie("email", $record['email'], time() + 86400, "/"); 
      header("Location: allCadetView.php?");    

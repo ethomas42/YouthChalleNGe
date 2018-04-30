@@ -3,7 +3,7 @@
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Cadet View");
-    
+	
     $ssn = $_POST['ssn']; 
 	if(empty($ssn)) {
 		echo "<div class='alert alert-danger'>";
@@ -19,6 +19,7 @@
 	<script>
         	function changeView()
 		        {
+					var bool = "<?=$_SESSION['permissions']['counselorEdit']?>";
 					// basic info
 		    		document.getElementById('editCadet').setAttribute('style','display:none');
 		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
@@ -29,7 +30,11 @@
 					var realSSN = document.getElementById('ssnVal').value;
 					document.getElementById('inputSSN').setAttribute('value', realSSN);
 					
-		    		document.getElementById('inputFirstName').removeAttribute('readonly');
+					if(bool == true)
+					{
+						document.getElementById('inputFirstName').removeAttribute('readonly');
+					}
+				
 		    		document.getElementById('inputLastName').removeAttribute('readonly');
 		    		document.getElementById('inputMiddleName').removeAttribute('readonly');
 		    		document.getElementById('inputGenQual').removeAttribute('disabled');
