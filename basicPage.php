@@ -86,8 +86,9 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 										<li><a href="#">Page</a></li>
 										<li><a href="#">Page</a></li>
 										<li><a href="#">Page</a></li>
-										<li><a href="#">Page</a></li>
 										-->
+										<button type="submit" class="btn btn-danger">Logout</button>
+										
 									</ul>
 								</div>
 							</div>
