@@ -17,7 +17,16 @@
 ?>
 
 	<script>
-        	function changeView()
+				function restrictMedical()
+				{
+					var medicalView = "<?=$_SESSION['permissions']['medicalView']?>";
+					if (!(medicalView == 1))
+						document.getElementById('medTab').setAttribute('style', 'display: none');
+						document.getElementById('allerTab').setAttribute('style', 'display: none');
+						document.getElementById('immTab').setAttribute('style', 'display: none');
+						document.getElementById('abuseTab').setAttribute('style', 'display: none');
+				}
+				function changeView()
 		        {
 					var ssnView = "<?=$_SESSION['permissions']['ssnView']?>";
 					var medicalEdit = "<?=$_SESSION['permissions']['medicalEdit']?>";
@@ -239,6 +248,7 @@
 				$('#inputAge').val(age);
 			}
 			window.onload = calcAge;
+			window.onload = restrictMedical;
 		</script>
 				<!-- edit buttons -->
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#graduateCheck">Graduate</button>

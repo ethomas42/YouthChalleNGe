@@ -28,8 +28,9 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 				<!-- Our Custom JS -->
 				<script src="functions.js"></script>
 				
+				
 			</head>
-			<body>
+			<body onload="restrictAdmin();">
 				<div class="wrapper">
 					<!-- Sidebar Holder -->
 					<nav id="sidebar">
@@ -104,3 +105,11 @@ _END;
 
 }
 ?>
+<script>
+	function restrictAdmin()
+	{
+		var adminView = "<?=$_SESSION['permissions']['admin']?>";
+		if (!(adminView == 1))
+			document.getElementById('adminSubmenu').setAttribute('style', 'display: none');
+	}
+</script>

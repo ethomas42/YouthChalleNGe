@@ -3,8 +3,17 @@
 	include_once "basicPage.php";
 	basicPage("Milledgeville Applicants");
 ?>
+<script>
+	function restrictApplicants()
+	{
+		var createApplicants = "<?=$_SESSION['permissions']['createApplicants']?>";
+		if (!(createApplicants == 1))
+			document.getElementById('newAppButton').setAttribute('disabled', 'true');
+	}
+	window.onload = restrictApplicants;
+</script>
 
-				<form method="post" action="newApplicant.php"><button type="submit" class="btn btn-primary">New Applicant</button></form><p></br></p>
+				<form method="post" action="newApplicant.php"><button type="submit" class="btn btn-primary" id="newAppButton">New Applicant</button></form><p></br></p>
 				  <ul class="nav nav-tabs nav-justified" role="tablist">
 					<li class="nav-item active">
 					  <a class="nav-link" data-toggle="tab" href="#nav-pending">Pending</a>
