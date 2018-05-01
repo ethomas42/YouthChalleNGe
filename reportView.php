@@ -712,7 +712,8 @@
 			</div>
 			
 			<form action = "export-template.php" method = "POST"> 
-			<input type="text" name ="fieldNames" class="form-control" id="fieldNames" value ="" >
+			<input type="text" name ="fileName" class="form-control col-sm-6" id="fileName" value ="" placeholder="Insert name of Report Here Excel File here">
+			<input type="text" name ="fieldNames" class="form-control" id="fieldNames" value ="" style="display: none">
 			<!-- MODAL START -->
 			<div class="modal fade" id="genModal" tabindex="-1" role="dialog" aria-labelledby="genModalTitle" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -745,7 +746,7 @@
     </body>
 	<script>
 	var tables = [];
-	function addToReport(tableText, colText, id) { //Adds tableName.fieldName to the list of selections being used in this report.
+	function addToReport(tableText, colText, id) { //Adds a tableName.fieldName to the list of selected fields for the Report.
 		tables.push(id);
 		var table = document.getElementById("reportToGen");
 		var row = table.insertRow(1);

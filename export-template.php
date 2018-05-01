@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <?php
+    /*
+    The purpose of this file is to take a string of tableNames.fieldNames and output them into an excel sheet with headers and the data correctly organized.
+    */
     require 'vendor/autoload.php';
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -17,7 +19,10 @@
     $tableNames = array();
     $tableFields = array();
 
-    $keywords = $_POST['fieldNames'];
+    $keywords = $_POST['fieldNames']; //String of all tableNames.fieldNames
+    $fileName = $_POST['fileName']; //Name of file to be saved to
+    $fileName .= '.xlsx';
+
     $array = explode(",", $keywords); //Turns tableName.fieldName string into array.
     $keywords = implode(" ", $array); // Turn this back into array so that we can begin to split the tableNames and fieldNames.
     $splitter = explode(".", $keywords); //Used to split the Field Names and the Table Names.
@@ -40,6 +45,7 @@
 
     for($num = 1; $num < sizeof($sqlSSN); $num++) //For loop to create the WHERE clause
     {
+        if($num = 1) $sqlWhere.= "WHERE ";
         $sqlWhere .= $sqlSSN[0] . " = " . $sqlSSN[$num] . " AND ";
     }
     $sqlFrom=rtrim($sqlFrom, ", ")." "; //Trims final ',' off of the FROM clause
@@ -51,7 +57,7 @@
       $sql.=$key.", ";    
     }
     $sql=rtrim($sql, ", ")." "; //Trims final ',' off of the SELECT clause
-    $sql.= "FROM ". $sqlFrom . "WHERE " . $sqlWhere; //Combine all of the clauses to create our SQL statement
+    $sql.= "FROM ". $sqlFrom . $sqlWhere; //Combine all of the clauses to create our SQL statement
 
     if ($db->numRows($sql)) //If loop to see if there our entries that work with our SQL statement
     {
@@ -70,7 +76,7 @@
             }
 
             $writer = new Xlsx($spreadsheet);
-            $writer->save('ReportExport.xlsx'); //Name selection for export
+            $writer->save($fileName); //Name selection for export
         	$num++;
       	}
     }
