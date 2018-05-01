@@ -20,7 +20,10 @@ if(isset($_POST['saveUser']))
     $password = randomPassword();
     $role = $_POST['inputRole'];
 
+	
+	$message = "New account has been created for you in the YouthChalleNGe database. Login using your email address and your password is listed below.\nPassword: '$password'"; 
     $connection->runQuery("INSERT INTO users (fName,lName, password, email, role) VALUES ('$firstName', '$lastName', '$password', '$email','$role')"); 
+	mail($email, "New YouthChalleNGe Database Account", $message); 
 
 }
 echo "<script>alert('User have been saved');  </script>"; 
