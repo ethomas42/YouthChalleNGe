@@ -744,11 +744,9 @@
         </div>
     </body>
 	<script>
-	var fields = [];
-	var string;
-	function addToReport(tableText, colText, id) {
-		var field = id.split(".");
-		fields.push(field[1]);
+	var tables = [];
+	function addToReport(tableText, colText, id) { //Adds tableName.fieldName to the list of selections being used in this report.
+		tables.push(id);
 		var table = document.getElementById("reportToGen");
 		var row = table.insertRow(1);
 		row.id = id;
@@ -759,17 +757,22 @@
 		console.log(getFields());
 	}
 	
-	function getFields(){
-		var str = fields.join(", ");
-		string = str;
-		document.getElementById('fieldNames').value = fields;
-		return fields;
+	function getFields(){ //Updates the tableNames.fieldNames list onclick of addToReport.
+		document.getElementById('fieldNames').value = tables;
+		return tables;
 	}
 
-	function removeFromReport(rowid) {
+	function removeFromReport(rowid) { //Removes a selected tableName.fieldName from the list.
 		var table = document.getElementById("reportToGen");
 		var row = document.getElementById(rowid);
 		row.parentNode.removeChild(row);
+		remove(tables, rowid);
+		document.getElementById('fieldNames').value = tables;
+	}
+
+	function remove(array, element) { //Used for removing an entry from the selection of tableNames.fieldNames list when Remove button is pressed.
+    	const index = array.indexOf(element);
+    	if (index !== -1) array.splice(index, 1);
 	}
 	
 	</script>
