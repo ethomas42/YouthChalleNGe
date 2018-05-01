@@ -88,17 +88,17 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 										<li><a href="#">Page</a></li>
 										<li><a href="#">Page</a></li>
 										-->
-										<?php
-										if(isset($_SESSION['username']))
+_END;
+										if(isset($_SESSION['loggedIn']))
 										{
-										echo "<button type='submit' href = "logout.php" class='btn btn-danger'>Logout</button>"; 
+										echo "<button type='submit' href = 'logout.php' class='btn btn-danger'>Logout</button>"; 
 										}
-										?> 
-										
+										echo <<<_END
 									</ul>
 								</div>
 							</div>
 						</nav> 
 _END;
+
 }
 ?>
