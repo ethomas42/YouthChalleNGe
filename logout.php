@@ -8,5 +8,7 @@
 session_start(); 
 $_SESSION["loggedIn"] = false; 
 unset($_SESSION["loggedIn"]); 
-setcookie("username", NULL, time() - 86400); 
+unset($_SESSION["permissions"]);
+setcookie("email", NULL, time() - 86400);
+header("Location: index.php");
 ?>

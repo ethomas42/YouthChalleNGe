@@ -19,99 +19,122 @@
 	<script>
         	function changeView()
 		        {
-					// basic info
-		    		document.getElementById('editCadet').setAttribute('style','display:none');
-		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
-		    		document.getElementById('inputCommMethod').removeAttribute('disabled');
-					document.getElementById('inputCompany').removeAttribute('disabled');
-					// ssn shenanigans
-		    		document.getElementById('inputSSN').removeAttribute('readonly');
-					var realSSN = document.getElementById('ssnVal').value;
-					document.getElementById('inputSSN').setAttribute('value', realSSN);
-					
-		    		document.getElementById('inputFirstName').removeAttribute('readonly');
-		    		document.getElementById('inputLastName').removeAttribute('readonly');
-		    		document.getElementById('inputMiddleName').removeAttribute('readonly');
-		    		document.getElementById('inputGenQual').removeAttribute('disabled');
-		    		document.getElementById('inputHair').removeAttribute('readonly');
-		    		document.getElementById('inputEye').removeAttribute('readonly');
-		    		document.getElementById('inputHeight').removeAttribute('readonly');
-		    		document.getElementById('inputWeight').removeAttribute('readonly');
-		    		document.getElementById('raceWhite').removeAttribute('disabled');
-		    		document.getElementById('raceBlack').removeAttribute('disabled');
-		    		document.getElementById('raceAmerican').removeAttribute('disabled');
-		    		document.getElementById('raceAsian').removeAttribute('disabled');
-		    		document.getElementById('racePacific').removeAttribute('disabled');
-		    		document.getElementById('raceMiddleEast').removeAttribute('disabled');
-		    		document.getElementById('raceOther').removeAttribute('disabled');
-		    		document.getElementById('inputHispanic').removeAttribute('disabled');
-		    		$('[id^=inputPhone]').removeAttr('readonly');
-		    		document.getElementById('inputAge').removeAttribute('readonly');
-		    		document.getElementById('inputBirthday').removeAttribute('readonly');
-		    		document.getElementById('inputGender').removeAttribute('disabled');
-		    		document.getElementById('inputEmail').removeAttribute('readonly');
-					// location
-		    		document.getElementById('inputLocation').removeAttribute('disabled');
-		    		document.getElementById('inputGAResident').removeAttribute('disabled');
-		    		document.getElementById('inputMailStreet').removeAttribute('readonly');
-		    		document.getElementById('inputStreet2').removeAttribute('readonly');
-		    		document.getElementById('inputMailCity').removeAttribute('readonly');
-		    		document.getElementById('inputMailState').removeAttribute('disabled');
-		    		document.getElementById('inputMailZip').removeAttribute('readonly');
-		    		document.getElementById('inputPhysicalStreet').removeAttribute('readonly');
-		    		document.getElementById('inputPhysicalStreet2').removeAttribute('readonly');
-		    		document.getElementById('inputPhysicalCity').removeAttribute('readonly');
-		    		document.getElementById('inputPhysicalState').removeAttribute('disabled');
-		    		document.getElementById('inputPhysicalZip').removeAttribute('readonly');
-					// guardian
-		    		$('[id^=inputGFirstName]').removeAttr('readonly');
-					$('[id^=inputGMiddleName]').removeAttr('readonly');
-		    		$('[id^=inputGLastName]').removeAttr('readonly');
-		    		$('[id^=inputGRelationship]').removeAttr('disabled');
-		    		$('[id^=inputGStreet]').removeAttr('readonly');
-		    		$('[id^=inputGStreet2]').removeAttr('readonly');
-		    		$('[id^=inputGCity]').removeAttr('readonly');
-		    		$('[id^=inputGState]').removeAttr('disabled');
-		    		$('[id^=inputGZip]').removeAttr('readonly');
-		    		$('[id^=inputGCell]').removeAttr('readonly');
-		    		$('[id^=inputGHomePhone]').removeAttr('readonly');
-		    		$('[id^=inputGEmail]').removeAttr('readonly');
+					var ssnView = "<?=$_SESSION['permissions']['ssnView']?>";
+					var medicalEdit = "<?=$_SESSION['permissions']['medicalEdit']?>";
+					var addressEdit = "<?=$_SESSION['permissions']['addressEdit']?>";
+					var miscEdit = "<?=$_SESSION['permissions']['miscEdit']?>";
+					var cadetEdit = "<?=$_SESSION['permissions']['cadetEdit']?>";
 					// medical
-		    		$('[id^=inputDrugName').removeAttr('readonly');
-		    		$('[id^=inputDrugType').removeAttr('readonly');
-		    		$('[id^=inputDrugDosage').removeAttr('readonly');
-		    		$('[id^=inputDrugFrequency').removeAttr('readonly');
-		    		$('[id^=inputTakenWhen').removeAttr('readonly');
-		    		$('[id^=inputStartDate').removeAttr('readonly');
-		    		$('[id^=inputEndDate').removeAttr('readonly');
-		    		$('[id^=inputDrugDosage').removeAttr('readonly');
-		    		$('[id^=inputAllergyType').removeAttr('readonly');
-		    		$('[id^=inputAllergyNotes').removeAttr('readonly');
-		    		$('[id^=inputImmDate').removeAttr('readonly');
-		    		$('[id^=inputUnemployed').removeAttr('disabled');
-		    		$('[id^=inputUnder').removeAttr('disabled');
-		    		$('[id^=inputImmDate').removeAttr('readonly');
-					$('[id^=inputImmType').removeAttr('readonly');
-					$('[id^=inputImmValid').removeAttr('readonly');
-					$('[id^=inputImmNotes').removeAttr('readonly');
-					$('[id^=inputAbuseDate').removeAttr('readonly');
-					$('[id^=inputAbuseResults').removeAttr('readonly');
-					$('[id^=inputAbuseName').removeAttr('readonly');
-					$('[id^=inputAbuseNotes').removeAttr('readonly');
-					// misc
-					document.getElementById('inputHousePeople').removeAttribute('readonly');
-					document.getElementById('inputIncome').removeAttribute('readonly');
-					document.getElementById('inputGED').removeAttribute('readonly');
-					document.getElementById('inputLastGrade').removeAttribute('readonly');
-					document.getElementById('inputVolunteer').removeAttribute('readonly');
-					document.getElementById('inputWithdraw').removeAttribute('readonly');
-					document.getElementById('inputJob').removeAttribute('readonly');
-					document.getElementById('inputWage').removeAttribute('readonly');
-					document.getElementById('inputHours').removeAttribute('readonly');
-					document.getElementById('inputFirst').removeAttribute('readonly');
-					document.getElementById('inputSecond').removeAttribute('readonly');
-					document.getElementById('inputRecommender').removeAttribute('readonly');
-					document.getElementById('inputRecommenderPhone').removeAttribute('readonly');
+					if (medicalEdit == 1)
+					{
+						$('[id^=inputDrugName').removeAttr('readonly');
+						$('[id^=inputDrugType').removeAttr('readonly');
+						$('[id^=inputDrugDosage').removeAttr('readonly');
+						$('[id^=inputDrugFrequency').removeAttr('readonly');
+						$('[id^=inputTakenWhen').removeAttr('readonly');
+						$('[id^=inputStartDate').removeAttr('readonly');
+						$('[id^=inputEndDate').removeAttr('readonly');
+						$('[id^=inputDrugDosage').removeAttr('readonly');
+						$('[id^=inputAllergyType').removeAttr('readonly');
+						$('[id^=inputAllergyNotes').removeAttr('readonly');
+						$('[id^=inputImmDate').removeAttr('readonly');
+						$('[id^=inputImmDate').removeAttr('readonly');
+						$('[id^=inputImmType').removeAttr('readonly');
+						$('[id^=inputImmValid').removeAttr('readonly');
+						$('[id^=inputImmNotes').removeAttr('readonly');
+						$('[id^=inputAbuseDate').removeAttr('readonly');
+						$('[id^=inputAbuseResults').removeAttr('readonly');
+						$('[id^=inputAbuseName').removeAttr('readonly');
+						$('[id^=inputAbuseNotes').removeAttr('readonly');
+					}
+					if (cadetEdit == 1)
+					{
+						// basic info
+						document.getElementById('editCadet').setAttribute('style','display:none');
+						document.getElementById('viewCadet').removeAttribute('style','display:none');
+						document.getElementById('inputCommMethod').removeAttribute('disabled');
+						document.getElementById('inputCompany').removeAttribute('disabled');
+						// ssn shenanigans
+						if (ssnView == 1)
+						{
+							document.getElementById('inputSSN').removeAttribute('readonly');
+							var realSSN = document.getElementById('ssnVal').value;
+							document.getElementById('inputSSN').setAttribute('value', realSSN);
+						}
+						
+						document.getElementById('inputFirstName').removeAttribute('readonly');
+						document.getElementById('inputLastName').removeAttribute('readonly');
+						document.getElementById('inputMiddleName').removeAttribute('readonly');
+						document.getElementById('inputGenQual').removeAttribute('disabled');
+						document.getElementById('inputHair').removeAttribute('readonly');
+						document.getElementById('inputEye').removeAttribute('readonly');
+						document.getElementById('inputHeight').removeAttribute('readonly');
+						document.getElementById('inputWeight').removeAttribute('readonly');
+						document.getElementById('raceWhite').removeAttribute('disabled');
+						document.getElementById('raceBlack').removeAttribute('disabled');
+						document.getElementById('raceAmerican').removeAttribute('disabled');
+						document.getElementById('raceAsian').removeAttribute('disabled');
+						document.getElementById('racePacific').removeAttribute('disabled');
+						document.getElementById('raceMiddleEast').removeAttribute('disabled');
+						document.getElementById('raceOther').removeAttribute('disabled');
+						document.getElementById('inputHispanic').removeAttribute('disabled');
+						$('[id^=inputPhone]').removeAttr('readonly');
+						document.getElementById('inputAge').removeAttribute('readonly');
+						document.getElementById('inputBirthday').removeAttribute('readonly');
+						document.getElementById('inputGender').removeAttribute('disabled');
+						document.getElementById('inputEmail').removeAttribute('readonly');
+						// location
+						if (addressEdit == 1)
+						{
+							console.log("address");
+							//document.getElementById('inputLocation').removeAttribute('disabled');
+							document.getElementById('inputGAResident').removeAttribute('disabled');
+							document.getElementById('inputMailStreet').removeAttribute('readonly');
+							document.getElementById('inputStreet2').removeAttribute('readonly');
+							document.getElementById('inputMailCity').removeAttribute('readonly');
+							document.getElementById('inputMailState').removeAttribute('disabled');
+							document.getElementById('inputMailZip').removeAttribute('readonly');
+							document.getElementById('inputPhysicalStreet').removeAttribute('readonly');
+							document.getElementById('inputPhysicalStreet2').removeAttribute('readonly');
+							document.getElementById('inputPhysicalCity').removeAttribute('readonly');
+							document.getElementById('inputPhysicalState').removeAttribute('disabled');
+							document.getElementById('inputPhysicalZip').removeAttribute('readonly');
+						}
+						// guardian
+						$('[id^=inputGFirstName]').removeAttr('readonly');
+						$('[id^=inputGMiddleName]').removeAttr('readonly');
+						$('[id^=inputGLastName]').removeAttr('readonly');
+						$('[id^=inputGRelationship]').removeAttr('disabled');
+						$('[id^=inputGStreet]').removeAttr('readonly');
+						$('[id^=inputGStreet2]').removeAttr('readonly');
+						$('[id^=inputGCity]').removeAttr('readonly');
+						$('[id^=inputGState]').removeAttr('disabled');
+						$('[id^=inputGZip]').removeAttr('readonly');
+						$('[id^=inputGCell]').removeAttr('readonly');
+						$('[id^=inputGHomePhone]').removeAttr('readonly');
+						$('[id^=inputGEmail]').removeAttr('readonly');
+						// misc
+						if (miscEdit == 1)
+						{
+							document.getElementById('inputHousePeople').removeAttribute('readonly');
+							document.getElementById('inputIncome').removeAttribute('readonly');
+							document.getElementById('inputGED').removeAttribute('readonly');
+							document.getElementById('inputLastGrade').removeAttribute('readonly');
+							document.getElementById('inputVolunteer').removeAttribute('readonly');
+							document.getElementById('inputWithdraw').removeAttribute('readonly');
+							document.getElementById('inputGED').removeAttribute('disabled');
+							document.getElementById('inputVolunteer').removeAttribute('disabled');
+							document.getElementById('inputJob').removeAttribute('readonly');
+							document.getElementById('inputWage').removeAttribute('readonly');
+							document.getElementById('inputUnemployed').removeAttribute('disabled');
+							document.getElementById('inputUnder').removeAttribute('disabled');
+							document.getElementById('inputHours').removeAttribute('readonly');
+							document.getElementById('inputFirst').removeAttribute('readonly');
+							document.getElementById('inputSecond').removeAttribute('readonly');
+							document.getElementById('inputRecommender').removeAttribute('readonly');
+							document.getElementById('inputRecommenderPhone').removeAttribute('readonly');
+						}
+					}
 				}
 			function changeEdit()
 				{
@@ -147,7 +170,7 @@
 		    		document.getElementById('inputGender').setAttribute('disabled', 'true');
 		    		document.getElementById('inputEmail').setAttribute('readonly', 'true');
 					// location
-		    		document.getElementById('inputLocation').setAttribute('disabled', 'true');
+		    		//document.getElementById('inputLocation').setAttribute('disabled', 'true');
 		    		document.getElementById('inputGAResident').setAttribute('disabled', 'true');
 		    		document.getElementById('inputMailStreet').setAttribute('readonly', 'true');
 		    		document.getElementById('inputStreet2').setAttribute('readonly', 'true');
@@ -183,8 +206,6 @@
 		    		$('[id^=inputDrugDosage').attr('readonly', 'true');
 		    		$('[id^=inputAllergyType').attr('readonly', 'true');
 		    		$('[id^=inputAllergyNotes').attr('readonly', 'true');
-		    		$('[id^=inputUnemployed').attr('disabled', 'true');
-		    		$('[id^=inputUnder').attr('disabled', 'true');
 		    		$('[id^=inputImmDate').attr('readonly', 'true');
 					$('[id^=inputImmType').attr('readonly', 'true');
 					$('[id^=inputImmValid').attr('readonly', 'true');
@@ -201,6 +222,8 @@
 					document.getElementById('inputVolunteer').setAttribute('readonly', 'true');
 					document.getElementById('inputWithdraw').setAttribute('readonly', 'true');
 					document.getElementById('inputJob').setAttribute('readonly', 'true');
+					document.getElementById('inputUnemployed').setAttribute('disabled', 'true');
+					document.getElementById('inputUnder').setAttribute('disabled', 'true');
 					document.getElementById('inputWage').setAttribute('readonly', 'true');
 					document.getElementById('inputHours').setAttribute('readonly', 'true');
 					document.getElementById('inputFirst').setAttribute('readonly', 'true');
