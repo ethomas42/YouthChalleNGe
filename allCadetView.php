@@ -3,10 +3,6 @@
 	include_once "basicPage.php";
 	
 	basicPage("Milledgeville Cadets");
- 	if(isset($_SESSION['loggedin'] == false))
-	{
-		header("Location: index.php"); 
-	}
 ?>
 
 				  <ul class="nav nav-tabs nav-justified" role="tablist">
