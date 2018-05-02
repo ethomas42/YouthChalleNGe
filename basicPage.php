@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <?php
 session_start();
+if(!isset($_SESSION['loggedIn']))
+{
+	header("Location: index.php"); 
+}
 function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 {
 	echo <<<_END
@@ -95,10 +99,6 @@ _END;
 										echo "<form action = 'logout.php' method = 'POST' >"; 
 										echo "<button type='submit' class='btn btn-danger'>Logout</button>"; 
 										echo "</form>";
-										}
-										if($_SESSION['loggedIn'] != true)
-										{
-											header("Location: index.php"); 
 										}
 										echo <<<_END
 									</ul>
