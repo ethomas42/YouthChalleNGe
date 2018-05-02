@@ -17,7 +17,18 @@
 ?>
 
 	<script>
-        	function changeView()
+				function restrictMedical()
+				{
+					var medicalView = "<?=$_SESSION['permissions']['medicalView']?>";
+					if (!(medicalView == 1))
+					{
+						document.getElementById('medTab').setAttribute('style', 'display: none');
+						document.getElementById('allerTab').setAttribute('style', 'display: none');
+						document.getElementById('immTab').setAttribute('style', 'display: none');
+						document.getElementById('abuseTab').setAttribute('style', 'display: none');
+					}
+				}
+				function changeView()
 		        {
 					var ssnView = "<?=$_SESSION['permissions']['ssnView']?>";
 					var medicalEdit = "<?=$_SESSION['permissions']['medicalEdit']?>";
@@ -240,6 +251,7 @@
 				$('#inputAge').val(age);
 			}
 			window.onload = calcAge;
+			window.onload = restrictMedical;
 		</script>
 				<!-- edit buttons -->
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#acceptCheck">Accept</button>
@@ -708,7 +720,7 @@ _END;
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
-								<div class="form-group col-sm-6">
+								<div class="form-group col-sm-12">
 									<label for="inputGAResident">GA Resident</label>
 									<select class="form-control" name="inputGAResident" id="inputGAResident" disabled="disabled">
 										<option></option>
