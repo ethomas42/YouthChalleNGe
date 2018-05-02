@@ -6,13 +6,32 @@ $connection = new DBController();
 // SAVING CADET
 if(isset($_POST['saveCadet']))
 {
-    
+	// get and set correct ssn
     $key = $_POST['ssnKey']; 
-    if(isset($_POST['attachments']))
+	$connection->runQuery("UPDATE cadets SET ssn = '$key' WHERE ssn = '$key'");
+	
+	// save attachments
+	if(isset($_POST['genAttachment']))
     { 
-        importFile("cadet","saveCadet","attachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","genAttachment", $_POST['ssnKey'], "category");
     }
-    
+	
+	if(isset($_POST['medAttachment']))
+    { 
+        importFile("cadet","saveCadet","medAttachment", $_POST['ssnKey'], "category");
+    }
+	
+	if(isset($_POST['counselorAttachment']))
+    { 
+        importFile("cadet","saveCadet","counselorAttachment", $_POST['ssnKey'], "category");
+    }
+	
+	if(isset($_POST['recAttachment']))
+    { 
+        importFile("cadet","saveCadet","recAttachment", $_POST['ssnKey'], "category");
+    }
+	
+	// save basic tab info
     if(isset($_POST['inputCommMethod']))
     {
         $preferredCommunication = filter_input(INPUT_POST, "inputCommMethod"); 
@@ -24,12 +43,7 @@ if(isset($_POST['saveCadet']))
         $company = filter_input(INPUT_POST, "inputCompany"); 
         $connection->runQuery("UPDATE cadets SET company = '$company' WHERE ssn = '$key'");
     }
-    
-    if(isset($_POST['ssn']))
-    {
-        $ssn = $_POST['ssn']; 
-        $connection->runQuery("UPDATE cadets SET ssn = '$ssn' WHERE ssn = '$key'");
-    }
+
     
     if(isset($_POST['inputFirstName']))
     {
@@ -111,28 +125,17 @@ if(isset($_POST['saveCadet']))
         $admission = filter_input(INPUT_POST,"inputAdmission"); 
         $connection->runQuery("UPDATE cadets SET admissionStatus = '$admission' WHERE ssn = '$key'"); 
     }
-     if(isset($_POST['inputAdmission']))
-    {
-        $admission = filter_input(INPUT_POST,"inputAdmission"); 
-        $connection->runQuery("UPDATE cadets SET admissionStatus = '$admission' WHERE ssn = '$key'"); 
-    }
-    
-    if(isset($_POST['inputLocation']))
-    {
-        $location = filter_input(INPUT_POST, "inputLocation");
-        $connection->runQuery("UPDATE cadets set campusLocation = '$location' WHERE ssn = '$key'"); 
-    }
+
+    // location tab
     if(isset($_POST["inputGAResident"]))
     {
         $gaResident = filter_input(INPUT_POST, "inputGAResident"); 
         $connection->runQuery("UPDATE cadets set gaResident = '$gaResident' WHERE ssn = '$key'"); 
-        
     }
     
     if (isset($_POST['inputMailStreet'])) {
         $mailStreet = filter_input(INPUT_POST, "inputMailStreet"); 
         $connection->runQuery("UPDATE cadets set mStreet = '$mailStreet' WHERE ssn = '$key'"); 
-        
     }
     if(isset($_POST['inputStreet2']))
     {
@@ -205,25 +208,141 @@ if(isset($_POST['saveCadet']))
 		}
 	}
 	
-    if(isset($_POST['inputDrugName']))
+	// medications tab
+    if(isset($_POST['inputMedID0'])) { 
+		$medInfo = $connection->runQuery("SELECT * FROM medications WHERE ssn = '$key'");
+		$numMeds = count($medInfo);
+		for($i = 0; $i < $numMeds; $i ++) {
+			if(isset($_POST['inputMedID'.$i]))
+			{
+				$drugName = filter_input(INPUT_POST, "inputDrugName".$i);
+				$type = filter_input(INPUT_POST, "inputDrugType".$i);
+				$dosage = filter_input(INPUT_POST, "inputDrugDosage".$i);
+				$frequency = filter_input(INPUT_POST, "inputDrugFrequency".$i);
+				$takenWhen = filter_input(INPUT_POST, "inputTakenWhen".$i);
+				$startDate = filter_input(INPUT_POST, "inputStartDate".$i);
+				$endDate = filter_input(INPUT_POST, "inputEndDate".$i);
+				$notes = filter_input(INPUT_POST, "inputDrugNotes".$i);
+				$id = filter_input(INPUT_POST, "inputMedID".$i);
+				$connection->runQuery("UPDATE medications SET drugName = '$drugName', type = '$type', dosage = 'dosage', frequency = '$frequency', takenWhen = '$takenWhen', startDate = '$startDate', endDate = '$endDate', notes = '$notes' WHERE medID = '$id'");
+			} 
+		}
+	}
+	
+	// allergies tab
+    if(isset($_POST['inputAllergyID0'])) { 
+		$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$key'");
+		$numAller = count($allerInfo);
+		for($i = 0; $i < $numAller; $i ++) {
+			if(isset($_POST['inputAllerID'.$i]))
+			{
+				$type = filter_input(INPUT_POST, "inputAllergyType".$i);
+				$notes = filter_input(INPUT_POST, "inputAllergyNotes".$i);
+				$id = filter_input(INPUT_POST, "inputAllergyID".$i);
+				$connection->runQuery("UPDATE allergies SET type = '$type', notes = '$notes' WHERE allerID = '$id'");
+			} 
+		}
+	}
+	
+	// immunizations tab
+    if(isset($_POST['inputImmID0'])) { 
+		$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$key'");
+		$numImm = count($immInfo);
+		for($i = 0; $i < $numImm; $i ++) {
+			if(isset($_POST['inputImmID'.$i]))
+			{
+				$date = filter_input(INPUT_POST, "inputImmDate".$i);
+				$type = filter_input(INPUT_POST, "inputImmType".$i);
+				$validUntil = filter_input(INPUT_POST, "inputImmValid".$i);
+				$notes = filter_input(INPUT_POST, "inputImmNotes".$i);
+				$id = filter_input(INPUT_POST, "inputImmID".$i);
+				$connection->runQuery("UPDATE allergies SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
+			} 
+		}
+	}
+	
+	// substance abuse tab
+    if(isset($_POST['inputSubID0ID0'])) { 
+		$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$key'");
+		$numSub = count($subInfo);
+		for($i = 0; $i < $numSub; $i ++) {
+			if(isset($_POST['inputSubID'.$i]))
+			{
+				$testDate = filter_input(INPUT_POST, "inputAbuseDate".$i);
+				$results = filter_input(INPUT_POST, "inputAbuseResults".$i);
+				$drugName = filter_input(INPUT_POST, "inputAbuseName".$i);
+				$notes = filter_input(INPUT_POST, "inputAbuseNotes".$i);
+				$id = filter_input(INPUT_POST, "inputSubID".$i);
+				$connection->runQuery("UPDATE substanceabuse SET testDate = '$testDate', results = '$results', drugName = '$drugName', notes = '$notes' WHERE subID = '$id'");
+			} 
+		}
+	}
+	
+	// misc tab
+	if(isset($_POST['inputHousePeople']))
     {
-        $drugName = filter_input(INPUT_POST, "inputDrugName"); 
-        $connection->runQuery("UPDATE substanceabuse SET drugName = '$drugName' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputHousePeople");
+        $connection->runQuery("UPDATE cadets SET personsInHouse = '$update' WHERE ssn = '$key'"); 
     }
-    if(isset($_POST['inputDrugType']))
+	if(isset($_POST['inputIncome']))
     {
-        $drugName = filter_input(INPUT_POST, "inputDrugType"); 
-        $connection->runQuery("UPDATE substanceabuse SET results = '$drugName' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputIncome");
+        $connection->runQuery("UPDATE cadets SET houseIncome = '$update' WHERE ssn = '$key'"); 
     }
-    if(isset($_POST['inputStartDate']))
+	if(isset($_POST['inputGED']))
     {
-        $drugName = filter_input(INPUT_POST, "inputStartDate"); 
-        $connection->runQuery("UPDATE substanceabuse SET testDate = '$drugName' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputGED");
+        $connection->runQuery("UPDATE cadets SET ged = '$update' WHERE ssn = '$key'"); 
     }
-    if(isset($_POST['inputDrugFrequency']))
+	if(isset($_POST['inputLastGrade']))
     {
-        $notes = filter_input(INPUT_POST, "inputDrugFrequency"); 
-        $connection->runQuery("UPDATE substanceabuse SET notes = '$notes' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputLastGrade");
+        $connection->runQuery("UPDATE cadets SET gradeCompleted = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputVolunteer']))
+    {
+        $update = filter_input(INPUT_POST, "inputVolunteer");
+        $connection->runQuery("UPDATE cadets SET volunteer = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputWithdraw']))
+    {
+        $update = filter_input(INPUT_POST, "inputWithdraw");
+        $connection->runQuery("UPDATE cadets SET schoolWithdrawDate = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputUnemployed']))
+    {
+        $update = filter_input(INPUT_POST, "inputUnemployed");
+        $connection->runQuery("UPDATE cadets SET unemployed = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputUnder']))
+    {
+        $update = filter_input(INPUT_POST, "inputUnder");
+        $connection->runQuery("UPDATE cadets SET underemployed = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputJob']))
+    {
+        $update = filter_input(INPUT_POST, "inputJob");
+        $connection->runQuery("UPDATE cadets SET workplace = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputWage']))
+    {
+        $update = filter_input(INPUT_POST, "inputWage");
+        $connection->runQuery("UPDATE cadets SET wage = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputHours']))
+    {
+        $update = filter_input(INPUT_POST, "inputHours");
+        $connection->runQuery("UPDATE cadets SET hoursWorking = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputRecommender']))
+    {
+        $update = filter_input(INPUT_POST, "inputRecommender");
+        $connection->runQuery("UPDATE cadets SET recBy = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputRecommenderPhone']))
+    {
+        $update = filter_input(INPUT_POST, "inputRecommenderPhone");
+        $connection->runQuery("UPDATE cadets SET recNum = '$update' WHERE ssn = '$key'"); 
     }
 
     header("refresh:2;url=allCadetView.php"); 
@@ -234,13 +353,32 @@ if(isset($_POST['saveCadet']))
 // SAVING APPLICANT
 if(isset($_POST['saveApplicant']))
 {
-    
+    // get and set correct ssn
     $key = $_POST['ssnKey']; 
-    if(isset($_POST['attachments']))
+	$connection->runQuery("UPDATE cadets SET ssn = '$key' WHERE ssn = '$key'");
+	
+	// save attachments
+	if(isset($_POST['genAttachment']))
     { 
-        importFile("cadet","saveCadet","attachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","genAttachment", $_POST['ssnKey'], "category");
     }
-    
+	
+	if(isset($_POST['medAttachment']))
+    { 
+        importFile("cadet","saveCadet","medAttachment", $_POST['ssnKey'], "category");
+    }
+	
+	if(isset($_POST['counselorAttachment']))
+    { 
+        importFile("cadet","saveCadet","counselorAttachment", $_POST['ssnKey'], "category");
+    }
+	
+	if(isset($_POST['recAttachment']))
+    { 
+        importFile("cadet","saveCadet","recAttachment", $_POST['ssnKey'], "category");
+    }
+	
+	// save basic tab info
     if(isset($_POST['inputCommMethod']))
     {
         $preferredCommunication = filter_input(INPUT_POST, "inputCommMethod"); 
@@ -252,12 +390,7 @@ if(isset($_POST['saveApplicant']))
         $company = filter_input(INPUT_POST, "inputCompany"); 
         $connection->runQuery("UPDATE cadets SET company = '$company' WHERE ssn = '$key'");
     }
-    
-    if(isset($_POST['ssn']))
-    {
-        $ssn = $_POST['ssn']; 
-        $connection->runQuery("UPDATE cadets SET ssn = '$ssn' WHERE ssn = '$key'");
-    }
+
     
     if(isset($_POST['inputFirstName']))
     {
@@ -339,28 +472,17 @@ if(isset($_POST['saveApplicant']))
         $admission = filter_input(INPUT_POST,"inputAdmission"); 
         $connection->runQuery("UPDATE cadets SET admissionStatus = '$admission' WHERE ssn = '$key'"); 
     }
-     if(isset($_POST['inputAdmission']))
-    {
-        $admission = filter_input(INPUT_POST,"inputAdmission"); 
-        $connection->runQuery("UPDATE cadets SET admissionStatus = '$admission' WHERE ssn = '$key'"); 
-    }
-    
-    if(isset($_POST['inputLocation']))
-    {
-        $location = filter_input(INPUT_POST, "inputLocation");
-        $connection->runQuery("UPDATE cadets set campusLocation = '$location' WHERE ssn = '$key'"); 
-    }
+
+    // location tab
     if(isset($_POST["inputGAResident"]))
     {
         $gaResident = filter_input(INPUT_POST, "inputGAResident"); 
         $connection->runQuery("UPDATE cadets set gaResident = '$gaResident' WHERE ssn = '$key'"); 
-        
     }
     
     if (isset($_POST['inputMailStreet'])) {
         $mailStreet = filter_input(INPUT_POST, "inputMailStreet"); 
         $connection->runQuery("UPDATE cadets set mStreet = '$mailStreet' WHERE ssn = '$key'"); 
-        
     }
     if(isset($_POST['inputStreet2']))
     {
@@ -433,25 +555,152 @@ if(isset($_POST['saveApplicant']))
 		}
 	}
 	
-    if(isset($_POST['inputDrugName']))
+	// medications tab
+    if(isset($_POST['inputMedID0'])) { 
+		$medInfo = $connection->runQuery("SELECT * FROM medications WHERE ssn = '$key'");
+		$numMeds = count($medInfo);
+		for($i = 0; $i < $numMeds; $i ++) {
+			if(isset($_POST['inputMedID'.$i]))
+			{
+				$drugName = filter_input(INPUT_POST, "inputDrugName".$i);
+				$type = filter_input(INPUT_POST, "inputDrugType".$i);
+				$dosage = filter_input(INPUT_POST, "inputDrugDosage".$i);
+				$frequency = filter_input(INPUT_POST, "inputDrugFrequency".$i);
+				$takenWhen = filter_input(INPUT_POST, "inputTakenWhen".$i);
+				$startDate = filter_input(INPUT_POST, "inputStartDate".$i);
+				$endDate = filter_input(INPUT_POST, "inputEndDate".$i);
+				$notes = filter_input(INPUT_POST, "inputDrugNotes".$i);
+				$id = filter_input(INPUT_POST, "inputMedID".$i);
+				$connection->runQuery("UPDATE medications SET drugName = '$drugName', type = '$type', dosage = 'dosage', frequency = '$frequency', takenWhen = '$takenWhen', startDate = '$startDate', endDate = '$endDate', notes = '$notes' WHERE medID = '$id'");
+			} 
+		}
+	}
+	
+	// allergies tab
+    if(isset($_POST['inputAllergyID0'])) { 
+		$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$key'");
+		$numAller = count($allerInfo);
+		for($i = 0; $i < $numAller; $i ++) {
+			if(isset($_POST['inputAllerID'.$i]))
+			{
+				$type = filter_input(INPUT_POST, "inputAllergyType".$i);
+				$notes = filter_input(INPUT_POST, "inputAllergyNotes".$i);
+				$id = filter_input(INPUT_POST, "inputAllergyID".$i);
+				$connection->runQuery("UPDATE allergies SET type = '$type', notes = '$notes' WHERE allerID = '$id'");
+			} 
+		}
+	}
+	
+	// immunizations tab
+    if(isset($_POST['inputImmID0'])) { 
+		$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$key'");
+		$numImm = count($immInfo);
+		for($i = 0; $i < $numImm; $i ++) {
+			if(isset($_POST['inputImmID'.$i]))
+			{
+				$date = filter_input(INPUT_POST, "inputImmDate".$i);
+				$type = filter_input(INPUT_POST, "inputImmType".$i);
+				$validUntil = filter_input(INPUT_POST, "inputImmValid".$i);
+				$notes = filter_input(INPUT_POST, "inputImmNotes".$i);
+				$id = filter_input(INPUT_POST, "inputImmID".$i);
+				$connection->runQuery("UPDATE allergies SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
+			} 
+		}
+	}
+	
+	// substance abuse tab
+    if(isset($_POST['inputSubID0ID0'])) { 
+		$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$key'");
+		$numSub = count($subInfo);
+		for($i = 0; $i < $numSub; $i ++) {
+			if(isset($_POST['inputSubID'.$i]))
+			{
+				$testDate = filter_input(INPUT_POST, "inputAbuseDate".$i);
+				$results = filter_input(INPUT_POST, "inputAbuseResults".$i);
+				$drugName = filter_input(INPUT_POST, "inputAbuseName".$i);
+				$notes = filter_input(INPUT_POST, "inputAbuseNotes".$i);
+				$id = filter_input(INPUT_POST, "inputSubID".$i);
+				$connection->runQuery("UPDATE substanceabuse SET testDate = '$testDate', results = '$results', drugName = '$drugName', notes = '$notes' WHERE subID = '$id'");
+			} 
+		}
+	}
+	
+	// misc tab
+	if(isset($_POST['inputHousePeople']))
     {
-        $drugName = filter_input(INPUT_POST, "inputDrugName"); 
-        $connection->runQuery("UPDATE substanceabuse SET drugName = '$drugName' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputHousePeople");
+        $connection->runQuery("UPDATE cadets SET personsInHouse = '$update' WHERE ssn = '$key'"); 
     }
-    if(isset($_POST['inputDrugType']))
+	if(isset($_POST['inputIncome']))
     {
-        $drugName = filter_input(INPUT_POST, "inputDrugType"); 
-        $connection->runQuery("UPDATE substanceabuse SET results = '$drugName' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputIncome");
+        $connection->runQuery("UPDATE cadets SET houseIncome = '$update' WHERE ssn = '$key'"); 
     }
-    if(isset($_POST['inputStartDate']))
+	if(isset($_POST['inputGED']))
     {
-        $drugName = filter_input(INPUT_POST, "inputStartDate"); 
-        $connection->runQuery("UPDATE substanceabuse SET testDate = '$drugName' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputGED");
+        $connection->runQuery("UPDATE cadets SET ged = '$update' WHERE ssn = '$key'"); 
     }
-    if(isset($_POST['inputDrugFrequency']))
+	if(isset($_POST['inputLastGrade']))
     {
-        $notes = filter_input(INPUT_POST, "inputDrugFrequency"); 
-        $connection->runQuery("UPDATE substanceabuse SET notes = '$notes' WHERE ssn = '$key'"); 
+        $update = filter_input(INPUT_POST, "inputLastGrade");
+        $connection->runQuery("UPDATE cadets SET gradeCompleted = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputVolunteer']))
+    {
+        $update = filter_input(INPUT_POST, "inputVolunteer");
+        $connection->runQuery("UPDATE cadets SET volunteer = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputWithdraw']))
+    {
+        $update = filter_input(INPUT_POST, "inputWithdraw");
+        $connection->runQuery("UPDATE cadets SET schoolWithdrawDate = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputUnemployed']))
+    {
+        $update = filter_input(INPUT_POST, "inputUnemployed");
+        $connection->runQuery("UPDATE cadets SET unemployed = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputUnder']))
+    {
+        $update = filter_input(INPUT_POST, "inputUnder");
+        $connection->runQuery("UPDATE cadets SET underemployed = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputJob']))
+    {
+        $update = filter_input(INPUT_POST, "inputJob");
+        $connection->runQuery("UPDATE cadets SET workplace = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputWage']))
+    {
+        $update = filter_input(INPUT_POST, "inputWage");
+        $connection->runQuery("UPDATE cadets SET wage = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputHours']))
+    {
+        $update = filter_input(INPUT_POST, "inputHours");
+        $connection->runQuery("UPDATE cadets SET hoursWorking = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputRecommender']))
+    {
+        $update = filter_input(INPUT_POST, "inputRecommender");
+        $connection->runQuery("UPDATE cadets SET recBy = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputRecommenderPhone']))
+    {
+        $update = filter_input(INPUT_POST, "inputRecommenderPhone");
+        $connection->runQuery("UPDATE cadets SET recNum = '$update' WHERE ssn = '$key'"); 
+    }
+	
+	if(isset($_POST['inputFirst']))
+    {
+        $update = filter_input(INPUT_POST, "inputFirst");
+        $connection->runQuery("UPDATE cadets SET accomplish1 = '$update' WHERE ssn = '$key'"); 
+    }
+	if(isset($_POST['inputSecond']))
+    {
+        $update = filter_input(INPUT_POST, "inputSecond");
+        $connection->runQuery("UPDATE cadets SET accomplish2 = '$update' WHERE ssn = '$key'"); 
     }
 
     header("refresh:2;url=allApplicantView.php"); 
