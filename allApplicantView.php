@@ -51,7 +51,7 @@
 											$tempSSN = substr($row['ssn'], -4);
 											echo <<<_END
 													<tr>
-														<td><form method="post" action="applicantView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Applicant</button></form></td>
+														<td><form method="post" action="applicantView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit" class="btn btn-primary">View Applicant</button></form></td>
 														<td>*****{$tempSSN}</td>
 														<td>{$row['fName']}</td>
 														<td>{$row['mName']}</td>

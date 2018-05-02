@@ -77,7 +77,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -112,7 +112,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -147,7 +147,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -182,7 +182,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -217,7 +217,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -252,7 +252,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -287,7 +287,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -322,7 +322,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -357,7 +357,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -392,7 +392,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
@@ -428,7 +428,7 @@ if($_SESSION['permissions']['admin'] == 0)
 									foreach($results as $row)
 									{
 										echo "<tr>";
-										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit'>View</button></form></td>";
+										echo "<td><form method='post' action='userView.php'><input type='hidden' name='email' value='{$row['email']}'><button type='submit' class='btn btn-primary'>View User</button></form></td>";
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";

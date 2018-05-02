@@ -2,7 +2,7 @@
 <?php
 	include_once "basicPage.php";
 	basicPage("Report Templates");
-	if(isset($_SESSION['loggedin'] == false))
+	if(isset($_SESSION['loggedIn']) == false)
 	{
 		header("Location: index.php"); 
 	}
