@@ -21,10 +21,12 @@
 				{
 					var medicalView = "<?=$_SESSION['permissions']['medicalView']?>";
 					if (!(medicalView == 1))
+					{
 						document.getElementById('medTab').setAttribute('style', 'display: none');
 						document.getElementById('allerTab').setAttribute('style', 'display: none');
 						document.getElementById('immTab').setAttribute('style', 'display: none');
 						document.getElementById('abuseTab').setAttribute('style', 'display: none');
+					}
 				}
 				function changeView()
 		        {

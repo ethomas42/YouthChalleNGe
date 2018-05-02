@@ -3,7 +3,7 @@
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Cadet View");
-	
+    
     $ssn = $_POST['ssn']; 
 	if(empty($ssn)) {
 		echo "<div class='alert alert-danger'>";
@@ -17,134 +17,101 @@
 ?>
 
 	<script>
-				function restrictMedical()
-				{
-					var medicalView = "<?=$_SESSION['permissions']['medicalView']?>";
-					if (!(medicalView == 1))
-					{
-						document.getElementById('medTab').setAttribute('style', 'display: none');
-						document.getElementById('allerTab').setAttribute('style', 'display: none');
-						document.getElementById('immTab').setAttribute('style', 'display: none');
-						document.getElementById('abuseTab').setAttribute('style', 'display: none');
-					}
-				}
-				function changeView()
+        	function changeView()
 		        {
-					var ssnView = "<?=$_SESSION['permissions']['ssnView']?>";
-					var medicalEdit = "<?=$_SESSION['permissions']['medicalEdit']?>";
-					var addressEdit = "<?=$_SESSION['permissions']['addressEdit']?>";
-					var miscEdit = "<?=$_SESSION['permissions']['miscEdit']?>";
-					var cadetEdit = "<?=$_SESSION['permissions']['cadetEdit']?>";
+					// basic info
+		    		document.getElementById('editCadet').setAttribute('style','display:none');
+		    		document.getElementById('viewCadet').removeAttribute('style','display:none');
+		    		document.getElementById('inputCommMethod').removeAttribute('disabled');
+					// ssn shenanigans
+		    		document.getElementById('inputSSN').removeAttribute('readonly');
+					var realSSN = document.getElementById('ssnVal').value;
+					document.getElementById('inputSSN').setAttribute('value', realSSN);
 					
+		    		document.getElementById('inputFirstName').removeAttribute('readonly');
+		    		document.getElementById('inputLastName').removeAttribute('readonly');
+		    		document.getElementById('inputMiddleName').removeAttribute('readonly');
+		    		document.getElementById('inputGenQual').removeAttribute('disabled');
+		    		document.getElementById('inputHair').removeAttribute('readonly');
+		    		document.getElementById('inputEye').removeAttribute('readonly');
+		    		document.getElementById('inputHeight').removeAttribute('readonly');
+		    		document.getElementById('inputWeight').removeAttribute('readonly');
+		    		document.getElementById('raceWhite').removeAttribute('disabled');
+		    		document.getElementById('raceBlack').removeAttribute('disabled');
+		    		document.getElementById('raceAmerican').removeAttribute('disabled');
+		    		document.getElementById('raceAsian').removeAttribute('disabled');
+		    		document.getElementById('racePacific').removeAttribute('disabled');
+		    		document.getElementById('raceMiddleEast').removeAttribute('disabled');
+		    		document.getElementById('raceOther').removeAttribute('disabled');
+		    		document.getElementById('inputHispanic').removeAttribute('disabled');
+		    		$('[id^=inputPhone]').removeAttr('readonly');
+		    		document.getElementById('inputAge').removeAttribute('readonly');
+		    		document.getElementById('inputBirthday').removeAttribute('readonly');
+		    		document.getElementById('inputGender').removeAttribute('disabled');
+		    		document.getElementById('inputEmail').removeAttribute('readonly');
+		    		document.getElementById('inputAdmission').removeAttribute('readonly');
+					// location
+		    		document.getElementById('inputLocation').removeAttribute('disabled');
+		    		document.getElementById('inputGAResident').removeAttribute('disabled');
+		    		document.getElementById('inputMailStreet').removeAttribute('readonly');
+		    		document.getElementById('inputStreet2').removeAttribute('readonly');
+		    		document.getElementById('inputMailCity').removeAttribute('readonly');
+		    		document.getElementById('inputMailState').removeAttribute('disabled');
+		    		document.getElementById('inputMailZip').removeAttribute('readonly');
+		    		document.getElementById('inputPhysicalStreet').removeAttribute('readonly');
+		    		document.getElementById('inputPhysicalStreet2').removeAttribute('readonly');
+		    		document.getElementById('inputPhysicalCity').removeAttribute('readonly');
+		    		document.getElementById('inputPhysicalState').removeAttribute('disabled');
+		    		document.getElementById('inputPhysicalZip').removeAttribute('readonly');
+					// guardian
+		    		$('[id^=inputGFirstName]').removeAttr('readonly');
+					$('[id^=inputGMiddleName]').removeAttr('readonly');
+		    		$('[id^=inputGLastName]').removeAttr('readonly');
+		    		$('[id^=inputGRelationship]').removeAttr('disabled');
+		    		$('[id^=inputGStreet]').removeAttr('readonly');
+		    		$('[id^=inputGStreet2]').removeAttr('readonly');
+		    		$('[id^=inputGCity]').removeAttr('readonly');
+		    		$('[id^=inputGState]').removeAttr('disabled');
+		    		$('[id^=inputGZip]').removeAttr('readonly');
+		    		$('[id^=inputGCell]').removeAttr('readonly');
+		    		$('[id^=inputGHomePhone]').removeAttr('readonly');
+		    		$('[id^=inputGEmail]').removeAttr('readonly');
 					// medical
-					if (medicalEdit == 1)
-					{
-						console.log('test');
-						$('[id^=inputDrugName').removeAttr('readonly');
-						$('[id^=inputDrugType').removeAttr('readonly');
-						$('[id^=inputDrugDosage').removeAttr('readonly');
-						$('[id^=inputDrugFrequency').removeAttr('readonly');
-						$('[id^=inputTakenWhen').removeAttr('readonly');
-						$('[id^=inputStartDate').removeAttr('readonly');
-						$('[id^=inputEndDate').removeAttr('readonly');
-						$('[id^=inputDrugDosage').removeAttr('readonly');
-						$('[id^=inputAllergyType').removeAttr('readonly');
-						$('[id^=inputAllergyNotes').removeAttr('readonly');
-						$('[id^=inputImmDate').removeAttr('readonly');
-						$('[id^=inputImmDate').removeAttr('readonly');
-						$('[id^=inputImmType').removeAttr('readonly');
-						$('[id^=inputImmValid').removeAttr('readonly');
-						$('[id^=inputImmNotes').removeAttr('readonly');
-						$('[id^=inputAbuseDate').removeAttr('readonly');
-						$('[id^=inputAbuseResults').removeAttr('readonly');
-						$('[id^=inputAbuseName').removeAttr('readonly');
-						$('[id^=inputAbuseNotes').removeAttr('readonly');
-					}
-					if (cadetEdit == 1)
-					{
-						// basic info
-						document.getElementById('editCadet').setAttribute('style','display:none');
-						document.getElementById('viewCadet').removeAttribute('style','display:none');
-						document.getElementById('inputCommMethod').removeAttribute('disabled');
-						document.getElementById('inputCompany').removeAttribute('disabled');
-						// ssn shenanigans
-						if (ssnView == 1)
-						{
-							document.getElementById('inputSSN').removeAttribute('readonly');
-							var realSSN = document.getElementById('ssnVal').value;
-							document.getElementById('inputSSN').setAttribute('value', realSSN);
-						}
-						
-						document.getElementById('inputFirstName').removeAttribute('readonly');
-						document.getElementById('inputLastName').removeAttribute('readonly');
-						document.getElementById('inputMiddleName').removeAttribute('readonly');
-						document.getElementById('inputGenQual').removeAttribute('disabled');
-						document.getElementById('inputHair').removeAttribute('readonly');
-						document.getElementById('inputEye').removeAttribute('readonly');
-						document.getElementById('inputHeight').removeAttribute('readonly');
-						document.getElementById('inputWeight').removeAttribute('readonly');
-						document.getElementById('raceWhite').removeAttribute('disabled');
-						document.getElementById('raceBlack').removeAttribute('disabled');
-						document.getElementById('raceAmerican').removeAttribute('disabled');
-						document.getElementById('raceAsian').removeAttribute('disabled');
-						document.getElementById('racePacific').removeAttribute('disabled');
-						document.getElementById('raceMiddleEast').removeAttribute('disabled');
-						document.getElementById('raceOther').removeAttribute('disabled');
-						document.getElementById('inputHispanic').removeAttribute('disabled');
-						$('[id^=inputPhone]').removeAttr('readonly');
-						document.getElementById('inputAge').removeAttribute('readonly');
-						document.getElementById('inputBirthday').removeAttribute('readonly');
-						document.getElementById('inputGender').removeAttribute('disabled');
-						document.getElementById('inputEmail').removeAttribute('readonly');
-						// location
-						if (addressEdit == 1)
-						{
-							//document.getElementById('inputLocation').removeAttribute('disabled');
-							document.getElementById('inputGAResident').removeAttribute('disabled');
-							document.getElementById('inputMailStreet').removeAttribute('readonly');
-							document.getElementById('inputStreet2').removeAttribute('readonly');
-							document.getElementById('inputMailCity').removeAttribute('readonly');
-							document.getElementById('inputMailState').removeAttribute('disabled');
-							document.getElementById('inputMailZip').removeAttribute('readonly');
-							document.getElementById('inputPhysicalStreet').removeAttribute('readonly');
-							document.getElementById('inputPhysicalStreet2').removeAttribute('readonly');
-							document.getElementById('inputPhysicalCity').removeAttribute('readonly');
-							document.getElementById('inputPhysicalState').removeAttribute('disabled');
-							document.getElementById('inputPhysicalZip').removeAttribute('readonly');
-						}
-						// guardian
-						$('[id^=inputGFirstName]').removeAttr('readonly');
-						$('[id^=inputGMiddleName]').removeAttr('readonly');
-						$('[id^=inputGLastName]').removeAttr('readonly');
-						$('[id^=inputGRelationship]').removeAttr('disabled');
-						$('[id^=inputGStreet]').removeAttr('readonly');
-						$('[id^=inputGStreet2]').removeAttr('readonly');
-						$('[id^=inputGCity]').removeAttr('readonly');
-						$('[id^=inputGState]').removeAttr('disabled');
-						$('[id^=inputGZip]').removeAttr('readonly');
-						$('[id^=inputGCell]').removeAttr('readonly');
-						$('[id^=inputGHomePhone]').removeAttr('readonly');
-						$('[id^=inputGEmail]').removeAttr('readonly');
-						// misc
-						if (miscEdit == 1)
-						{
-							document.getElementById('inputHousePeople').removeAttribute('readonly');
-							document.getElementById('inputIncome').removeAttribute('readonly');
-							document.getElementById('inputGED').removeAttribute('disabled');
-							document.getElementById('inputLastGrade').removeAttribute('readonly');
-							document.getElementById('inputVolunteer').removeAttribute('disabled');
-							document.getElementById('inputWithdraw').removeAttribute('readonly');
-							document.getElementById('inputUnemployed').removeAttribute('disabled');
-							document.getElementById('inputUnder').removeAttribute('disabled');
-							document.getElementById('inputJob').removeAttribute('readonly');
-							document.getElementById('inputWage').removeAttribute('readonly');
-							document.getElementById('inputHours').removeAttribute('readonly');
-							//document.getElementById('inputFirst').removeAttribute('readonly');
-							//document.getElementById('inputSecond').removeAttribute('readonly');
-							document.getElementById('inputRecommender').removeAttribute('readonly');
-							document.getElementById('inputRecommenderPhone').removeAttribute('readonly');
-						}
-					}
+		    		$('[id^=inputDrugName').removeAttribute('readonly');
+		    		$('[id^=inputDrugType').removeAttr('readonly');
+		    		$('[id^=inputDrugDosage').removeAttr('readonly');
+		    		$('[id^=inputDrugFrequency').removeAttr('readonly');
+		    		$('[id^=inputTakenWhen').removeAttr('readonly');
+		    		$('[id^=inputStartDate').removeAttr('readonly');
+		    		$('[id^=inputEndDate').removeAttr('readonly');
+		    		$('[id^=inputDrugDosage').removeAttr('readonly');
+		    		$('[id^=inputAllergyType').removeAttr('readonly');
+		    		$('[id^=inputAllergyNotes').removeAttr('readonly');
+		    		$('[id^=inputImmDate').removeAttr('readonly');
+		    		$('[id^=inputUnemployed').removeAttr('disabled');
+		    		$('[id^=inputUnder').removeAttr('disabled');
+		    		$('[id^=inputImmDate').removeAttr('readonly');
+					$('[id^=inputImmType').removeAttr('readonly');
+					$('[id^=inputImmValid').removeAttr('readonly');
+					$('[id^=inputImmNotes').removeAttr('readonly');
+					$('[id^=inputAbuseDate').removeAttr('readonly');
+					$('[id^=inputAbuseResults').removeAttr('readonly');
+					$('[id^=inputAbuseName').removeAttr('readonly');
+					$('[id^=inputAbuseNotes').removeAttr('readonly');
+					// misc
+					document.getElementById('inputHousePeople').removeAttribute('readonly');
+					document.getElementById('inputIncome').removeAttribute('readonly');
+					document.getElementById('inputGED').removeAttribute('readonly');
+					document.getElementById('inputLastGrade').removeAttribute('readonly');
+					document.getElementById('inputVolunteer').removeAttribute('readonly');
+					document.getElementById('inputWithdraw').removeAttribute('readonly');
+					document.getElementById('inputJob').removeAttribute('readonly');
+					document.getElementById('inputWage').removeAttribute('readonly');
+					document.getElementById('inputHours').removeAttribute('readonly');
+					document.getElementById('inputFirst').removeAttribute('readonly');
+					document.getElementById('inputSecond').removeAttribute('readonly');
+					document.getElementById('inputRecommender').removeAttribute('readonly');
+					document.getElementById('inputRecommenderPhone').removeAttribute('readonly');
 				}
 			function changeEdit()
 				{
@@ -152,7 +119,6 @@
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');
 		    		document.getElementById('viewCadet').setAttribute('style','display:none');
 		    		document.getElementById('inputCommMethod').setAttribute('disabled', 'true');
-					document.getElementById('inputCompany').setAttribute('disabled', 'true');
 					// ssn shenanigans
 		    		document.getElementById('inputSSN').setAttribute('readonly', 'true');
 					var tempSSN = document.getElementById('tempSsnVal').value;
@@ -179,8 +145,9 @@
 		    		document.getElementById('inputBirthday').setAttribute('readonly', 'true');
 		    		document.getElementById('inputGender').setAttribute('disabled', 'true');
 		    		document.getElementById('inputEmail').setAttribute('readonly', 'true');
+		    		document.getElementById('inputAdmission').setAttribute('readonly', 'true');
 					// location
-		    		//document.getElementById('inputLocation').setAttribute('disabled', 'true');
+		    		document.getElementById('inputLocation').setAttribute('disabled', 'true');
 		    		document.getElementById('inputGAResident').setAttribute('disabled', 'true');
 		    		document.getElementById('inputMailStreet').setAttribute('readonly', 'true');
 		    		document.getElementById('inputStreet2').setAttribute('readonly', 'true');
@@ -216,6 +183,8 @@
 		    		$('[id^=inputDrugDosage').attr('readonly', 'true');
 		    		$('[id^=inputAllergyType').attr('readonly', 'true');
 		    		$('[id^=inputAllergyNotes').attr('readonly', 'true');
+		    		$('[id^=inputUnemployed').attr('disabled', 'true');
+		    		$('[id^=inputUnder').attr('disabled', 'true');
 		    		$('[id^=inputImmDate').attr('readonly', 'true');
 					$('[id^=inputImmType').attr('readonly', 'true');
 					$('[id^=inputImmValid').attr('readonly', 'true');
@@ -227,35 +196,31 @@
 					// misc
 					document.getElementById('inputHousePeople').setAttribute('readonly', 'true');
 					document.getElementById('inputIncome').setAttribute('readonly', 'true');
-					document.getElementById('inputGED').setAttribute('disabled', 'true');
+					document.getElementById('inputGED').setAttribute('readonly', 'true');
 					document.getElementById('inputLastGrade').setAttribute('readonly', 'true');
-					document.getElementById('inputVolunteer').setAttribute('disabled', 'true');
+					document.getElementById('inputVolunteer').setAttribute('readonly', 'true');
 					document.getElementById('inputWithdraw').setAttribute('readonly', 'true');
-					document.getElementById('inputUnemployed').setAttribute('disabled', 'true');
-					document.getElementById('inputUnder').setAttribute('disabled', 'true');
 					document.getElementById('inputJob').setAttribute('readonly', 'true');
 					document.getElementById('inputWage').setAttribute('readonly', 'true');
 					document.getElementById('inputHours').setAttribute('readonly', 'true');
-					//document.getElementById('inputFirst').setAttribute('readonly', 'true');
-					//document.getElementById('inputSecond').setAttribute('readonly', 'true');
+					document.getElementById('inputFirst').setAttribute('readonly', 'true');
+					document.getElementById('inputSecond').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommender').setAttribute('readonly', 'true');
 					document.getElementById('inputRecommenderPhone').setAttribute('readonly', 'true');
 				}
-			
-			function calcAge() {
-				var dob = $('#inputBirthday').val();
-				dob = new Date(dob);
-				var today = new Date();
-				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-				$('#inputAge').val(age);
-			}
-			window.onload = calcAge;
-			window.onload = restrictMedical;
+					function calcAge() {
+						var dob = $('#inputBirthday').val();
+						dob = new Date(dob);
+						var today = new Date();
+						var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+						$('#inputAge').val(age);
+					}
+					window.onload = calcAge;
 		</script>
 				<!-- edit buttons -->
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#graduateCheck">Graduate</button>
-				<button class="btn btn-danger" value="submit" id="editCadet" onclick='changeView()'>Edit</button>
-				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick='changeEdit()'>View</button>
+				<button class="btn btn-danger" value="submit" id="editCadet" onclick=changeView()>Edit</button>
+				<button class="btn btn-warning" value="submit" id="viewCadet" style="display: none;" onclick=changeEdit()>View</button>
 
 				<!-- Graduate Confirmation Check -->
 				<div class="modal fade" id="graduateCheck" tabindex="-1" role="dialog" aria-labelledby="graduateCheckTitle" aria-hidden="true">
@@ -319,9 +284,9 @@
 						<form action = "update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
-								<div class="form-group col-sm-4">
+								<div class="form-group col-sm-6">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
-									<select class="form-control" name="inputCommMethod" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
+									<select class="form-control" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
 										<option selected></option>
 										<option>Email</option>
 										<option>Text</option>
@@ -329,19 +294,9 @@
 										<option>Phone</option>
 									</select>
 								</div>
-								<div class="form-group col-sm-4">
-									<label for="inputCommMethod">Company</label>
-									<select class="form-control" name="inputCompany" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
-										<option selected></option>
-										<option>Alpha</option>
-										<option>Bravo</option>
-										<option>Charlie</option>
-										<option>Delta</option>
-									</select>
-								</div>
-								<div class="form-group col-sm-4">
+								<div class="form-group col-sm-6">
 									<label for="inputSSN">Social Security Number</label>
-									<input type="text" class="form-control" name="inputSSN" id="inputSSN" value = "<?= '*****'.substr($record['ssn'], -4) ?>"readonly>
+									<input type="text" class="form-control" id="inputSSN" value = "<?= '*****'.substr($record['ssn'], -4) ?>"readonly>
 									<input type="hidden" id="ssnVal" value="<?= $record['ssn'] ?>">
 									<input type="hidden" id="tempSsnVal" value="<?= substr($record['ssn'], -4) ?>">
 								</div>
@@ -477,7 +432,7 @@
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputBirthday">Date of Birth</label>
-									<input type="date" class="form-control" name="inputBirthday" id="inputBirthday" onblur="calcAge()" value = "<?= $record["birthday"]?>" placeholder="Birthday"readonly>
+									<input type="date" class="form-control" name="inputBirthday" id="inputBirthday" value = "<?= $record["birthday"]?>" placeholder="Birthday"readonly>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputGender">Gender</label>
@@ -509,7 +464,7 @@
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputAdmission">Admission Status</label>
-									<input type="text" class="form-control" name="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" readonly>
+									<input type="text" class="form-control" name="inputAdmission" id="inputAdmission" value = "<?= $record["admissionStatus"]?>" placeholder="Admission Status" readonly>
 								</div>
 							</div>
 							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
@@ -684,17 +639,26 @@ _END;
 								  <span class="custom-file-control"></span>
 							</label>
 							</br>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
 					</div>
 					
 					<!-- LOCATION INFORMATION TAB -->
 					
 					<div class="tab-pane col-sm-12 container" id="locationTab">
-						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
-								<div class="form-group col-sm-12">
+								<div class="form-group col-sm-6">
+									<label for="inputLocation">Campus Location</label>
+									<select class="form-control" name="inputLocation" id="inputLocation" disabled="disabled">
+										<option selected></option>
+										<option <?php if($record['campusLocation']=='Milledgeville') echo 'selected';?>>Milledgeville</option>
+										<option <?php if($record['campusLocation']=='Fort Gordon') echo 'selected';?>>Fort Gordon</option>
+										<option <?php if($record['campusLocation']=='Fort Stuart') echo 'selected';?>>Fort Stuart</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-6">
 									<label for="inputGAResident">GA Resident</label>
 									<select class="form-control" name="inputGAResident" id="inputGAResident" disabled="disabled">
 										<option></option>
@@ -784,7 +748,6 @@ _END;
 					
 					<!-- GUARDIAN INFORMATION TAB -->				
 					<div class="tab-pane col-sm-12 container" id="gTab">
-						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
@@ -828,7 +791,7 @@ _END;
 										</div>
 										<div class="form-group col-sm-2">
 											<label for="inputGStreet2{$i}">Apt. or Lot #</label>
-									<input type="text" class="form-control" name="inputGStreet2{$i}" id="inputGStreet2{$i}" value = "{$guardianInfo[$i]["street2"]}" placeholder="Sample Apt" readonly>
+									<input type="text" class="form-control" name="inputGStreet2{$i}" id="inputGStreet2{$i}" value = "{$guardianInfo[$i]["street2"]}" placeholder="12A" readonly>
 										</div>
 										<div class="form-group col-sm-2">
 											<label for="inputGCity{$i}">City</label>
@@ -884,7 +847,6 @@ _END;
 						<!-- MEDICATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="medTab">
 							<h2>Medications</h2>
-							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
@@ -947,7 +909,6 @@ _END;
 						<!-- ALLERGIES TAB -->
 						<div class="tab-pane container col-sm-12" id="allerTab">
 							<h2>Allergies</h2>
-							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
@@ -958,7 +919,7 @@ _END;
 										$n = $i+1;
 										echo <<<_END
 										<legend>Allergy {$n}</legend>
-										<input type="hidden" name="inputAllergyID{$i}" value="{$allerInfo[$i]['allerID']}">
+										<input type="hidden" name="inputAllergyID{$i}" value="{$allerInfo[$i]['allergyID']}">
 										<div class="form-row">
 											<div class="form-group col-sm-12">
 												<label for="inputAllergyType{$i}">Allergy Type</label>
@@ -982,7 +943,6 @@ _END;
 						<!-- IMMUNIZATIONS TAB -->
 						<div class="tab-pane container col-sm-12" id="immTab">
 							<h2>Immunizations</h2>
-							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
@@ -1026,7 +986,6 @@ _END;
 						<div class="tab-pane container col-sm-12" id="abuseTab">
 							<h2>Substance Abuse</h2>
 							<!-- backend- make form for each entry for this cadet -->
-							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 							<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 								<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<?php 
@@ -1069,7 +1028,6 @@ _END;
 					<!-- MISCELLANEOUS INFORMATION TAB -->
 					
 					<div class="tab-pane col-sm-12 container" id="miscTab">
-						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data">
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
@@ -1100,7 +1058,7 @@ _END;
 									<select class="form-control" name="inputVolunteer" id="inputVolunteer" disabled="disabled">
 										<option></option>
 										<option <?php if($record['volunteer']) echo 'selected';?>>Yes</option>
-										<option <?php if(!$record['volunteer']) echo 'selected';?>>No</option>
+										<option <?php if($record['volunteer']) echo 'selected';?>>No</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-12">
@@ -1142,6 +1100,15 @@ _END;
 								<div class="form-group col-sm-6">
 									<label for="inputHours">If you are under-employed, how many hours a week do you work?</label>
 									<input type="text" class="form-control" name="inputHours" id="inputHours" value = "<?= $record["hoursWorking"]?>" placeholder="Hours per Week" readonly>
+								</div>
+								<legend>List two personal accomplishments</legend>
+								<div class="form-group col-sm-12">
+									<label for="inputFirst">1.</label>
+									<input type="text" class="form-control" name="inputFirst" id="inputFirst" value = "<?= $record["accomplish1"]?>" placeholder="Accomplishment" readonly>
+								</div>
+								<div class="form-group col-sm-12">
+									<label for="inputSecond">2.</label>
+									<input type="text" class="form-control" name="inputSecond" id="inputSecond" value = "<?= $record["accomplish2"]?>" placeholder="Accomplishment" readonly>
 								</div>
 								<legend>Recommendation (if applicable)</legend>
 								<div class="form-group col-sm-12">
