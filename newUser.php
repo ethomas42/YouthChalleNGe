@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 	include_once "basicPage.php";
+	require_once "dbcontroller.php";
 	basicPage("New User");
 ?>
             <script>
@@ -50,7 +51,16 @@
 						<option value="recruiter">Recruiter</option>
 						<option value="syl">Student Youth Leader</option>
 						<option value="teacher">Teacher</option>
-						<!-- Pull custom roles? -->
+						<?php
+							$connection = new DBController();
+							$query = "SELECT role from roles WHERE custom = 1";
+							$results = $connection->runQuery($query);
+							foreach($results as $result)
+							{
+								$roleName = $result['role'];
+								echo "<option value='$roleName'>$roleName</option>";
+							}
+						?>
 						<option value="Create New Role">Create New Role</option>
 					</select>
 				</div>

@@ -84,7 +84,16 @@
 								<option value="recruiter" <?php if($record['role']=='recruiter') echo 'selected';?>>Recruiter</option>
 								<option value="syl" <?php if($record['role']=='syl') echo 'selected';?>>Student Youth Leader</option>
 								<option value="teacher" <?php if($record['role']=='teacher') echo 'selected';?>>Teacher</option>
-								<!-- Pull custom roles? -->
+								<?php
+									$connection = new DBController();
+									$query = "SELECT role from roles WHERE custom = 1";
+									$results = $connection->runQuery($query);
+									foreach($results as $result)
+									{
+										$roleName = $result['role'];
+										echo "<option value='$roleName'>$roleName</option>";
+									}
+								?>
 								<option value="Create New Role">Create New Role</option>
 							</select>
 						</div>
