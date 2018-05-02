@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
 	include_once "basicPage.php";
-    	require_once 'dbcontroller.php';
+    require_once 'dbcontroller.php';
 	basicPage("Cadet View");
+	
     $ssn = $_POST['ssn']; 
 	if(empty($ssn)) {
 		echo "<div class='alert alert-danger'>";
@@ -691,7 +692,7 @@ _END;
 						<form action="update-cadets.php" method = "POST" enctype="multipart/form-data" onsubmit=return confirm("Are you sure you want to save these changes?");>
 							<input type="hidden" name="ssnKey" value="<?= $record['ssn'] ?>">
 							<div class="form-row">
-								<div class="form-group col-sm-6">
+								<div class="form-group col-sm-12">
 									<label for="inputGAResident">GA Resident</label>
 									<select class="form-control" name="inputGAResident" id="inputGAResident" disabled="disabled">
 										<option></option>
