@@ -15,6 +15,9 @@
     $race = preg_split("/;/", $record["race"]);
     $raceCheck = "checked";
 ?>
+<style> 
+
+</style> 
 
 	<script>
 				function restrictMedical()
@@ -538,22 +541,27 @@
 											foreach($results as $row)
 											{
 												echo <<<_END
+												
+												
 														<tr>
-															<td>{$row['filename']}</td>
+															<td><a href = "cadets/{$row['filename']}">{$row['filename']}</a></td>
 															<td>{$row['uploadDate']}</td>
 														</tr>
+												
 _END;
 											}
 										}
 									?>
 								</tbody>
 							</table>
-							<label class="custom-file"> Upload New Document
-								 <input name="attachment" type="file" id="file" class="custom-file-input">
-								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
+							<legend> Upload New Document  </legend>
+							<label class="custom-file">
+								 <input name="genAttachment" type="file" id="file" class="custom-file-input">
+								 <input name ="ssnKey" type ="hidden" value ="<?=$ssn?>">
                               	 <input name="category" type="hidden" value="general">
 								  <span class="custom-file-control"></span>
 							</label>
+							<br>
 							<br>
 							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						 </form>
@@ -592,12 +600,12 @@ _END;
 								</tbody>
 							</table>
 							<label class="custom-file"> Upload New Document
-								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name="medAttachment" type="file" id="file" class="custom-file-input">
 								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
                               	 <input name="category" type="hidden" value="medical">
 								  <span class="custom-file-control"></span>
 							</label>
-							</br>
+							</br><br>
 							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
 					</div>
@@ -635,12 +643,12 @@ _END;
 								</tbody>
 							</table>
 							<label class="custom-file"> Upload New Document
-								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name="counselorAttachment" type="file" id="file" class="custom-file-input">
 								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
                               	 <input name="category" type="hidden" value="counselor">
 								  <span class="custom-file-control"></span>
 							</label>
-							</br>
+							</br><br>
 							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
 					</div>
@@ -678,12 +686,14 @@ _END;
 								</tbody>
 							</table>
 							<label class="custom-file"> Upload New Document
-								 <input name="attachment" type="file" id="file" class="custom-file-input">
+								 <input name="recAttachment" type="file" id="file" class="custom-file-input">
 								 <input name ="ssn" type ="hidden" value ="<?=$ssn?>">
                               	 <input name="category" type="hidden" value="recruitment">
 								  <span class="custom-file-control"></span>
 							</label>
 							</br>
+							<br>
+							<button name="saveCadet" class="btn btn-success" type="submit" id="saveCadet">Save</button>
 						</form>
 					</div>
 					

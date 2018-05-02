@@ -4,31 +4,34 @@ require_once 'dbcontroller.php';
 $connection = new DBController(); 
 
 // SAVING CADET
+//importfile(directory, buttonname, inputfilename, ssn, category)
 if(isset($_POST['saveCadet']))
 {
 	// get and set correct ssn
     $key = $_POST['ssnKey']; 
+    $category = $_POST['category']; 
 	$connection->runQuery("UPDATE cadets SET ssn = '$key' WHERE ssn = '$key'");
 	
 	// save attachments
-	if(isset($_POST['genAttachment']))
+	if($category = "general") 
     { 
-        importFile("cadet","saveCadet","genAttachment", $_POST['ssnKey'], "category");
+        echo "Hi";
+        importFile("cadet","saveCadet","genAttachment", $key, "general");
     }
 	
 	if(isset($_POST['medAttachment']))
     { 
-        importFile("cadet","saveCadet","medAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","medAttachment", $key, "medical");
     }
 	
 	if(isset($_POST['counselorAttachment']))
     { 
-        importFile("cadet","saveCadet","counselorAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","counselorAttachment", $key, "counselor");
     }
 	
 	if(isset($_POST['recAttachment']))
     { 
-        importFile("cadet","saveCadet","recAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","recAttachment", $key, "recruitment");
     }
 	
 	// save basic tab info
@@ -360,22 +363,22 @@ if(isset($_POST['saveApplicant']))
 	// save attachments
 	if(isset($_POST['genAttachment']))
     { 
-        importFile("cadet","saveCadet","genAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","genAttachment", $_POST['ssnKey'], "general");
     }
 	
 	if(isset($_POST['medAttachment']))
     { 
-        importFile("cadet","saveCadet","medAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","medAttachment", $_POST['ssnKey'], "medical");
     }
 	
 	if(isset($_POST['counselorAttachment']))
     { 
-        importFile("cadet","saveCadet","counselorAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","counselorAttachment", $_POST['ssnKey'], "counselor");
     }
 	
 	if(isset($_POST['recAttachment']))
     { 
-        importFile("cadet","saveCadet","recAttachment", $_POST['ssnKey'], "category");
+        importFile("cadet","saveCadet","recAttachment", $_POST['ssnKey'], "recruitment");
     }
 	
 	// save basic tab info
