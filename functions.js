@@ -54,6 +54,9 @@ $(document).ready(function()
 	$('#teacher-table').DataTable( {
 		responsive: true
 	});
+	$('#custom-table').DataTable( {
+		responsive: true
+	});
 
 	// sidebar functionality
 	$('#sidebarCollapse').on('click', function () 
