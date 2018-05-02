@@ -99,7 +99,7 @@ _END;
 										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
-													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Cadet</button></form></td>
+													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit" class="btn btn-primary">View Cadet</button></form></td>
 													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
@@ -143,7 +143,7 @@ _END;
 										$tempSSN = substr($row['ssn'], -4);
 										echo <<<_END
 												<tr>
-													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit">View Cadet</button></form></td>
+													<td><form method="post" action="cadetView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit" class="btn btn-primary">View Cadet</button></form></td>
 													<td>*****{$tempSSN}</td>
 													<td>{$row['fName']}</td>
 													<td>{$row['mName']}</td>
