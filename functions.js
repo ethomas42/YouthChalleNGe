@@ -22,19 +22,40 @@ $(document).ready(function()
 	$('#general-table').DataTable( {
 		responsive: true
 	});
-	$('#recruiter-table').DataTable( {
+	
+	// roles.php tables
+	$('#admin-table').DataTable( {
+		responsive: true
+	});
+	$('#cadre-table').DataTable( {
+		responsive: true
+	});
+	$('#casemanager-table').DataTable( {
 		responsive: true
 	});
 	$('#counselor-table').DataTable( {
 		responsive: true
 	});
-	$('#admin-table').DataTable( {
+	$('#medical-table').DataTable( {
 		responsive: true
 	});
-	$('#custom-table').DataTable( {
+	$('#medicalsup-table').DataTable( {
 		responsive: true
 	});
-	
+	$('#operations-table').DataTable( {
+		responsive: true
+	});
+	$('#recruiter-table').DataTable( {
+		responsive: true
+	});
+	$('#syl-table').DataTable( {
+		responsive: true
+	});
+	$('#teacher-table').DataTable( {
+		responsive: true
+	});
+
+	// sidebar functionality
 	$('#sidebarCollapse').on('click', function () 
 	{
         $('#sidebar').toggleClass('active');
