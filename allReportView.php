@@ -2,6 +2,10 @@
 <?php
 	include_once "basicPage.php";
 	basicPage("Report Templates");
+	if(isset($_SESSION['loggedin'] == false))
+	{
+		header("Location: index.php"); 
+	}
 ?>
 
 			<div class="container col-sm-12">
