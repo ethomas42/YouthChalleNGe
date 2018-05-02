@@ -20,7 +20,9 @@ function statesDropdown()
 /*
  * @param name of directory that file will be placed 
  * @param  name of submit Button 
- * @ name of <input type = file> tag 
+ * @param  name of <input type = file> tag 
+ * @param social security of the cadet 
+ * @param category of the file
  */
 
 function importFile($directory , $buttonName ,$inputFileName, $ssn, $category)
@@ -47,9 +49,16 @@ function importFile($directory , $buttonName ,$inputFileName, $ssn, $category)
             
         }
 		if($results)
+		{
 			return true;
+		}
 		else
+		{
 			return false;
+			echo "It did not work!";
+		}
     }
+	else 
+		echo "The button is not posted"; 
 }
 ?>

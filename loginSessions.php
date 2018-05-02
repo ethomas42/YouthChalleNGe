@@ -10,11 +10,11 @@ $email = filter_input(INPUT_POST, 'email');
 $email = $_POST['email'];
 $password = $_POST['password']; 
 
-echo $email;
-echo $password;
+//echo $email;
+//echo $password;
 //$rowCount = $connection->numRows("SELECT * FROM users WHERE email = '$email' AND password = '$password'"); 
 $rowCount = $connection->numRows("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
-echo $rowCount;
+//echo $rowCount;
 if($rowCount)
 {
      $record = $connection->runQuery("SELECT * FROM users WHERE email = '$email' AND password = '$password'")[0];
