@@ -7,13 +7,15 @@
             $(document).ready(function(){
                 $("#roleSettings").hide();
                 $('#inputRole').on('change', function() {
-                  if ( this.value == '1')
+                  if ( this.value == 'Create New Role')
                   {
                     $("#roleSettings").show();
+					$("#inputRoleTitle").attr('required', 'true');
                   }
                   else
                   {
                     $("#roleSettings").hide();
+					$("#inputRoleTitle").removeAttr('required');
                   }
                 });
             });
@@ -38,48 +40,80 @@
 					<label for="inputRole">Role</label>
 					<select class="form-control" name = "inputRole" id="inputRole">
 						<option selected value="0"></option>
-						<option value="general">General User</option>
-						<option value="recruiter">Recruiter</option>
-						<option value="counselor">Counselor</option>
 						<option value="admin">Administrator</option>
+						<option value="cadre">Cadre</option>
+						<option value="caseManager">Case Manager</option>
+						<option value="counselor">Counselor</option>
+						<option value="medical">Medical</option>
+						<option value="medicalSup">Medical Supervisor</option>
+						<option value="operations">Operations</option>
+						<option value="recruiter">Recruiter</option>
+						<option value="syl">Student Youth Leader</option>
+						<option value="teacher">Teacher</option>
 						<!-- Pull custom roles? -->
-						<option value="1">Create New Role</option>
+						<option value="Create New Role">Create New Role</option>
 					</select>
 				</div>
                 </div>
 
                   <!-- Custom Role Settings Beginning -->
                 <div class='form-row' id='roleSettings' name='roleSettings'>
-                  <legend>Custom Role Settings</legend>
-                  <div class="form-group col-sm-12">
-                    <label for="inputRoleTitle">Role Title</label>
-                    <input type="text" class="form-control" name="inputRoleTitle" id="inputRoleTitle" placeholder="Custom Role Title">
-                  </div>
-                  <div class="form-group col-sm-12">
-    								<label for="inputCadetPermission">Cadets Table Permission Level</label>
-    								<select class="form-control" id="inputCadetPermission">
-                      <option selected>None</option>
-                      <option>Read</option>
-    									<option>Write</option>
-    								</select>
-    							</div>
-                  <div class="form-group col-sm-12">
-    								<label for="inputApplicantPermission">Applicants Table Permission Level</label>
-    								<select class="form-control" id="inputAppilcantPermission" name = "inputApplicantPermission">
-                      <option selected>None</option>
-                      <option>Read</option>
-    									<option>Write</option>
-    								</select>
-    							</div>
-                  <div class="form-group col-sm-12">
-    								<label for="inputUserPermission">Users Table Permission Level</label>
-    								<select class="form-control" id="inputUserPermission" name ="inputUserPermission">
-    									<option selected>None</option>
-                      <option>Read</option>
-    									<option>Write</option>
-    								</select>
-    							</div>
-                </div>
+					  <legend>Custom Role Settings</legend>
+					  <div class="form-group col-sm-12">
+						<label for="inputRoleTitle">Role Title</label>
+						<input type="text" class="form-control" name="inputRoleTitle" id="inputRoleTitle" placeholder="Custom Role Title">
+					  </div>
+					<div class="form-group col-sm-12">
+						<label for="inputSSNView">SSN</label>
+						<select class="form-control" id="inputSSNView" name="inputSSNView">
+							<option value="0" selected>None</option>
+							<option value="1">View</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-12">
+						<label for="inputMedical">Medical Information</label>
+						<select class="form-control col-sm-6" id="inputMedical" name="inputMedical">
+							<option value="0" selected>None</option>
+							<option value="1">View</option>
+							<option value="2">Edit</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-12">
+						<label for="inputAddrEdit">Address Information</label>
+						<select class="form-control" id="inputAddrEdit" name="inputAddrEdit">
+							<option value="0" selected>View</option>
+							<option value="1">Edit</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-12">
+						<label for="inputAdminMenu">Admin Menu</label>
+						<select class="form-control" id="inputAdminMenu" name="inputAdminMenu">
+							<option value="0" selected>None</option>
+							<option value="1">View</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-12">
+						<label for="inputCreateApplicant">Applicant Creation</label>
+						<select class="form-control" id="inputCreateApplicant" name="inputCreateApplicant">
+							<option value="0" selected>No</option>
+							<option value="1">Yes</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-12">
+						<label for="inputCadetInfo">Cadet Information</label>
+						<select class="form-control" id="inputCadetInfo" name="inputCadetInfo">
+							<option value="0" selected>View</option>
+							<option value="1">Edit</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-12">
+						<label for="inputMiscInfo">Misc. Information</label>
+						<select class="form-control" id="inputMiscInfo" name="inputMiscInfo">
+							<option value="0" selected>View</option>
+							<option value="1">Edit</option>
+						</select>
+					</div>
+				</div>
                   <!-- Custom Role Settings End -->
                 <div class='form-row'>
                   <div class="form-group col-sm-12">

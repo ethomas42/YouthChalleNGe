@@ -11,7 +11,8 @@ require_once 'basicPage.php';
 
 $db = new DBController(); 
 basicPage("Users");
-
+if($_SESSION['permissions']['admin'] == 0)
+	header("Location: allCadetView.php");
 ?>
 				<form method="post" action="newUser.php"><button type="submit" class="btn btn-primary">New User</button></form><p></br></p>
 				<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -411,12 +412,13 @@ basicPage("Users");
 									<th> Name </th>
 									<th> Email </th>
 									<th> Password </th>
+									<th> Role </th>
 								</tr>
 							</thead>
 							<tbody>
 							<?php
-							  $results = $db->runQuery("SELECT * FROM users WHERE role = 'custom'"); 
-								if($db->numRows("SELECT * FROM users WHERE role = 'custom'") < 1) 
+							  $results = $db->runQuery("SELECT * FROM users, roles WHERE roles.custom = 1 AND users.role = roles.role"); 
+								if($db->numRows("SELECT * FROM users, roles WHERE roles.custom = 1 AND users.role = roles.role") < 1) 
 								{
 									echo "<h1> Empty List</h1>"; 
 								}
@@ -430,6 +432,7 @@ basicPage("Users");
 										echo "<td>{$row['fName']} {$row['lName']}</td>"; 
 										echo "<td>{$row['email']}</td>";
 										echo "<td>{$row['password']}</td>";
+										echo "<td>{$row['role']}</td>";
 										echo "</tr>";
 									}
 								}
@@ -443,4 +446,3 @@ basicPage("Users");
         </div>
     </body>
 </html>
-                                
