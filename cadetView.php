@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <?php
 	include_once "basicPage.php";
-    require_once 'dbcontroller.php';
+    	require_once 'dbcontroller.php';
 	basicPage("Cadet View");
-	
     $ssn = $_POST['ssn']; 
 	if(empty($ssn)) {
 		echo "<div class='alert alert-danger'>";
