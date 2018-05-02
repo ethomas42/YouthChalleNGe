@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php
 	include_once "basicPage.php";
-    require_once 'dbcontroller.php';
+   	require_once 'dbcontroller.php';
 	basicPage("Applicant View");
-    
+    	if(isset($_SESSION['loggedin'] == false))
+	{
+		header("Location: index.php"); 
+	}
     $ssn = $_POST['ssn']; 
 	if(empty($ssn)) {
 		echo "<div class='alert alert-danger'>";
