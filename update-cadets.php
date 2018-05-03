@@ -15,7 +15,6 @@ if(isset($_POST['saveCadet']))
 	// save attachments
 	if($category = "general") 
     { 
-        echo "Hi";
         importFile("cadet","saveCadet","genAttachment", $key, "general");
     }
 	
@@ -358,8 +357,7 @@ if(isset($_POST['saveApplicant']))
 {
     // get and set correct ssn
     $key = $_POST['ssnKey']; 
-	$connection->runQuery("UPDATE cadets SET ssn = '$key' WHERE ssn = '$key'");
-	
+
 	// save attachments
 	if(isset($_POST['genAttachment']))
     { 
@@ -393,8 +391,19 @@ if(isset($_POST['saveApplicant']))
         $company = filter_input(INPUT_POST, "inputCompany"); 
         $connection->runQuery("UPDATE cadets SET company = '$company' WHERE ssn = '$key'");
     }
+	
+	if(isset($_POST['hispanic']))
+    {
+        $hispanic = filter_input(INPUT_POST, "hispanic"); 
+        $connection->runQuery("UPDATE cadets SET isHispanic = '$hispanic' WHERE ssn = '$key'");
+    }
 
-    
+	if(isset($_POST['inputBirthday']))
+    {
+        $dob = filter_input(INPUT_POST, "inputBirthday"); 
+        $connection->runQuery("UPDATE cadets SET birthday = '$dob' WHERE ssn = '$key'");
+    }	
+	
     if(isset($_POST['inputFirstName']))
     {
         $firstName = $_POST['inputFirstName']; 
@@ -423,7 +432,7 @@ if(isset($_POST['saveApplicant']))
     if(isset($_POST['inputHair']))
     {
         $hairColor = filter_input(INPUT_POST,"inputHair"); 
-        $connection->runQuery("UPDATE cadets SET hairColor = '$firstName' WHERE ssn = '$key'"); 
+        $connection->runQuery("UPDATE cadets SET hairColor = '$hairColor' WHERE ssn = '$key'"); 
     }
     
     if(isset($_POST['inputEye']))
@@ -706,7 +715,7 @@ if(isset($_POST['saveApplicant']))
         $connection->runQuery("UPDATE cadets SET accomplish2 = '$update' WHERE ssn = '$key'"); 
     }
 
-    header("refresh:2;url=allApplicantView.php"); 
+    //header("refresh:2;url=allApplicantView.php"); 
     
 }
 
