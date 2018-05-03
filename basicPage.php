@@ -39,7 +39,7 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 					<!-- Sidebar Holder -->
 					<nav id="sidebar">
 						<div class="sidebar-header">
-							<a href="home.html"><img class="logo" name="logo" src="ngyc.png" style="width:200px;height:200px" border="0"></a>
+							<a href="allCadetView.php"><img class="logo" name="logo" src="ngyc.png" style="width:200px;height:200px" border="0"></a>
 						</div>
 						<ul class="list-unstyled components">
 							<p>Georgia Youth ChalleNGe Program</p>
