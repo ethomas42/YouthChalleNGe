@@ -347,12 +347,12 @@
 							<div class="form-row">
 								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
-									<select class="form-control" name="inputCommMethod" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
-										<option selected></option>
-										<option>Email</option>
-										<option>Text</option>
-										<option>US Mail</option>
-										<option>Phone</option>
+									<select class="form-control" name="inputCommMethod" id="inputCommMethod" disabled="disabled">
+										<option <?php if($record['preferredComm']=='') echo 'selected';?>></option>
+										<option <?php if($record['preferredComm']=='Email') echo 'selected';?>>Email</option>
+										<option <?php if($record['preferredComm']=='Text') echo 'selected';?>>Text</option>
+										<option <?php if($record['preferredComm']=='US Mail') echo 'selected';?>>US Mail</option>
+										<option <?php if($record['preferredComm']=='Phone') echo 'selected';?>>Phone</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
@@ -404,7 +404,7 @@
 								</div>
 								<div class="form-group col-sm-3">
 									<label for="inputHeight">Height</label>
-									<input type="text" class="form-control" id="inputHeight" name = "inputHeight" value = "<?= $record["height"]?>" placeholder="Height" readonly>
+									<input type="text" class="form-control" id="inputHeight" name = "inputHeight" value = "<?= str_replace("*", "'", str_replace('^', "", $record["height"]))?>" placeholder="Height" readonly>
 								</div>
 								<div class="form-group col-sm-3">
 									<label for="inputWeight">Weight</label>
@@ -840,11 +840,11 @@ _END;
 												<select class="form-control" name="inputGRelationship{$i}" id="inputGRelationship{$i}" disabled="disabled">
 													<option></option>
 _END;
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='father') ? 'selected' : "") .">Father</option>";
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='mother') ? 'selected' : "") .">Mother</option>";
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='stepfather') ? 'selected' : "") .">Stepfather</option>";
-											echo 	"<option ". (($guardianInfo[$i]['relationship']=='stepmother') ? 'selected' : "") .">Stepmother</option>";
-											echo    "<option ". (($guardianInfo[$i]['relationship']=='guardian') ? 'selected' : "") .">Guardian</option>";
+											echo	"<option ". (($guardianInfo[$i]['relationship']=='Father') ? 'selected' : "") .">Father</option>";
+											echo	"<option ". (($guardianInfo[$i]['relationship']=='Mother') ? 'selected' : "") .">Mother</option>";
+											echo	"<option ". (($guardianInfo[$i]['relationship']=='Stepfather') ? 'selected' : "") .">Stepfather</option>";
+											echo 	"<option ". (($guardianInfo[$i]['relationship']=='Stepmother') ? 'selected' : "") .">Stepmother</option>";
+											echo    "<option ". (($guardianInfo[$i]['relationship']=='Guardian') ? 'selected' : "") .">Guardian</option>";
 										echo <<<_END
 												</select>
 											</div>

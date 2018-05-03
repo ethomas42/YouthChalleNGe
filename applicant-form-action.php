@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * @author Colton Thompson 
+ * @author Colton Thompson, Parker Ramsey, Evan Thomas
  * @purpose Submits a new application into the database 
  * Retrieves all information from $_POST array 
  * Date: 3/30/2018
@@ -13,77 +13,102 @@ require_once 'dbcontroller.php';
  */
     $connection = new DBController();
 
+	// get info for cadets table
     $ssn = filter_input(INPUT_POST, "inputSSN"); 
     $fName = filter_input(INPUT_POST, 'inputFirstName');
     $mName = filter_input(INPUT_POST, 'inputMiddleName'); 
     $lName  = filter_input(INPUT_POST, 'inputLastName'); 
-    $mailStreet = filter_input(INPUT_POST, 'inputMailStreet');
-    $apartNo = filter_input(INPUT_POST, 'inputStreet2'); 
-    $mailCity = filter_input(INPUT_POST, 'inputMailCity'); 
-    $mailState =filter_input(INPUT_POST, "inputMailState"); 
-    $email = "";
-
+    $mStreet = filter_input(INPUT_POST, 'inputMailStreet');
+    $mStreet2 = filter_input(INPUT_POST, 'inputStreet2'); 
+    $mCity = filter_input(INPUT_POST, 'inputMailCity'); 
+    $mState =filter_input(INPUT_POST, "inputMailState"); 
+	$mZip = filter_input(INPUT_POST, 'inputMailZip');
     $gender = filter_input(INPUT_POST, "inputGender"); 
-    $cell = filter_input(INPUT_POST, 'inputCell');
-    $isHispanic = filter_input(INPUT_POST, "isHispanic"); 
-    $inputHomePhone = filter_input(INPUT_POST, 'inputHomePhone'); 
-    $houseHold = filter_input(INPUT_POST, 'inputHousePeople'); 
-    $householdIncome = filter_input(INPUT_POST, 'inputIncome'); 
+	$isHispanic = filter_input(INPUT_POST, "isHispanic");
+	$personsInHouse = filter_input(INPUT_POST, 'inputHousePeople'); 
+    $houseIncome = filter_input(INPUT_POST, 'inputIncome'); 
     $birthday = filter_input(INPUT_POST,'inputBirthday'); 
     $race = filter_input(INPUT_POST,"race"); 
     $eyeColor = filter_input(INPUT_POST, "inputEye"); 
     $hairColor = filter_input(INPUT_POST, "inputHair"); 
     $height  = filter_input(INPUT_POST, 'height'); 
+	$height = str_replace("'", "*", $height);
+	$height = str_replace('"', "^", $height);
     $weight = filter_input(INPUT_POST, 'weight'); 
-    $lastGradeCompleted = filter_input(INPUT_POST, "inputLastGrade"); 
-    $withdrawDate = filter_input(INPUT_POST, "inputWithdraw"); 
-    $employment = filter_input(INPUT_POST, "inlineRadioOptions"); // Employment Status 
-    $employer = filter_input(INPUT_POST, "inputJob"); 
-    $hourlyWage = filter_input(INPUT_POST, "inputWage"); 
-    $hoursPerWeek = filter_input(INPUT_POST, "hoursPerWeek"); 
-    $accomplishment1 = filter_input(INPUT_POST,"personalAccomplishment1"); 
-    $accomplishment2 =  filter_input(INPUT_POST, "personalAccomplishment2");
-    $parentFirstName = filter_input(INPUT_POST, "pFirstName"); 
-    $parentMiddleName = filter_input(INPUT_POST, "pMiddleName"); 
-    $parentLastName = filter_input(INPUT_POST, "pLastName"); 
-    $guardianStreetAddress = filter_input(INPUT_POST, "inputGuardianStreet");
-    $guardianStreetAddress2 = filter_input(INPUT_POST, "inputGuardianStreet2");
-    $guardianCity = filter_input(INPUT_POST, "inputGuardianCity"); 
-    $guardianZip = filter_input(INPUT_POST, "inputGuardianZip"); 
-    $guardianCell = filter_input(INPUT_POST, "inputGuardianCell"); 
-    $guardianHomePhone = filter_input(INPUT_POST, "inputGuardianHomePhone"); 
-    $guardianEmail = filter_input(INPUT_POST, "inputGuardianEmail", FILTER_SANITIZE_EMAIL); 
-    $recommenderName = filter_input(INPUT_POST, "inputRecommender"); 
-    $recommenderPhone = filter_input(INPUT_POST, "inputRecommenderPhone"); 
-    $inputWithdraw = filter_input(INPUT_POST, "inputWithdraw"); 
-    $communicationPreferrence = filter_input(INPUT_POST, "inputCommMethod"); 
+    $gradeCompleted = filter_input(INPUT_POST, "inputLastGrade"); 
+    $schoolWithdrawDate = filter_input(INPUT_POST, "inputWithdraw"); 
+    $employment = filter_input(INPUT_POST, "inputEmployment"); // under or unemployed 
+	// handle employmemnt radio buttons
+	if(isset($employment)) {
+		if($employment == "unemployed") {
+			$unemployed = 1;
+			$underemployed = 0;
+		} else if ($employment == "underemployed") {
+			$unemployed = 0;
+			$underemployed = 1;
+		}
+	} else {
+		$unemployed = 0;
+		$underemployed = 0;
+	}
+    $workplace = filter_input(INPUT_POST, "inputJob"); 
+    $wage = filter_input(INPUT_POST, "inputWage"); 
+    $hoursWorking = filter_input(INPUT_POST, "hoursPerWeek"); 
+    $accomplish1 = filter_input(INPUT_POST,"personalAccomplishment1"); 
+    $accomplish2 =  filter_input(INPUT_POST, "personalAccomplishment2");
+	$recBy = filter_input(INPUT_POST, "inputRecommender"); 
+    $recNum = filter_input(INPUT_POST, "inputRecommenderPhone"); 
+    $preferredComm = filter_input(INPUT_POST, "inputCommMethod"); 
+	
+	// get info for phones table
+    $phoneNumber1 = filter_input(INPUT_POST, 'inputCell');
+    $phoneNumber2 = filter_input(INPUT_POST, 'inputHomePhone'); 
+    
+	// get info for guardians table
+    $gFName = filter_input(INPUT_POST, "pFirstName"); 
+    $gMName = filter_input(INPUT_POST, "pMiddleName"); 
+    $gLName = filter_input(INPUT_POST, "pLastName"); 
+    $gRelationship = filter_input(INPUT_POST, "inputRelationship");
+    $gStreet1 = filter_input(INPUT_POST, "inputGuardianStreet1");
+    $gStreet2 = filter_input(INPUT_POST, "inputGuardianStreet2"); 
+	$gCity = filter_input(INPUT_POST, "inputGuardianCity"); 
+	$gState = filter_input(INPUT_POST, "inputGuardianState");
+    $gZip = filter_input(INPUT_POST, "inputGuardianZip"); 
+    $gCellPhone = filter_input(INPUT_POST, "inputGuardianCell"); 
+    $gWorkPhone = filter_input(INPUT_POST, "inputGuardianHomePhone"); 
+    $gEmail = filter_input(INPUT_POST, "inputGuardianEmail", FILTER_SANITIZE_EMAIL); 
     
     
+	// insert for the cadets table
+   $results = $connection->createRecord("INSERT INTO cadets (ssn, fName, mName, lName, 
+   mStreet, admissionStatus, mStreet2, mCity, mState, mZip, gender, isHispanic, personsInHouse, 
+   houseIncome, birthday, race, eyeColor, hairColor, height, weight, gradeCompleted, schoolWithdrawDate, 
+   underemployed, unemployed, workplace, wage, hoursWorking, accomplish1, accomplish2, recBy, recNum, preferredComm) 
+   VALUES 
+   ('$ssn', '$fName', '$mName', '$lName', 
+   '$mStreet', 'pending', '$mStreet2', '$mCity', '$mState', '$mZip', '$gender','$isHispanic','$personsInHouse',
+   '$houseIncome','$birthday','$race', '$eyeColor','$hairColor','$height','$weight','$gradeCompleted','$schoolWithdrawDate', 
+   '$underemployed','$unemployed','$workplace','$wage','$hoursWorking', '$accomplish1', '$accomplish2', '$recBy', '$recNum', '$preferredComm')");
 
-/*$connection->runQuery(""
-            . "INSERT INTO cadets (fName, mName, lName, gender, ssn, genQual, birthday, age, race, isHispanic, email, 
-                mStreet, mStreet2, mCity, mState, mZip, pStreet, pStreet2, pCity, pState, pZip, isCitizen,
-                ged, volunteer, gFirstName, gLastName, gRelationship, gPhone, gWorkPhome, gEmail, gStreet, 
-                gStreet2, gCity, gState, gZip, admissionStatus, schoolWithdrawDate, unemployed, 
-                underemployed, workplace, wage, hoursWorking, acomplish1, acomplish2, recBy,
-                recNum, gradeCompleted, hairColor, eyeColor, height, weight, personsInHouse, 
-                houseIncome, gaResident, preferredComm) VALUES ('$fName','$mName','$lName','$mailStreet','$apartNo','$mailCity','$cell','$inputHomePhone','$houseHold','$householdIncome','$birthday','$race','$eyeColor','$hairColor','$height','$weight','$lastGradeCompleted','$withdrawDate','$employment','$employer','$hourlyWage','$hoursPerWeek','$accomplishment1','$accomplishment2','$parentFirstName','$parentMiddleName','$parentLastName','$guardianStreetAddress','$guardianStreetAddress2','$guardianCity','$guardianZip','$guardianCell','$guardianHomePhone','$guardianEmail','$recommenderName','$recommenderPhone') "
-            );
-*/
-/*
-$results = $connection->createRecord("INSERT INTO cadets ".
-"(fName, mName, lName, gender, ssn, genQual, birthday, campusLocation, race, isHispanic, email, mStreet, mStreet2,
-mCity, mState, mZip, pStreet, pState, pZip, isCitizen, ged, volunteer, admissionStatus, schoolWithdrawDate, unemployed,
-underemployed, workplace, wage, hoursWorking, accomplish1, accomplish2, recBy, recNum, gradeCompleted, hairColor, eyeColor,
- weight, personsInHouse,houseIncome, gaResident,preferredComm, company) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '', '$birthday', '', '$race', $isHispanic, '$email',
-'$mailStreet', '$apartNo', '$mailCity', '$mailState', '', '', '', '', '', 1, 0,,0, '', '$inputWithdraw',0,0,'', $hourlyWage, '$accomplishment1','$accomplishment2','$recommenderName', 0, '$lastGradeCompleted', '$eyeColor', '$hairColor', '$height', '$weight',0 ,0 ,1, '$communicationPreferrence')");
-*/
-   $connection->createRecord("INSERT INTO cadets (fName, mName, lName, gender, ssn, genQual, birthday, race, isHispanic, email, mStreet, mStreet2, City, mState,  mZip, isCitizen, ged, volunteer, admissionStatus, schoolWithdrawDate, unemployed, underemployed, workplace, wage, hoursWorking, accomplish1, accomplish2, recBy, recNum,  gradeCompleted, hairColor, eyeColor, height, weight, personsInHouse, houseIncome, gaResident, preferredComm, campusLocation
-) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '', '$birthday', '', '$race', $isHispanic, '$email',
-'$mailStreet', '$apartNo', '$mailCity', '$mailState', '', '', '', '', '', '', '','','', '', '$inputWithdraw','0','0'','', $hourlyWage, '$accomplishment1','$accomplishment2','$recommenderName', '0', '$lastGradeCompleted', '$eyeColor', '$hairColor', '$height', '$weight','0' ,'0' ,'1', '$communicationPreferrence')");
-
+   // insert for the phone table
+   $phoneResult1 = $connection->createRecord("INSERT INTO phonenumbers (ssn, phoneNumber, ext, notes) 
+   VALUES 
+   ('$ssn', '$phoneNumber1', '', 'cell phone')");
+   $phoneResult2 = $connection->createRecord("INSERT INTO phonenumbers (ssn, phoneNumber, ext, notes) 
+   VALUES 
+   ('$ssn', '$phoneNumber2', '', 'home phone')");
+   
+   // insert for the guardians table
+   $guardiansResult = $connection->createRecord("INSERT INTO guardians (ssn, fName, mName, lName, 
+   relationship, street1, street2, city, state, zip, cellPhone, workPhone, email) 
+   VALUES 
+   ('$ssn', '$gFName', '$gMName', '$gLName', 
+   '$gRelationship', 'gStreet1', '$gStreet2', '$gCity', '$gState', '$gZip', '$gCellPhone','$gWorkPhone','$gEmail')");
+   
 if($results == false)
     echo "False"; 
 else 
-echo "It ran"; 
+	echo "It ran"; 
+
+//header("Location: allApplicantView.php");
 ?> 

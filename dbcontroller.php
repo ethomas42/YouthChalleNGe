@@ -20,8 +20,10 @@ class DBController {
 		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
 		if($conn->query($query) == TRUE) {
 			echo "New record(s) created successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
+			return true;
+		} 
+		else {
+			echo "Error: " . $query . "<br>" . $conn->error;
 		}
 	}
 

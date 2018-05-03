@@ -65,7 +65,7 @@
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputMailState">State</label>
-								<select class="form-control" id="inputMailState">
+								<select class="form-control" id="inputMailState" name="inputMailState">
 									<!--- PULL STATES FROM DATABASE -->
                                                                         <?php
                                                                             $connection = new DBController(); 
@@ -79,7 +79,7 @@
 							</div>
 							<div class="form-group col-sm-2">
 								<label for="inputMailZip">Zip Code</label>
-								<input type="text" class="form-control" id="inputMailZip" placeholder="Zip Code">
+								<input type="text" class="form-control" id="inputMailZip" name="inputMailZip" placeholder="Zip Code">
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputLocation">Campus Location</label>
@@ -118,10 +118,10 @@
 							</div>
 							<div class="form-group col-sm-4">
 								<label for="inputGender">Gender</label>
-								<select class="form-control" id="inputGender">
-									<option name = "inputGender">Male</option>
-									<option name = "inputGender">Female</option>
-									<option selected name ="inputGender">Prefer Not to Answer</option>
+								<select class="form-control" id="inputGender" name ="inputGender">
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+									<option value="Prefer Not to Answer" selected>Prefer Not to Answer</option>
 								</select>
 							</div>
 							<legend>Race</legend>
@@ -155,9 +155,9 @@
 							</div>
 							<div class="form-group col-sm-12">
 								<label for="inputHispanic">Hispanic/Latino</label>
-								<select class="form-control" id="inputHispanic">
-									<option name="isHispanic" value = "Yes">Yes</option>
-									<option selected name ="isHispanic" value = "No">No</option>
+								<select class="form-control" id="inputHispanic" name="isHispanic" >
+									<option value = "1">Yes</option>
+									<option selected value = "0">No</option>
 								</select>
 								<br>
 							</div>
@@ -200,12 +200,10 @@
 								<input type="date" class="form-control" name = "inputWithdraw" id="inputWithdraw" placeholder="Month and Year of Withdrawing from School">
 							</div>
 							<legend>Are you unemployed or under-employed?</legend>
-							<div class="form-check form-check-inline col-sm-6">
-								<input class="form-check-input"  type="radio" name="inlineRadioOptions" id="inputUnemployed"  value="option1">
+							<div class="form-check form-check-inline col-sm-12">
+								<input class="form-check-input"  type="radio" name="inputEmployment" id="inputEmployment"  value="unemployed">
 								<label class="form-check-label" for="inputUnemployed">Unemployed</label>
-							</div>
-							<div class="form-check form-check-inline col-sm-6">
-								<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputUnder" value="option2">
+								<input class="form-check-input" type="radio" name="inputEmployment" id="inputEmployment" value="underemployed">
 								<label class="form-check-label" for="inputUnder">Under-employed</label>
 							</div>
 							<div class="form-group col-sm-12">
@@ -245,13 +243,13 @@
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputRelationship">Relationship</label>
-								<select class="form-control" id="inputRelationship">
-									<option name="inputRelationship" selected></option>
-									<option name ="inputRelationship">Father</option>
-									<option name ="inputRelationship">Mother</option>
-									<option name="inputRelationship">Stepfather</option>
-									<option name="inputRelationship">Stepmother</option>
-									<option name ="inputRelationship">Guardian</option>
+								<select class="form-control" id="inputRelationship" name ="inputRelationship">
+									<option selected></option>
+									<option value="Father">Father</option>
+									<option value="Mother">Mother</option>
+									<option value="Stepfather">Stepfather</option>
+									<option value="Stepmother">Stepmother</option>
+									<option value="Guardian">Guardian</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-4">
@@ -270,8 +268,14 @@
 								<label for="inputGuardianState">State</label>
 								<select class="form-control" id="inputGuardianState">
 									<!--- PULL STATES FROM DATABASE -->
-                                                                       
-                                                                        
+                                                       <?php
+															$connection = new DBController(); 
+															$record = $connection->runQuery("SELECT DISTINCT state FROM states WHERE state != '' ORDER BY state"); 
+															foreach ($record as $row)
+															{
+																echo '<option name = "inputState">'. $row['state'].'</option>';
+															}
+														?>                 
 								</select>
 							</div>
 							<div class="form-group col-sm-2">
