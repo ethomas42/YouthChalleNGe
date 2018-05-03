@@ -349,20 +349,20 @@
 									<label for="inputCommMethod">Preferred Method of Communication</label>
 									<select class="form-control" name="inputCommMethod" id="inputCommMethod" disabled="disabled">
 										<option <?php if($record['preferredComm']=='') echo 'selected';?>></option>
-										<option <?php if($record['preferredComm']=='Email') echo 'selected';?>>Email</option>
-										<option <?php if($record['preferredComm']=='Text') echo 'selected';?>>Text</option>
-										<option <?php if($record['preferredComm']=='US Mail') echo 'selected';?>>US Mail</option>
-										<option <?php if($record['preferredComm']=='Phone') echo 'selected';?>>Phone</option>
+										<option value="Email" <?php if($record['preferredComm']=='Email') echo 'selected';?>>Email</option>
+										<option value="Text" <?php if($record['preferredComm']=='Text') echo 'selected';?>>Text</option>
+										<option value="US Mail" <?php if($record['preferredComm']=='US Mail') echo 'selected';?>>US Mail</option>
+										<option value="Phone" <?php if($record['preferredComm']=='Phone') echo 'selected';?>>Phone</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Company</label>
 									<select class="form-control" name="inputCompany" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
 										<option selected></option>
-										<option>Alpha</option>
-										<option>Bravo</option>
-										<option>Charlie</option>
-										<option>Delta</option>
+										<option value="alpha" <?php if($record['company']=='alpha') echo 'selected';?>>Alpha</option>
+										<option value="bravo" <?php if($record['company']=='bravo') echo 'selected';?>>Bravo</option>
+										<option value="charlie" <?php if($record['company']=='charlie') echo 'selected';?>>Charlie</option>
+										<option value="delta" <?php if($record['company']=='delta') echo 'selected';?>>Delta</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
@@ -491,8 +491,8 @@
 								<div class="form-group col-sm-12">
 									<label for="inputHispanic">Hispanic/Latino</label>
 									<select class="form-control" name="hispanic" id="inputHispanic" disabled="disabled">
-										<option <?php if($record['isHispanic']) echo 'selected';?>>Yes</option>
-										<option <?php if(!$record['isHispanic']) echo 'selected';?>>No</option>
+										<option value="1" <?php if($record['isHispanic']) echo 'selected';?>>Yes</option>
+										<option value="0" <?php if(!$record['isHispanic']) echo 'selected';?>>No</option>
 									</select>
 									<br>
 								</div>
@@ -1191,7 +1191,6 @@ _END;
 							<button name="saveApplicant" class="btn btn-success" type="submit" id="saveApplicant">Save</button>
 						</form>
 					</div>
-					
 					<!-- end of tabs -->
 				</div>
 

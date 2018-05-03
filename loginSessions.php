@@ -25,7 +25,8 @@ if($rowCount)
      setcookie("email", $record['email'], time() + 86400, "/"); 
      header("Location: allCadetView.php?");    
 }
-
+else
+	header("Location: index.php");
 
 
 
