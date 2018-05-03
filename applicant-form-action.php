@@ -104,11 +104,6 @@ require_once 'dbcontroller.php';
    VALUES 
    ('$ssn', '$gFName', '$gMName', '$gLName', 
    '$gRelationship', 'gStreet1', '$gStreet2', '$gCity', '$gState', '$gZip', '$gCellPhone','$gWorkPhone','$gEmail')");
-   
-if($results == false)
-    echo "False"; 
-else 
-	echo "It ran"; 
 
-//header("Location: allApplicantView.php");
+header("Location: allApplicantView.php");
 ?> 
