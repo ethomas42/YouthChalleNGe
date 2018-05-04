@@ -942,8 +942,8 @@ _END;
 										</div>
 										<div class="form-row">
 											<div class="form-group col-sm-12">
-												<label for="inputDrugDosage{$i}">Notes</label>
-												<textarea class="form-control" name="inputDrugDosage{$i}" id="inputDrugDosage{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
+												<label for="inputDrugNotes{$i}">Notes</label>
+												<textarea class="form-control" name="inputDrugNotes{$i}" id="inputDrugNotes{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
 											</div>
 										</div>
 _END;
