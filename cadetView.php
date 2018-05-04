@@ -252,8 +252,8 @@
 				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
 				$('#inputAge').val(age);
 			}
-			window.onload = calcAge;
 			window.onload = restrictMedical;
+			$(document).ready(function(){calcAge();});
 		</script>
 				<!-- edit buttons -->
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#graduateCheck">Graduate</button>

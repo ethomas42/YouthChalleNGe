@@ -250,7 +250,7 @@
 				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
 				$('#inputAge').val(age);
 			}
-			window.onload = calcAge;
+			$(document).ready(function(){calcAge();});
 			window.onload = restrictMedical;
 		</script>
 				<!-- edit buttons -->
