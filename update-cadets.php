@@ -265,7 +265,6 @@ if(isset($_POST['saveCadet']))
 				$type = filter_input(INPUT_POST, "inputAllergyType".$i);
 				$notes = filter_input(INPUT_POST, "inputAllergyNotes".$i);
 				$id = filter_input(INPUT_POST, "inputAllergyID".$i);
-				echo $type.$notes.$id;
 				$connection->runQuery("UPDATE allergies SET type = '$type', notes = '$notes' WHERE allerID = '$id'");
 			} 
 		}
@@ -319,7 +318,6 @@ if(isset($_POST['saveCadet']))
 	if(isset($_POST['inputGED']))
     {
         $update = filter_input(INPUT_POST, "inputGED");
-		echo $update;
         $connection->runQuery("UPDATE cadets SET ged = '$update' WHERE ssn = '$key'"); 
     }
 	if(isset($_POST['inputLastGrade']))
@@ -520,9 +518,7 @@ if(isset($_POST['saveApplicant']))
 	
     if(isset($_POST['inputEmail']))
     {
-		echo "here";
         $email = filter_input(INPUT_POST,"inputEmail",FILTER_VALIDATE_EMAIL);
-		echo $email;
         $connection->runQuery("UPDATE cadets SET email = '$email' WHERE ssn = '$key'");
     }
     
@@ -649,12 +645,10 @@ if(isset($_POST['saveApplicant']))
 			} 
 		}
 	}
-	echo "HERRO";
+	
 	// immunizations tab
     if(isset($_POST['inputImmID0'])) { 
 		$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$key'");
-		echo "CHECK";
-		echo "CHECK";
 		$numImm = count($immInfo);
 		for($i = 0; $i < $numImm; $i ++) {
 			if(isset($_POST['inputImmID'.$i]))
@@ -664,7 +658,6 @@ if(isset($_POST['saveApplicant']))
 				$validUntil = filter_input(INPUT_POST, "inputImmValid".$i);
 				$notes = filter_input(INPUT_POST, "inputImmNotes".$i);
 				$id = filter_input(INPUT_POST, "inputImmID".$i);
-				echo $date.$type.$validUntil.$notes.$id;
 				$connection->runQuery("UPDATE immunizations SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
 			} 
 		}
