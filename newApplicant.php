@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php
+	/*
+	Created by: The A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+	The purpose of this file is to allow a user to create a new applicant by filling out the fields below, and allow it to be pushed another php file which will push it to the server.
+	*/
 	include_once "basicPage.php";
         require_once 'dbcontroller.php'; 
 	basicPage("New Applicant");

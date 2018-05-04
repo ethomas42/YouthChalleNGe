@@ -1,10 +1,11 @@
 <?php
-
 /* 
  * @author Colton Thompson
+ * Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * The purpose of this file is to display all users that are currently assigned to one of the many types of roles, and to allow a connection between the pages that allow the creation of new users and viewing users.
  */
 require_once 'dbcontroller.php';
 require_once 'basicPage.php'; 
@@ -417,7 +418,7 @@ if($_SESSION['permissions']['admin'] == 0)
 							</thead>
 							<tbody>
 							<?php
-							  $results = $db->runQuery("SELECT * FROM users, roles WHERE roles.custom = 1 AND users.role = roles.role"); 
+							  $results = $db->runQuery("SELECT * FROM users, roles WHERE roles.custom = 1 AND users.role = roles.role"); //Pulls all users that have a role that is custom. Due to these being custom but still being named, many roles will be here
 								if($db->numRows("SELECT * FROM users, roles WHERE roles.custom = 1 AND users.role = roles.role") < 1) 
 								{
 									echo "<h1> Empty List</h1>"; 

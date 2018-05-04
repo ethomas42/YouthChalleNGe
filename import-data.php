@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html>
 	<?php
+  /*
+  Created by: The A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+  The purpose of this file is to take an Excel file where the first row is the names of the fields and each row below it is a cadets entries for those fields. All of the records in this file will then be pushed to the server.
+  */
 		require 'vendor/autoload.php';
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     use PhpOffice\PhpSpreadsheet\Reader\IReadFilter;
     include_once "dbcontroller.php";
 	  $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
-		$reader->setReadDataOnly(TRUE);
-    $fileName = $_POST['importFile'];
+		$reader->setReadDataOnly(TRUE); 
+    $fileName = $_POST['importFile']; //Name of the file chosen by the user on allCadetView.php
 		$spreadsheet = $reader->load($fileName);
     $sheet = $spreadsheet->getActiveSheet();
     $db = new DBController();
 
     $rows = [];
-    foreach ($sheet->getRowIterator() AS $row) 
+    foreach ($sheet->getRowIterator() AS $row) //Loops through each row and stores the values 
     {
       $cellIterator = $row->getCellIterator();
       $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
       $cells = [];
       foreach ($cellIterator as $cell) 
       {
-        $cells[] = $cell->getValue();
+        $cells[] = $cell->getValue(); //Makes an array of each entry
       }
-      $rows[] = $cells;
+      $rows[] = $cells; //Makes an array of entries that holds an array of fields for each record
     }
     $size = count($rows);
-    for($int = 1; $int < $size; $int++)
+    for($int = 1; $int < $size; $int++) //Sets each field equal to an easy to read variable
     {
       $fName = $rows[$int][0];
       $mName = $rows[$int][1];
@@ -72,7 +76,7 @@
       $gaResident = $rows[$int][40]; 
       $preferredComm = $rows[$int][41];
       $db->createRecord("INSERT INTO cadets (fName, mName, lName, gender, ssn, genQual, birthday, race, isHispanic, email, mStreet, mStreet2, City, mState,  mZip,  pStreet, pStreet2, pCity, pState, pZip, isCitizen, ged, volunteer, admissionStatus, schoolWithdrawDate, unemployed, underemployed, workplace, wage, hoursWorking, accomplish1, accomplish2, recBy, recNum,  gradeCompleted, hairColor, eyeColor, height, weight, personsInHouse, houseIncome, gaResident, preferredComm, campusLocation
-) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '$genQual', '$birthday', '$race', '$isHispanic', '$email', '$mStreet', '$mStreet2', '$City', '$mState',  '$mZip',  '$pStreet', '$pStreet2', '$pCity', '$pState', '$pZip', '$isCitizen', '$ged', '$volunteer', '$admissionStatus', '$schoolWithdrawDate', '$unemployed', '$underemployed', '$workplace', '$wage', '$hoursWorking', '$accomplish1', '$accomplish2', '$recBy', '$recNum',  '$gradeCompleted', '$hairColor', '$eyeColor', '$height', '$weight', '$personsInHouse', '$houseIncome', '$gaResident', '$preferredComm', '$campusLocation')");
+) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '$genQual', '$birthday', '$race', '$isHispanic', '$email', '$mStreet', '$mStreet2', '$City', '$mState',  '$mZip',  '$pStreet', '$pStreet2', '$pCity', '$pState', '$pZip', '$isCitizen', '$ged', '$volunteer', '$admissionStatus', '$schoolWithdrawDate', '$unemployed', '$underemployed', '$workplace', '$wage', '$hoursWorking', '$accomplish1', '$accomplish2', '$recBy', '$recNum',  '$gradeCompleted', '$hairColor', '$eyeColor', '$height', '$weight', '$personsInHouse', '$houseIncome', '$gaResident', '$preferredComm', '$campusLocation')"); //Pushes each record
     }
     header("Location:allCadetView.php"); //Redirects to allCadetView page.
 	?>

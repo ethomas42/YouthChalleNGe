@@ -1,13 +1,15 @@
 <?php
 
 /* 
+ * Created by: The A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+ *The purpose of this file is to pull all the information about states from the database, and to push files into the database.
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 require_once 'dbcontroller.php';
 
-function statesDropdown()
+function statesDropdown() //Allows for the option of states to be pulled from the database for ease of selection on the applicantView and cadetView pages.
 {
  $connection = new DBController(); 
  $connection->runQuery("SELECT * FROM states"); 
@@ -25,7 +27,7 @@ function statesDropdown()
  * @param category of the file
  */
 
-function importFile($directory , $buttonName ,$inputFileName, $ssn, $category)
+function importFile($directory , $buttonName ,$inputFileName, $ssn, $category) //Allows for a file given to an applicant or cadet to be put onto the database.
 {
     $directory = "cadets";
     if(isset($_POST[$buttonName]))

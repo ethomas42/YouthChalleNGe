@@ -1,7 +1,8 @@
 <?php
 /*
  * @AUTHOR Colton Thompson
- *
+ * Created by: The A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+ * The purpose of this file is to allow users with login information to do so. If a user does not have an account and tries to access any part of this project, they will be automatically redirected to this page.
 */
 ?>
 <html>
@@ -250,33 +251,6 @@ span.psw {
 			
 			</form>
 		</div>
-		 
-		<!---
-      <form action = "loginSessions.php" method = "POST"> 
-        <div class='row'>
-          <div class="form-group col-sm-6 col-m-6">
-            <label for="inputemail">email</label>
-            <input type="text" class="form-control" name="inputemail" id="inputemail" placeholder='email'>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-sm-6 col-m-6">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control"  name = "inputPassword" id="inputPassword" placeholder='Password'>
-          </div>
-        </div>
-        <div class='row justify-content-between'>
-          <div class='col-sm-4 col-md-4'>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#forgotModal">
-              Forgot Password?
-            </button>
-              </form>
-          </div>
-          <div class='col-sm-4 col-md-4'>
-            <button name="login" class="btn btn-success" type="submit" id="login">Login</button>
-          </div>
-        </div>
-        <!--MODAL START-->
 		
       <!-- BEGINNING OF THE END -->
     </div>

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php
+	/*
+	 * Created by: The A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+	 * The purpose of this file is to allow an admin to create a new user by filling out the fields below, and allow it to be pushed another php file which will push it to the server. Custom Roles can also be created on this page which will allow the user to create a new role with specifically chosen permissions.
+	*/
 	include_once "basicPage.php";
 	require_once "dbcontroller.php";
 	basicPage("New User");
@@ -132,8 +136,6 @@
                 </div>
               </form>
             </div>
-
-<!-- beginning of end of basic page -->
             </div>
         </div>
     </body>

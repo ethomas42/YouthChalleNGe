@@ -1,4 +1,7 @@
 <?php
+/*
+Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+The purpose of this file is to handle updating update fields that have been changed on both applicants and cadets*/
 require_once 'phpFunctions.php'; 
 require_once 'dbcontroller.php';
 $connection = new DBController(); 

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <?php
+/*
+Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+The purpose of this file is to allow an admin to view a specific user (selected on roles.php) and edit the user if they need to be.*/
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("User View");
 
     $email = $_POST['email'];
     $connection = new DBController();
-    $record = $connection->runQuery("SELECT * FROM users WHERE email = '$email'")[0];
+    $record = $connection->runQuery("SELECT * FROM users WHERE email = '$email'")[0]; //Selects all fields from a user who meets the email selected on roles.php
 ?>
 
 	<script>
@@ -25,7 +28,7 @@
                   }
                 });
             });
-        	function changeView()
+        	function changeView() //Used to change a user from read only mode to write mode if they have the proper permissions
 			{
 				// basic info
 				document.getElementById('editUser').setAttribute('style','display:none');
@@ -36,7 +39,7 @@
 				document.getElementById('inputRole').removeAttribute('disabled');
 				document.getElementById('inputPassword').removeAttribute('readonly');
 			}
-			function changeEdit()
+			function changeEdit() //Changes a user back from Edit to View mode assuming they have the correct permissions
 				{
 					// basic info
 		    		document.getElementById('editUser').removeAttribute('style','display:none');

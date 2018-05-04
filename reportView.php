@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php
+	/*
+	Created by: The A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+	The purpose of this file is to allow a user to select specific fields from multiple tables and then allow the user to generate an excel file with those selected fields
+	*/
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Report Generation");
