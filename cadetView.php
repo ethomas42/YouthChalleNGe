@@ -809,15 +809,15 @@ _END;
 										<div>
 											<div class="form-group col-sm-3">
 												<label for="inputGFirstname{$i}">First Name</label>
-												<input type="text" class="form-control" name="inputGFirstName{$i}" id="inputGFirstName{$i}" value = {$guardianInfo[$i]['fName']} placeholder="First Name" readonly>
+												<input type="text" class="form-control" name="inputGFirstName{$i}" id="inputGFirstName{$i}" value = "{$guardianInfo[$i]['fName']}" placeholder="First Name" readonly>
 											</div>
 											<div class="form-group col-sm-3">
 												<label for="inputGMiddleName{$i}">Middle Name</label>
-												<input type="text" class="form-control" name="inputGMiddleName{$i}" id="inputGMiddleName{$i}" value = {$guardianInfo[$i]['mName']} placeholder="Middle Name" readonly>
+												<input type="text" class="form-control" name="inputGMiddleName{$i}" id="inputGMiddleName{$i}" value = "{$guardianInfo[$i]['mName']}" placeholder="Middle Name" readonly>
 											</div>
 											<div class="form-group col-sm-3">
 												<label for="inputGLastName{$i}">Last Name</label>
-												<input type="text" class="form-control" name="inputGLastName{$i}" id="inputGLastName{$i}" value = {$guardianInfo[$i]['lName']} placeholder="Last Name" readonly>
+												<input type="text" class="form-control" name="inputGLastName{$i}" id="inputGLastName{$i}" value = "{$guardianInfo[$i]['lName']}" placeholder="Last Name" readonly>
 											</div>
 											<div class="form-group col-sm-3">
 												<label for="inputGRelationship">Relationship</label>
@@ -909,21 +909,21 @@ _END;
 										<div class="form-row">
 											<div class="form-group col-sm-6">
 												<label for="inputDrugName{$i}">Drug Name</label>
-												<input type="text" class="form-control" name="inputDrugName{$i}" id="inputDrugName{$i}" value = {$medInfo[$i]['drugName']} placeholder="Drug Name" readonly>
+												<input type="text" class="form-control" name="inputDrugName{$i}" id="inputDrugName{$i}" value = "{$medInfo[$i]['drugName']}" placeholder="Drug Name" readonly>
 											</div>
 											<div class="form-group col-sm-6">
 												<label for="inputDrugType{$i}">Type</label>
-												<input type="text" class="form-control" name="inputDrugType{$i}" id="inputDrugType{$i}" value = {$medInfo[$i]['type']} placeholder="Type" readonly>
+												<input type="text" class="form-control" name="inputDrugType{$i}" id="inputDrugType{$i}" value = "{$medInfo[$i]['type']}" placeholder="Type" readonly>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-sm-4">
 												<label for="inputDrugDosage{$i}">Dosage</label>
-												<input type="text" class="form-control" name="inputDrugDosage{$i}" id="inputDrugDosage{$i}" value = {$medInfo[$i]['dosage']} placeholder="Dosage" readonly>
+												<input type="text" class="form-control" name="inputDrugDosage{$i}" id="inputDrugDosage{$i}" value = "{$medInfo[$i]['dosage']}" placeholder="Dosage" readonly>
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputDrugFrequency{$i}">Frequency</label>
-												<input type="text" class="form-control" name="inputDrugFrequency{$i}" id="inputDrugFrequency{$i}" value = {$medInfo[$i]['frequency']} placeholder="Frequency" readonly>
+												<input type="text" class="form-control" name="inputDrugFrequency{$i}" id="inputDrugFrequency{$i}" value = "{$medInfo[$i]['frequency']}" placeholder="Frequency" readonly>
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputTakenWhen{$i}">Taken When</label>
@@ -972,7 +972,7 @@ _END;
 										<div class="form-row">
 											<div class="form-group col-sm-12">
 												<label for="inputAllergyType{$i}">Allergy Type</label>
-												<input type="text" class="form-control" name="inputAllergyType{$i}" id="inputAllergyType{$i}" value = {$allerInfo[$i]['type']} placeholder="Allergy Type" readonly>
+												<input type="text" class="form-control" name="inputAllergyType{$i}" id="inputAllergyType{$i}" value = "{$allerInfo[$i]['type']}" placeholder="Allergy Type" readonly>
 											</div>
 										</div>
 										<div class="form-row">
@@ -1011,7 +1011,7 @@ _END;
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputImmType{$i}">Type</label>
-												<input type="text" class="form-control" name="inputImmType{$i}" id="inputImmType{$i}" value = {$immInfo[$i]['type']} placeholder="Type" readonly>
+												<input type="text" class="form-control" name="inputImmType{$i}" id="inputImmType{$i}" value = "{$immInfo[$i]['type']}" placeholder="Type" readonly>
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputImmValid{$i}">Valid Until</label>
@@ -1055,11 +1055,11 @@ _END;
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputAbuseResults{$i}">Results</label>
-												<input type="text" class="form-control" name="inputAbuseResults{$i}" id="inputAbuseResults{$i}" value = {$subInfo[$i]['results']} placeholder="Results" readonly>
+												<input type="text" class="form-control" name="inputAbuseResults{$i}" id="inputAbuseResults{$i}" value = "{$subInfo[$i]['results']}" placeholder="Results" readonly>
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputAbuseName{$i}">Drug Name</label>
-												<input type="text" class="form-control" name="inputAbuseName{$i}" id="inputAbuseName{$i}" value = {$subInfo[$i]['drugName']} placeholder="Drug Name" readonly>
+												<input type="text" class="form-control" name="inputAbuseName{$i}" id="inputAbuseName{$i}" value = "{$subInfo[$i]['drugName']}" placeholder="Drug Name" readonly>
 											</div>
 										</div>
 										<div class="form-row">
