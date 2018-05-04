@@ -137,8 +137,8 @@
 							document.getElementById('inputLastGrade').removeAttribute('readonly');
 							document.getElementById('inputVolunteer').removeAttribute('disabled');
 							document.getElementById('inputWithdraw').removeAttribute('readonly');
-							document.getElementById('inputUnemployed').removeAttribute('disabled');
-							document.getElementById('inputUnder').removeAttribute('disabled');
+						//	document.getElementById('inputUnemployed').removeAttribute('disabled');
+							document.getElementsById('inputEmployed').removeAttribute('disabled');
 							document.getElementById('inputJob').removeAttribute('readonly');
 							document.getElementById('inputWage').removeAttribute('readonly');
 							document.getElementById('inputHours').removeAttribute('readonly');
@@ -234,8 +234,8 @@
 					document.getElementById('inputLastGrade').setAttribute('readonly', 'true');
 					document.getElementById('inputVolunteer').setAttribute('disabled', 'true');
 					document.getElementById('inputWithdraw').setAttribute('readonly', 'true');
-					document.getElementById('inputUnemployed').setAttribute('disabled', 'true');
-					document.getElementById('inputUnder').setAttribute('disabled', 'true');
+					document.getElementsById('inputEmployed').setAttribute('disabled', 'true');
+					//document.getElementById('inputUnder').setAttribute('disabled', 'true');
 					document.getElementById('inputJob').setAttribute('readonly', 'true');
 					document.getElementById('inputWage').setAttribute('readonly', 'true');
 					document.getElementById('inputHours').setAttribute('readonly', 'true');
@@ -324,22 +324,22 @@
 							<div class="form-row">
 								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Preferred Method of Communication</label>
-									<select class="form-control" name="inputCommMethod" id="inputCommMethod" value = "<?= $record["preferredComm"]?>" disabled="disabled">
-										<option selected></option>
-										<option>Email</option>
-										<option>Text</option>
-										<option>US Mail</option>
-										<option>Phone</option>
+									<select class="form-control" name="inputCommMethod" id="inputCommMethod" disabled="disabled">
+										<option <?php if($record['preferredComm']=='') echo 'selected';?>></option>
+										<option value="Email" <?php if($record['preferredComm']=='Email') echo 'selected';?>>Email</option>
+										<option value="Text" <?php if($record['preferredComm']=='Text') echo 'selected';?>>Text</option>
+										<option value="US Mail" <?php if($record['preferredComm']=='US Mail') echo 'selected';?>>US Mail</option>
+										<option value="Phone" <?php if($record['preferredComm']=='Phone') echo 'selected';?>>Phone</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
 									<label for="inputCommMethod">Company</label>
 									<select class="form-control" name="inputCompany" id="inputCompany" value = "<?= $record["company"]?>" disabled="disabled">
 										<option selected></option>
-										<option>Alpha</option>
-										<option>Bravo</option>
-										<option>Charlie</option>
-										<option>Delta</option>
+										<option value="alpha" <?php if($record['company']=='alpha') echo 'selected';?>>Alpha</option>
+										<option value="bravo" <?php if($record['company']=='bravo') echo 'selected';?>>Bravo</option>
+										<option value="charlie" <?php if($record['company']=='charlie') echo 'selected';?>>Charlie</option>
+										<option value="delta" <?php if($record['company']=='delta') echo 'selected';?>>Delta</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
@@ -364,11 +364,11 @@
 									<label for="inputGenQual">Gen. Qualifier</label>
 									<select class="form-control" name = "inputGenQual" id="inputGenQual" disabled="disabled">
 										<option></option>
-										<option <?php if($record['genQual']=='Jr') echo 'selected';?>>Jr.</option>
-										<option <?php if($record['genQual']=='Sr') echo 'selected';?>>Sr.</option>
-										<option <?php if($record['genQual']=='III') echo 'selected';?>>III</option>
-										<option <?php if($record['genQual']=='IV') echo 'selected';?>>IV</option>
-										<option <?php if($record['genQual']=='V') echo 'selected';?>>V</option>
+										<option value="Jr" <?php if($record['genQual']=='Jr') echo 'selected';?>>Jr.</option>
+										<option value="Sr" <?php if($record['genQual']=='Sr') echo 'selected';?>>Sr.</option>
+										<option value="III" <?php if($record['genQual']=='III') echo 'selected';?>>III</option>
+										<option value="IV" <?php if($record['genQual']=='IV') echo 'selected';?>>IV</option>
+										<option value="V" <?php if($record['genQual']=='V') echo 'selected';?>>V</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-3">
@@ -396,7 +396,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name ="race" type="checkbox" id="raceWhite" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name ="race[]" type="checkbox" id="raceWhite" value="white" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceWhite">White</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -407,7 +407,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name="race" type="checkbox" id="raceBlack" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race[]" type="checkbox" id="raceBlack" value="black" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceBlack">Black</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -418,7 +418,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name="race" type="checkbox" id="raceAmerican" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race[]" type="checkbox" id="raceAmerican" value="nativeAmerican" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceAmerican">Native American</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -429,7 +429,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name="race" type="checkbox" id="raceAsian" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race[]" type="checkbox" id="raceAsian" value="asian" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceAsian">Asian</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -440,7 +440,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name="race" type="checkbox" id="racePacific" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race[]" type="checkbox" id="racePacific" value="pacific" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="racePacific">Pacific Islander</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-3">
@@ -451,7 +451,7 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name="race" type="checkbox" id="raceMiddleEast" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race[]" type="checkbox" id="raceMiddleEast" value="middleEastern" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceMiddleEast">Middle Eastern</label>
 								</div>
 								<div class="form-check form-check-inline col-sm-6">
@@ -462,14 +462,14 @@
                                                                                 $raceCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" name="race" type="checkbox" id="raceOther" value="option1" disabled="disabled" <?=$raceCheck?>>
+									<input class="form-check-input" name="race[]" type="checkbox" id="raceOther" value="other" disabled="disabled" <?=$raceCheck?>>
 									<label class="form-check-label" for="raceOther">Other</label>
 								</div>
 								<div class="form-group col-sm-12">
 									<label for="inputHispanic">Hispanic/Latino</label>
 									<select class="form-control" name="hispanic" id="inputHispanic" disabled="disabled">
-										<option <?php if($record['isHispanic']) echo 'selected';?>>Yes</option>
-										<option <?php if(!$record['isHispanic']) echo 'selected';?>>No</option>
+										<option value="1" <?php if($record['isHispanic']) echo 'selected';?>>Yes</option>
+										<option value="0" <?php if(!$record['isHispanic']) echo 'selected';?>>No</option>
 									</select>
 									<br>
 								</div>
@@ -708,8 +708,8 @@ _END;
 									<label for="inputGAResident">GA Resident</label>
 									<select class="form-control" name="inputGAResident" id="inputGAResident" disabled="disabled">
 										<option></option>
-										<option <?php if($record['gaResident']) echo 'selected';?>>Yes</option>
-										<option <?php if($record['gaResident']) echo 'selected';?>>No</option>
+										<option value="1" <?php if($record['gaResident'] == 1) echo 'selected';?>>Yes</option>
+										<option value="0" <?php if($record['gaResident'] == 0) echo 'selected';?>>No</option>
 									</select>
 								</div>
 								<legend>Mailing Address</legend>
@@ -824,11 +824,11 @@ _END;
 												<select class="form-control" name="inputGRelationship{$i}" id="inputGRelationship{$i}" disabled="disabled">
 													<option></option>
 _END;
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='father') ? 'selected' : "") .">Father</option>";
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='mother') ? 'selected' : "") .">Mother</option>";
-											echo	"<option ". (($guardianInfo[$i]['relationship']=='stepfather') ? 'selected' : "") .">Stepfather</option>";
-											echo 	"<option ". (($guardianInfo[$i]['relationship']=='stepmother') ? 'selected' : "") .">Stepmother</option>";
-											echo    "<option ". (($guardianInfo[$i]['relationship']=='guardian') ? 'selected' : "") .">Guardian</option>";
+											echo	"<option value='father' ". (($guardianInfo[$i]['relationship']=='father') ? 'selected' : "") .">Father</option>";
+											echo	"<option value='mother' ". (($guardianInfo[$i]['relationship']=='mother') ? 'selected' : "") .">Mother</option>";
+											echo	"<option value='stepfather' ". (($guardianInfo[$i]['relationship']=='stepfather') ? 'selected' : "") .">Stepfather</option>";
+											echo 	"<option value='stepmother' ". (($guardianInfo[$i]['relationship']=='stepmother') ? 'selected' : "") .">Stepmother</option>";
+											echo    "<option value='guardian' ". (($guardianInfo[$i]['relationship']=='guardian') ? 'selected' : "") .">Guardian</option>";
 										echo <<<_END
 												</select>
 											</div>
@@ -927,7 +927,7 @@ _END;
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputTakenWhen{$i}">Taken When</label>
-												<input type="text" class="form-control" id="inputTakenWhen{$i}" value = {$medInfo[$i]['takenWhen']} placeholder="Taken When" readonly>
+												<input type="text" class="form-control" name="inputTakenWhen" id="inputTakenWhen{$i}" value = "{$medInfo[$i]['takenWhen']}" placeholder="Taken When" readonly>
 											</div>
 										</div>
 										<div class="form-row">
@@ -1097,8 +1097,8 @@ _END;
 									<label for="inputGED">Do you have a GED?</label>
 									<select class="form-control" name="inputGED" id="inputGED" disabled="disabled">
 										<option></option>
-										<option <?php if($record['ged']) echo 'selected';?>>Yes</option>
-										<option <?php if(!$record['ged']) echo 'selected';?>>No</option>
+										<option value="1" <?php if($record['ged']==1) echo 'selected';?>>Yes</option>
+										<option value="0"<?php if($record['ged']==0) echo 'selected';?>>No</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-6">
@@ -1109,8 +1109,8 @@ _END;
 									<label for="inputVolunteer">Did you volunteer for this program?</label>
 									<select class="form-control" name="inputVolunteer" id="inputVolunteer" disabled="disabled">
 										<option></option>
-										<option <?php if($record['volunteer']) echo 'selected';?>>Yes</option>
-										<option <?php if(!$record['volunteer']) echo 'selected';?>>No</option>
+										<option value="1" <?php if($record['volunteer']==1) echo 'selected';?>>Yes</option>
+										<option value="0" <?php if($record['volunteer']==0) echo 'selected';?>>No</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-12">
@@ -1118,6 +1118,7 @@ _END;
 									<input type="date" class="form-control" name="inputWithdraw" id="inputWithdraw" value = "<?= $record["schoolWithdrawDate"]?>" placeholder="Month and Year of Withdrawing from School" readonly>
 								</div>
 								<legend>Are you unemployed or under-employed?</legend>
+								
 								<div class="form-check form-check-inline col-sm-6">
                                                                         <?php
                                                                             $employCheck="";
@@ -1126,10 +1127,8 @@ _END;
                                                                                 $employCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputUnemployed" value="option1" disabled="disabled" <?=$employCheck?>>
-									<label class="form-check-label" for="inputUnemployed">Unemployed</label>
-								</div>
-								<div class="form-check form-check-inline col-sm-6">
+									<input class="form-check-input" type="radio" name="inputEmployed" id="inputEmployed" value="Unemployed" disabled="disabled" <?=$employCheck?>>
+									<label class="form-check-label" for="inputEmployed">Unemployed</label>
                                                                         <?php
                                                                             $employCheck="";
                                                                             if($record['underemployed'])
@@ -1137,8 +1136,8 @@ _END;
                                                                                 $employCheck="checked";
                                                                             }
                                                                         ?>
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputUnder" value="option2" disabled="disabled" <?=$employCheck?>>
-									<label class="form-check-label" for="inputUnder">Under-employed</label>
+									<input class="form-check-input" type="radio" name="inputEmployed" id="inputEmployed" value="Under-Employed" disabled="disabled" <?=$employCheck?>>
+									<label class="form-check-label" for="inputEmployed">Under-employed</label>
 								</div>
 								<div class="form-group col-sm-12">
 									<br>
