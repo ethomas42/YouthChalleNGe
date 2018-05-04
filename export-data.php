@@ -61,6 +61,10 @@
                     $sheet->setCellValue('AR1', 'campusLocation');
                     $sheet->setCellValue('AS1', 'company');
                     $num = 2;
+					srand(mktime); 
+					$extension = rand(); 
+					$filename = "CadetExport".$extension.".xlsx";
+					$extension = rand(); 
                       foreach($results as $row) //For loop to put information in the corresponding column per each record on a row.
                       {
                         $sheet->setCellValue('A' . $num, $row['fName']);
@@ -109,9 +113,27 @@
                         $sheet->setCellValue('AR' . $num, $row['campusLocation']);
                         $sheet->setCellValue('AS' . $num, $row['company']);
                         $writer = new Xlsx($spreadsheet);
-                        $writer->save('CadetExport.xlsx'); //Name selection for export
+						
+					
+                        $writer->save($filename); //Name selection for export
                         $num++;
                         }
+						$file = 'monkey.gif';
+
+						if (file_exists($filename)) 
+						{
+							header('Content-Description: File Transfer');
+							header('Content-Type: application/octet-stream');
+							header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+							header('Expires: 0');
+							header('Cache-Control: must-revalidate');
+							header('Pragma: public');
+							header('Content-Length: ' . filesize($filename));
+							readfile($filename);
+							move_uploaded_file($filename, "/Exports"); 
+							//exit;
+						}
+						
                 }
                 header("Location:allCadetView.php"); //Redirects to allCadetView page.
 ?>
