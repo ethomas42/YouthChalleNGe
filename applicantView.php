@@ -45,7 +45,7 @@
 						$('[id^=inputTakenWhen').removeAttr('readonly');
 						$('[id^=inputStartDate').removeAttr('readonly');
 						$('[id^=inputEndDate').removeAttr('readonly');
-						$('[id^=inputDrugDosage').removeAttr('readonly');
+						$('[id^=inputDrugNotes').removeAttr('readonly');
 						$('[id^=inputAllergyType').removeAttr('readonly');
 						$('[id^=inputAllergyNotes').removeAttr('readonly');
 						$('[id^=inputImmDate').removeAttr('readonly');
@@ -214,7 +214,7 @@
 		    		$('[id^=inputTakenWhen').attr('readonly', 'true');
 		    		$('[id^=inputStartDate').attr('readonly', 'true');
 		    		$('[id^=inputEndDate').attr('readonly', 'true');
-		    		$('[id^=inputDrugDosage').attr('readonly', 'true');
+		    		$('[id^=inputDrugNotes').attr('readonly', 'true');
 		    		$('[id^=inputAllergyType').attr('readonly', 'true');
 		    		$('[id^=inputAllergyNotes').attr('readonly', 'true');
 		    		$('[id^=inputImmDate').attr('readonly', 'true');
@@ -943,23 +943,23 @@ _END;
 											</div>
 											<div class="form-group col-sm-4">
 												<label for="inputTakenWhen{$i}">Taken When</label>
-												<input type="text" class="form-control" id="inputTakenWhen{$i}" value = {$medInfo[$i]['takenWhen']} placeholder="Taken When" readonly>
+												<input type="text" class="form-control" name="inputTakenWhen{$i}" id="inputTakenWhen{$i}" value = {$medInfo[$i]['takenWhen']} placeholder="Taken When" readonly>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-sm-6">
 												<label for="inputStartDate{$i}">Start Date</label>
-												<input type="date" class="form-control" id="inputStartDate{$i}" value = {$medInfo[$i]['startDate']} readonly>
+												<input type="date" class="form-control" name="inputStartDate{$i}" id="inputStartDate{$i}" value = {$medInfo[$i]['startDate']} readonly>
 											</div>
 											<div class="form-group col-sm-6">
 												<label for="inputEndDate{$i}">End Date</label>
-												<input type="date" class="form-control" id="inputEndDate{$i}" value = {$medInfo[$i]['endDate']} readonly>
+												<input type="date" class="form-control" name="inputEndDate{$i}" id="inputEndDate{$i}" value = {$medInfo[$i]['endDate']} readonly>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-sm-12">
-												<label for="inputDrugDosage{$i}">Notes</label>
-												<textarea class="form-control" id="inputDrugDosage{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
+												<label for="inputDrugNotes{$i}">Notes</label>
+												<textarea class="form-control" id="inputDrugNotes{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
 											</div>
 										</div>
 _END;

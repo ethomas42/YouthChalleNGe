@@ -630,7 +630,7 @@ if(isset($_POST['saveApplicant']))
 				$endDate = filter_input(INPUT_POST, "inputEndDate".$i);
 				$notes = filter_input(INPUT_POST, "inputDrugNotes".$i);
 				$id = filter_input(INPUT_POST, "inputMedID".$i);
-				$connection->runQuery("UPDATE medications SET drugName = '$drugName', type = '$type', dosage = 'dosage', frequency = '$frequency', takenWhen = '$takenWhen', startDate = '$startDate', endDate = '$endDate', notes = '$notes' WHERE medID = '$id'");
+				$connection->runQuery("UPDATE medications SET drugName = '$drugName', type = '$type', dosage = '$dosage', frequency = '$frequency', takenWhen = '$takenWhen', startDate = '$startDate', endDate = '$endDate', notes = '$notes' WHERE medID = '$id'");
 			} 
 		}
 	}
