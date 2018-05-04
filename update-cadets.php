@@ -260,11 +260,12 @@ if(isset($_POST['saveCadet']))
 		$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$key'");
 		$numAller = count($allerInfo);
 		for($i = 0; $i < $numAller; $i ++) {
-			if(isset($_POST['inputAllerID'.$i]))
+			if(isset($_POST['inputAllergyID'.$i]))
 			{
 				$type = filter_input(INPUT_POST, "inputAllergyType".$i);
 				$notes = filter_input(INPUT_POST, "inputAllergyNotes".$i);
 				$id = filter_input(INPUT_POST, "inputAllergyID".$i);
+				echo $type.$notes.$id;
 				$connection->runQuery("UPDATE allergies SET type = '$type', notes = '$notes' WHERE allerID = '$id'");
 			} 
 		}
@@ -282,13 +283,13 @@ if(isset($_POST['saveCadet']))
 				$validUntil = filter_input(INPUT_POST, "inputImmValid".$i);
 				$notes = filter_input(INPUT_POST, "inputImmNotes".$i);
 				$id = filter_input(INPUT_POST, "inputImmID".$i);
-				$connection->runQuery("UPDATE allergies SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
+				$connection->runQuery("UPDATE immunizations SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
 			} 
 		}
 	}
 	
 	// substance abuse tab
-    if(isset($_POST['inputSubID0ID0'])) { 
+    if(isset($_POST['inputSubID0'])) { 
 		$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$key'");
 		$numSub = count($subInfo);
 		for($i = 0; $i < $numSub; $i ++) {
@@ -639,7 +640,7 @@ if(isset($_POST['saveApplicant']))
 		$allerInfo = $connection->runQuery("SELECT * FROM allergies WHERE ssn = '$key'");
 		$numAller = count($allerInfo);
 		for($i = 0; $i < $numAller; $i ++) {
-			if(isset($_POST['inputAllerID'.$i]))
+			if(isset($_POST['inputAllergyID'.$i]))
 			{
 				$type = filter_input(INPUT_POST, "inputAllergyType".$i);
 				$notes = filter_input(INPUT_POST, "inputAllergyNotes".$i);
@@ -648,10 +649,12 @@ if(isset($_POST['saveApplicant']))
 			} 
 		}
 	}
-	
+	echo "HERRO";
 	// immunizations tab
     if(isset($_POST['inputImmID0'])) { 
 		$immInfo = $connection->runQuery("SELECT * FROM immunizations WHERE ssn = '$key'");
+		echo "CHECK";
+		echo "CHECK";
 		$numImm = count($immInfo);
 		for($i = 0; $i < $numImm; $i ++) {
 			if(isset($_POST['inputImmID'.$i]))
@@ -661,13 +664,14 @@ if(isset($_POST['saveApplicant']))
 				$validUntil = filter_input(INPUT_POST, "inputImmValid".$i);
 				$notes = filter_input(INPUT_POST, "inputImmNotes".$i);
 				$id = filter_input(INPUT_POST, "inputImmID".$i);
-				$connection->runQuery("UPDATE allergies SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
+				echo $date.$type.$validUntil.$notes.$id;
+				$connection->runQuery("UPDATE immunizations SET date = '$date', type = '$type', validUntil = '$validUntil', notes = '$notes' WHERE immID = '$id'");
 			} 
 		}
 	}
 	
 	// substance abuse tab
-    if(isset($_POST['inputSubID0ID0'])) { 
+    if(isset($_POST['inputSubID0'])) { 
 		$subInfo = $connection->runQuery("SELECT * FROM substanceabuse WHERE ssn = '$key'");
 		$numSub = count($subInfo);
 		for($i = 0; $i < $numSub; $i ++) {
