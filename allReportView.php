@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <?php
+	/*
+	Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+	The purpose of this file is allow users to see all of the reports that have previously been created and the option 
+	*/
 	include_once "basicPage.php";
 	basicPage("Report Templates");
-	if(isset($_SESSION['loggedIn']) == false)
+	if(isset($_SESSION['loggedIn']) == false) //Checks to see if user is logged in; if they are not then they will be redirected to the login page.
 	{
 		header("Location: index.php"); 
 	}
@@ -25,10 +29,10 @@
 						<?php
 							include_once "dbcontroller.php";
 							$db = new DBController();
-							if ($db->numRows("SELECT name, dateCreated FROM reports"))
+							if ($db->numRows("SELECT name, dateCreated FROM reports")) //If loop for if there are reports that have been previously generated.
 							{
 								$results = $db->runQuery("SELECT name, dateCreated FROM reports");
-								foreach($results as $row)
+								foreach($results as $row) //Creates a table of reports 
 								{
 									$dateA = preg_split('/[-_ ]+/', $row['dateCreated']); //split by dash underscore and space
 									echo <<<_END

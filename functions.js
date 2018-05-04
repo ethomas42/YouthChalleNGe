@@ -1,4 +1,5 @@
-$(document).ready(function() 
+//Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+$(document).ready(function() //This file is used for the functionality of all tables and the sidebar.
 {
 	$('#current-table').DataTable( {
 		responsive: true

@@ -2,6 +2,7 @@
 <html>
 <?php
     /*
+    Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
     The purpose of this file is to take a string of tableNames.fieldNames and output them into an excel sheet with headers and the data correctly organized.
     */
     require 'vendor/autoload.php';

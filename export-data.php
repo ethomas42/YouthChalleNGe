@@ -5,6 +5,10 @@
 <html>
 
 <?php
+    /*
+    Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+    The purpose of this file is to allow the user to export All Cadets into an Excel file.
+    */
                 require 'vendor/autoload.php';
                 use PhpOffice\PhpSpreadsheet\Spreadsheet;
                 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

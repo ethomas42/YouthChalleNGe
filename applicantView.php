@@ -17,7 +17,7 @@
 ?>
 
 	<script>
-				function restrictMedical()
+				function restrictMedical() //Used to restrict users from seeing the Medical Tab if they do not have proper permissions
 				{
 					var medicalView = "<?=$_SESSION['permissions']['medicalView']?>";
 					if (!(medicalView == 1))
@@ -28,7 +28,7 @@
 						document.getElementById('abuseTab').setAttribute('style', 'display: none');
 					}
 				}
-				function changeView()
+				function changeView() //Used to change a user from read only mode to write mode if they have the proper permissions
 		        {
 					var ssnView = "<?=$_SESSION['permissions']['ssnView']?>";
 					var medicalEdit = "<?=$_SESSION['permissions']['medicalEdit']?>";
@@ -147,7 +147,7 @@
 						}
 					}
 				}
-			function changeEdit()
+			function changeEdit() //Changes a user back from Edit to View mode assuming they have the correct permissions
 				{
 					// basic info
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');
@@ -243,7 +243,7 @@
 					document.getElementById('inputRecommenderPhone').setAttribute('readonly', 'true');
 				}
 			
-			function calcAge() {
+			function calcAge() { //Used to calculate the age of an applicant by using their birthday
 				var dob = $('#inputBirthday').val();
 				dob = new Date(dob);
 				var today = new Date();

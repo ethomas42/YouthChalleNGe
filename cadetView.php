@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <?php
+	/*
+	Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+	The purpose of this file is to allow a user with proper permissions to view a specific cadet that they have selected from the allCadetView.php. Depending on the user's permissions, they are able to view this cadet, update this cadet, add files to this cadet, and even graduate if they are currently enrolled.
+	*/
+
 	include_once "basicPage.php";
     require_once 'dbcontroller.php';
 	basicPage("Cadet View");
@@ -20,7 +25,7 @@
 </style> 
 
 	<script>
-				function restrictMedical()
+				function restrictMedical() //Used to restrict users that do not have proper permissions to view the Medical Tab
 				{
 					var medicalView = "<?=$_SESSION['permissions']['medicalView']?>";
 					if (!(medicalView == 1))
@@ -31,7 +36,7 @@
 						document.getElementById('abuseTab').setAttribute('style', 'display: none');
 					}
 				}
-				function changeView()
+				function changeView() //Used to change a user from read only mode to write mode if they have the proper permissions
 		        {
 					var ssnView = "<?=$_SESSION['permissions']['ssnView']?>";
 					var medicalEdit = "<?=$_SESSION['permissions']['medicalEdit']?>";
@@ -149,7 +154,7 @@
 						}
 					}
 				}
-			function changeEdit()
+			function changeEdit() //Changes a user back from Edit to View mode assuming they have the correct permissions
 				{
 					// basic info
 		    		document.getElementById('editCadet').removeAttribute('style','display:none');

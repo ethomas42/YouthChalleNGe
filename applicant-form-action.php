@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/* Created by: The A-Team
  * @author Colton Thompson, Parker Ramsey, Evan Thomas
  * @purpose Submits a new application into the database 
  * Retrieves all information from $_POST array 

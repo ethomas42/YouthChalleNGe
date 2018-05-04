@@ -1,6 +1,11 @@
 <!-- Version 5: Implements functions to create a View Cadet Page and an Edit Cadet Page -->
 <!DOCTYPE html>
 <?php
+/*
+Created by: A-Team (James Harrison, Charles Ramsey, Evan Thomas, and Colton Thompson)
+The purpose of this file is to load up our general page design without having to copy and paste on all other pages. This is where everything dealing with the Sidebar and the Header Box.
+*/
+
 session_start();
 if(!isset($_SESSION['loggedIn']))
 {
@@ -94,7 +99,7 @@ function basicPage($pageName) //Basic Page Layout with Navbar and Footer
 										<li><a href="#">Page</a></li>
 										-->
 _END;
-										if(isset($_SESSION['loggedIn']))
+										if(isset($_SESSION['loggedIn'])) //If a user is logged in, it will add a logout button at the top.
 										{
 										echo "<form action = 'logout.php' method = 'POST' >"; 
 										echo "<button type='submit' class='btn btn-danger'>Logout</button>"; 
@@ -110,7 +115,7 @@ _END;
 }
 ?>
 <script>
-	function restrictAdmin()
+	function restrictAdmin() //Used to restrict users who do not have permission to go into the admin area.
 	{
 		var adminView = "<?=$_SESSION['permissions']['admin']?>";
 		if (!(adminView == 1))
