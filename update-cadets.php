@@ -4,16 +4,16 @@ require_once 'dbcontroller.php';
 $connection = new DBController(); 
 
 // SAVING CADET
-//importfile(directory, buttonname, inputfilename, ssn, category)
 if(isset($_POST['saveCadet']))
 {
 	// get and set correct ssn
     $key = $_POST['ssnKey']; 
-    $category = $_POST['category']; 
-	$connection->runQuery("UPDATE cadets SET ssn = '$key' WHERE ssn = '$key'");
+	if(isset($_POST['category'])) {
+		$category = $_POST['category']; 
+	}
 	
 	// save attachments
-	if($category = "general") 
+	if(isset($_POST['genAttachment'])) 
     { 
         importFile("cadet","saveCadet","genAttachment", $key, "general");
     }
@@ -250,7 +250,7 @@ if(isset($_POST['saveCadet']))
 				$endDate = filter_input(INPUT_POST, "inputEndDate".$i);
 				$notes = filter_input(INPUT_POST, "inputDrugNotes".$i);
 				$id = filter_input(INPUT_POST, "inputMedID".$i);
-				$connection->runQuery("UPDATE medications SET drugName = '$drugName', type = '$type', dosage = 'dosage', frequency = '$frequency', takenWhen = '$takenWhen', startDate = '$startDate', endDate = '$endDate', notes = '$notes' WHERE medID = '$id'");
+				$connection->runQuery("UPDATE medications SET drugName = '$drugName', type = '$type', dosage = '$dosage', frequency = '$frequency', takenWhen = '$takenWhen', startDate = '$startDate', endDate = '$endDate', notes = '$notes' WHERE medID = '$id'");
 			} 
 		}
 	}
@@ -335,9 +335,10 @@ if(isset($_POST['saveCadet']))
         $update = filter_input(INPUT_POST, "inputWithdraw");
         $connection->runQuery("UPDATE cadets SET schoolWithdrawDate = '$update' WHERE ssn = '$key'"); 
     }
-	if(isset($_POST['inputEmployed']))
+	if(isset($_POST['inputEmployment']))
     {
-        $employment = filter_input(INPUT_POST, "inputEmployed");
+        $employment = filter_input(INPUT_POST, "inputEmployment"); // under or unemployed 
+		// handle employmemnt radio buttons
 		if(isset($employment)) {
 			if($employment == "unemployed") {
 				$unemployed = 1;
@@ -378,7 +379,7 @@ if(isset($_POST['saveCadet']))
         $connection->runQuery("UPDATE cadets SET recNum = '$update' WHERE ssn = '$key'"); 
     }
 
-    //header("refresh:2;url=allCadetView.php"); 
+    header("refresh:2;url=allCadetView.php"); 
     
 }
 
@@ -389,6 +390,10 @@ if(isset($_POST['saveApplicant']))
     // get and set correct ssn
     $key = $_POST['ssnKey']; 
 
+	if(isset($_POST['category'])) {
+		$category = $_POST['category']; 
+	}
+	
 	// save attachments
 	if(isset($_POST['genAttachment']))
     { 
@@ -711,10 +716,23 @@ if(isset($_POST['saveApplicant']))
         $update = filter_input(INPUT_POST, "inputWithdraw");
         $connection->runQuery("UPDATE cadets SET schoolWithdrawDate = '$update' WHERE ssn = '$key'"); 
     }
-	if(isset($_POST['inputUnemployed']))
+	if(isset($_POST['inputEmployment']))
     {
-        $update = filter_input(INPUT_POST, "inputUnemployed");
-        $connection->runQuery("UPDATE cadets SET unemployed = '$update' WHERE ssn = '$key'"); 
+        $employment = filter_input(INPUT_POST, "inputEmployment"); // under or unemployed 
+		// handle employmemnt radio buttons
+		if(isset($employment)) {
+			if($employment == "unemployed") {
+				$unemployed = 1;
+				$underemployed = 0;
+			} else if ($employment == "underemployed") {
+				$unemployed = 0;
+				$underemployed = 1;
+			}
+		} else {
+			$unemployed = 0;
+			$underemployed = 0;
+		}
+        $connection->runQuery("UPDATE cadets SET unemployed = '$unemployed', underemployed='$underemployed' WHERE ssn = '$key'"); 
     }
 	if(isset($_POST['inputUnder']))
     {
@@ -758,7 +776,7 @@ if(isset($_POST['saveApplicant']))
         $connection->runQuery("UPDATE cadets SET accomplish2 = '$update' WHERE ssn = '$key'"); 
     }
 
-    //header("refresh:2;url=allApplicantView.php"); 
+    header("refresh:2;url=allApplicantView.php"); 
     
 }
 

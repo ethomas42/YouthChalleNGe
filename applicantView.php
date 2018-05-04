@@ -959,7 +959,7 @@ _END;
 										<div class="form-row">
 											<div class="form-group col-sm-12">
 												<label for="inputDrugNotes{$i}">Notes</label>
-												<textarea class="form-control" id="inputDrugNotes{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
+												<textarea class="form-control" name="inputDrugNotes{$i}" id="inputDrugNotes{$i}" placeholder="Notes" rows="3" readonly>{$medInfo[$i]['notes']}</textarea>
 											</div>
 										</div>
 _END;
@@ -1134,26 +1134,22 @@ _END;
 									<input type="date" class="form-control" name="inputWithdraw" id="inputWithdraw" value = "<?= $record["schoolWithdrawDate"]?>" placeholder="Month and Year of Withdrawing from School" readonly>
 								</div>
 								<legend>Are you unemployed or under-employed?</legend>
-								<div class="form-check form-check-inline col-sm-6">
-                                                                        <?php
-                                                                            $employCheck="";
-                                                                            if($record['unemployed'])
-                                                                            {
-                                                                                $employCheck="checked";
-                                                                            }
-                                                                        ?>
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputUnemployed" value="option1" disabled="disabled" <?=$employCheck?>>
+								<div class="form-check form-check-inline col-sm-12">
+									<?php
+										$employCheck="";
+										if($record['unemployed'])
+										{
+											$employCheck="checked";
+										}
+										$employCheck2="";
+										if($record['underemployed'])
+										{
+											$employCheck2="checked";
+										}
+									?>
+									<input class="form-check-input"  type="radio" name="inputEmployment" id="inputEmployment"  value="unemployed" <?=$employCheck?>>
 									<label class="form-check-label" for="inputUnemployed">Unemployed</label>
-								</div>
-								<div class="form-check form-check-inline col-sm-6">
-                                                                        <?php
-                                                                            $employCheck="";
-                                                                            if($record['underemployed'])
-                                                                            {
-                                                                                $employCheck="checked";
-                                                                            }
-                                                                        ?>
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputUnder" value="option2" disabled="disabled" <?=$employCheck?>>
+									<input class="form-check-input" type="radio" name="inputEmployment" id="inputEmployment" value="underemployed" <?=$employCheck2?>>
 									<label class="form-check-label" for="inputUnder">Under-employed</label>
 								</div>
 								<div class="form-group col-sm-12">
