@@ -265,7 +265,7 @@ if($_SESSION['permissions']['admin'] == 0)
 						</table>
 					</div>
 					<!-- Operations Tab -->
-					<div class = "tab-pane container col-sm-12" id = "nav-operations">
+					<div class = "tab-pane container col-sm-12" id = "nav-operation">
 						<table id="operations-table" class="table table-striped table-bordered"> 
 							<thead>
 								<tr>
