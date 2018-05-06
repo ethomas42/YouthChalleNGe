@@ -33,19 +33,19 @@
 								</div>
 							<div class="form-group col-sm-4">
 								<label for="inputSSN">Social Security Number</label>
-								<input type="text" name = "inputSSN" class="form-control" id="inputSSN" placeholder="SSN">
+								<input type="text" name = "inputSSN" class="form-control" id="inputSSN" placeholder="SSN" required>
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputFirstname">First Name</label>
-								<input type="text" class="form-control" name = "inputFirstName" id="inputFirstName" placeholder="First Name">
+								<input type="text" class="form-control" name = "inputFirstName" id="inputFirstName" placeholder="First Name" required>
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputMiddleName">Middle Name</label>
-								<input type="text" class="form-control" name ="inputMiddleName" id="inputMiddleName" placeholder="Middle Name">
+								<input type="text" class="form-control" name ="inputMiddleName" id="inputMiddleName" placeholder="Middle Name" required>
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputLastName">Last Name</label>
-								<input type="text" class="form-control" name = "inputLastName" id="inputLastName" placeholder="Last Name">
+								<input type="text" class="form-control" name = "inputLastName" id="inputLastName" placeholder="Last Name" required>
 							</div>
 							<div class="form-group col-sm-3">
 								<label for="inputGAResident">GA Resident</label>
