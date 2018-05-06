@@ -81,7 +81,30 @@
         	$num++;
       	}
     }
-        
-    header("Location:reportView.php"); //Redirects to Reports page.
+    
+	if (file_exists($fileName)) 
+	{
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="'.basename($fileName).'"');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($fileName));
+		readfile($fileName);
+		move_uploaded_file($fileName, "/Exports"); 
+		//exit;
+	}
+	
+	if(isset($_POST['saveTemp']))
+	{
+		$fields = $_POST['fieldNames'];
+		$name = $_POST['inputTemplateName'];
+		$fields = str_replace(",", ";", $fields);
+		$date = date("Y-m-d");
+		$db->runQuery("INSERT INTO reports (name, fields, dateCreated) VALUES ('$name', '$fields', '$date')");
+	}
+	
+    //header("Location:reportView.php"); //Redirects to Reports page.
 ?>
 </html>
