@@ -99,7 +99,7 @@ _END;
 										foreach($results as $row)
 										{
 											$tempSSN = substr($row['ssn'], -4); //Used to hide the Social Security Number of applicants
-											echo <<<_END 
+											echo <<<_END
 													<tr>
 														<td><form method="post" action="applicantView.php"><input type="hidden" name="ssn" value="{$row['ssn']}"><button type="submit" class="btn btn-primary">View Applicant</button></form></td>
 														<td>*****{$tempSSN}</td>
