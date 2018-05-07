@@ -81,6 +81,7 @@
       $db->createRecord("INSERT INTO cadets (fName, mName, lName, gender, ssn, genQual, birthday, race, isHispanic, email, mStreet, mStreet2, City, mState,  mZip,  pStreet, pStreet2, pCity, pState, pZip, isCitizen, ged, volunteer, admissionStatus, schoolWithdrawDate, unemployed, underemployed, workplace, wage, hoursWorking, accomplish1, accomplish2, recBy, recNum,  gradeCompleted, hairColor, eyeColor, height, weight, personsInHouse, houseIncome, gaResident, preferredComm, campusLocation
 ) VALUES ('$fName', '$mName', '$lName', '$gender', '$ssn', '$genQual', '$birthday', '$race', '$isHispanic', '$email', '$mStreet', '$mStreet2', '$City', '$mState',  '$mZip',  '$pStreet', '$pStreet2', '$pCity', '$pState', '$pZip', '$isCitizen', '$ged', '$volunteer', '$admissionStatus', '$schoolWithdrawDate', '$unemployed', '$underemployed', '$workplace', '$wage', '$hoursWorking', '$accomplish1', '$accomplish2', '$recBy', '$recNum',  '$gradeCompleted', '$hairColor', '$eyeColor', '$height', '$weight', '$personsInHouse', '$houseIncome', '$gaResident', '$preferredComm', '$campusLocation')"); //Pushes each record
     }
+	unlink($filename); //Removes input file from server 
     header("Location:allCadetView.php"); //Redirects to allCadetView page.
 	?>
 </html>
