@@ -16,22 +16,22 @@ if(isset($_POST['saveCadet']))
 	}
 	
 	// save attachments
-	if(isset($_POST['genAttachment'])) 
+	if(isset($_FILES['genAttachment'])) 
     { 
         importFile("cadet","saveCadet","genAttachment", $key, "general");
     }
 	
-	if(isset($_POST['medAttachment']))
+	if(isset($_FILES['medAttachment']))
     { 
         importFile("cadet","saveCadet","medAttachment", $key, "medical");
     }
 	
-	if(isset($_POST['counselorAttachment']))
+	if(isset($_FILES['counselorAttachment']))
     { 
         importFile("cadet","saveCadet","counselorAttachment", $key, "counselor");
     }
 	
-	if(isset($_POST['recAttachment']))
+	if(isset($_FILES['recAttachment']))
     { 
         importFile("cadet","saveCadet","recAttachment", $key, "recruitment");
     }
