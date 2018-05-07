@@ -15,7 +15,7 @@
 	
     
     $fileName = $_POST['importFile']; //Name of the file chosen by the user on allCadetView.php
-    move_uploaded_files($_FILES['importFile']['tmp_name'], $filename); //Move file to the database
+    move_uploaded_file($_FILES['importFile']['tmp_name'], $filename); //Move file to the database
     $spreadsheet = $reader->load($fileName);
     $sheet = $spreadsheet->getActiveSheet();
     $db = new DBController();
