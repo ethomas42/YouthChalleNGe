@@ -50,17 +50,8 @@ function importFile($directory , $buttonName ,$inputFileName, $ssn, $category) /
             move_uploaded_file($attachment_tmp_name, $directory."/".$attachment); 
             
         }
-		if($results)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-			echo "It did not work!";
-		}
+		
     }
-	else 
-		echo "The button is not posted"; 
+
 }
 ?>
