@@ -84,6 +84,8 @@
     
 	if (file_exists($fileName)) 
 	{
+		ob_end_clean(); //Clears the file buffer
+		
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
 		header('Content-Disposition: attachment; filename="'.basename($fileName).'"');
